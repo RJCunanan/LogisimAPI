@@ -6,6 +6,7 @@ RJ Cunanan
 
 Theodora Fernandez
 
+Yong Yang 
 
 ---------------------------------------------------
 AGENDA FOR THIS WEEK (Due Friday!!!):
@@ -17,3 +18,6 @@ AGENDA FOR THIS WEEK (Due Friday!!!):
 3. Continue refactoring where needed
 
 4. Test for any bugs
+
+5. Eat out
+
