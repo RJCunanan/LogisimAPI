@@ -1,9 +1,14 @@
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// Name:  Jaime Rivera
-// Date:  9/27/2019
-// Class: CSC131
-// ID:    301427334
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/*
+ Team API:
+ Jaime Rivera
+ RJ Cunanan
+ Theodora Fernandez
+ Yong Yang
+
+ Group Project: LogiSim
+ Class: CSC 131
+ Date: 10-30-19
+ */
 
 package com.example.logisim;
 
