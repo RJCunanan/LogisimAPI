@@ -1,23 +1,20 @@
-Team API:
+# Team API: LogiSim Group Project
+--------------------------------------------
 
-Jaime Rivera
+## Vision
+--------------------------------------------
+To create a simple and easy-to-use Logic Simulator application that doesn't
+compromise on usability nor on the number of features available to the user.
 
-RJ Cunanan
+## Team Members
+--------------------------------------------
+* Jaime Rivera
+* RJ Cunanan
+* Theodora Fernandez
+* Yong Yang 
 
-Theodora Fernandez
-
-Yong Yang 
-
----------------------------------------------------
-AGENDA FOR THIS WEEK (Due Friday!!!):
----------------------------------------------------
-1. Figure out whose project to use as the base of our Team's Logisim Project in the repository.
-
-2. From there, begin adding and modifying project using code we like from our other projects.
-
-3. Continue refactoring where needed
-
-4. Test for any bugs
-
-5. Eat out
-
+## New Features
+--------------------------------------------
+* Additional Logic Gates
+* Redo and Undo Buttons
+* Pinch to zoom in and out of grid
