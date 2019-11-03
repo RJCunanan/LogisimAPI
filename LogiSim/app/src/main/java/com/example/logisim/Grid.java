@@ -1,495 +1,185 @@
 /*
- Team API:
- Jaime Rivera
- RJ Cunanan
- Theodora Fernandez
- Yong Yang
-
- Group Project: LogiSim
- Class: CSC 131
- Date: 10-30-19
+    Name: RJ Cunanan 9811
+    Course: CSC 131
+    Assignment: LogiSim
+    Date: 10-12-19
  */
+
+
 
 package com.example.logisim;
 
-import android.graphics.Bitmap;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
-import android.widget.ImageView;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
-import android.content.Context;
 
+
+// Creates the grid for the UI necessary to place items to
+// make a circuit
 public class Grid {
 
-    // Several Constants used within the code for Switch Statements
-    // Allowing the code to be more readable
-    private final int RUNBUTTONOPTION = 0;
-    private final int LINKBUTTONOPTION = 1;
-    private final int MOVEBUTTONOPTION = 2;
-    private final int DELETEBUTTONOPTION = 3;
-
-    private final int SAVEBUTTONOPTION = 5;
-    private final int SAVEAOPTION = 6;
-    private final int SAVEBOPTION = 7;
-    private final int SAVECOPTION = 8;
-
-    private final int SWITCHBUTTONOPTION = 10;
-    private final int ANDBUTTONOPTION = 11;
-    private final int ORBUTTONOPTION = 12;
-    private final int NOTBUTTONOPTION = 13;
-    private final int LAMPBUTTONOPTION = 14;
-
-    // Allows modification of the button's Width and Length;
-    private final int buttonLength = 1;
-    private final int buttonWidth = 1;
-
-    // Variables to be seen throughout the Grid Class
-    private Point numberOfPixels = new Point();
-    int cellSize;
-    private final int gridWidth = 15;
+    private int numberHorizontalPixels;
+    private int numberVerticalPixels;
+    private int blockSize;
+    private int gridWidth = 15;
     private int gridHeight;
-
-    private boolean prevSelected = false;
-    private int previousTouchN;
-
     private Canvas myCanvas;
     private Paint myPaint;
-    private ImageView myGameView;
-    private Bitmap myBitMap;
-    private Context myContext;
+    private Point size;
+    private final int BOTTOMROW = 8;
 
-    private Vector<Cell> cellList;
-    private List<UserInterfaceButtons> buttonList = new ArrayList<>(13);
+    private AbstractGridCell[][] cells;
+    private Clear clear;
+    private Delete delete;
+    private Wire wire;
+    private Move move;
 
-    private Vector<Cell> cellListA;
-    private Vector<Cell> cellListB;
-    private Vector<Cell> cellListC;
 
-    public Grid(Context context, Point size, Canvas canvas, Paint paint, ImageView gameView, Bitmap blankBitMap) {
-        // Gathers & computes information about the user's Screen
-        numberOfPixels.x = size.x;
-        numberOfPixels.y = size.y;
-        cellSize = numberOfPixels.x / gridWidth;
-        gridHeight = numberOfPixels.y / cellSize;
 
-        // Assigns information for drawing
-        myCanvas = canvas;
-        myPaint = paint;
-        myGameView = gameView;
-        myBitMap = blankBitMap;
-        myContext = context;
+    // Initializes the grid based on the screen resolution
+    public Grid(Point size, Canvas myCanvas, Paint myPaint)
+    {
+        // Initialize our size based variables based on the screen resolution
+        this.size = size;
+        numberHorizontalPixels = this.size.x;
+        numberVerticalPixels = this.size.y;
+        blockSize = numberHorizontalPixels / gridWidth;
+        gridHeight = numberVerticalPixels / blockSize;
 
-        // Once the Grid has all the necessary variables,
-        // The Grid Vector and Buttons Arraylist will get initialized
+        this.myCanvas = myCanvas;
+        this.myPaint = myPaint;
+
+        wire = new Wire();
+        clear = new Clear();
+        delete = new Delete();
+        move = new Move();
+
         initializeGrid();
         initializeButtons();
     }
 
-    private void initializeGrid() {
-        // The grid Vector will be created to have a size of the
-        // area in which the player can place gates/switches/lamps inside
-        cellList = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListA = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListB = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListC = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        // A nested loop will fill the entirety of the vector with EmptyCells
-        // Note: the grid filled with columns first
-        Point currentPos = new Point();
-        for (int x = 0; x < gridWidth; x++) {
-            for(int y = 0; y < (gridHeight-buttonLength); y++) {
-                currentPos.x = x;
-                currentPos.y = y;
 
-                cellList.add(new EmptyCell(new Point(currentPos), cellSize));
-                cellListA.add(new EmptyCell(new Point(currentPos), cellSize));
-                cellListB.add(new EmptyCell(new Point(currentPos), cellSize));
-                cellListC.add(new EmptyCell(new Point(currentPos), cellSize));
+    public void initializeGrid()
+    {
+        // Create the cells object used to hold the different cells that
+        // go on the grid
+        cells = new AbstractGridCell[getGridWidth()][getGridHeight()];
+
+        // Cycle through the cells object, creating blank cells that will compose
+        // the initial blank grid.
+        for (int x = 0; x < getGridWidth(); x++) {
+            for (int y = 0; y < getGridHeight(); y++) {
+                cells[x][y] = new GridCell(x, y, "");
             }
         }
     }
 
-    void initializeButtons() {
-        // A loop will create however man buttons possible within the area given to it
-        // of the proper width. When creating these new buttons, a starting position is given
-        // as well as the width and length of the buttons
-        // The buttons will be placed on top of the grid, thus it will still read player taps as cells
-        // Because of this the buttons must have a list of the different cells that combine to make
-        // one large button
-        int currentButton = -1;
-        for(int x = 0; x < gridWidth; x+= buttonWidth) {
-            currentButton++;
-            buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                    buttonWidth, buttonLength, currentButton));
-        }
+
+    public void initializeButtons()
+    {
+        // Create the GridCell objects that will represent buttons in the taskbar
+        cells[0][BOTTOMROW] = new GridCell(0, BOTTOMROW, "Switch");
+        cells[1][BOTTOMROW] = new GridCell(1, BOTTOMROW, "AND");
+        cells[2][BOTTOMROW] = new GridCell(2, BOTTOMROW, "OR");
+        cells[3][BOTTOMROW] = new GridCell(3, BOTTOMROW, "NOT");
+        cells[4][BOTTOMROW] = new GridCell(4, BOTTOMROW, "LED");
+        cells[5][BOTTOMROW] = new GridCell(5, BOTTOMROW, "Wire");
+        cells[6][BOTTOMROW] = new GridCell(6, BOTTOMROW, "Move");
+        cells[7][BOTTOMROW] = new GridCell(7, BOTTOMROW, "Del");
+        cells[8][BOTTOMROW] = new GridCell(8, BOTTOMROW, "Clear");
+        cells[9][BOTTOMROW] = new GridCell(9, BOTTOMROW, "Toggle");
+        cells[10][BOTTOMROW] = new GridCell(10, BOTTOMROW, "Run");
+        cells[11][BOTTOMROW] = new GridCell(11, BOTTOMROW, "Save");
+        cells[12][BOTTOMROW] = new GridCell(12, BOTTOMROW, "A");
+        cells[13][BOTTOMROW] = new GridCell(13, BOTTOMROW, "B");
+        cells[14][BOTTOMROW] = new GridCell(14, BOTTOMROW, "C");
     }
 
-    // This will return the spot in the cell vector list of whatever point is given to it
-    int getCellN(Point tap) {return ((gridHeight-buttonLength)*tap.x+tap.y);}
 
-    void clearScreen() {
-        myGameView.setImageBitmap(myBitMap);
-        myCanvas.drawColor(Color.argb(255, 255, 255, 255));
-    }
+    // Draws the grid on the screen one cell at a time
+    public void drawGrid(Canvas canvas, Paint paint, Context context)
+    {
 
-    void drawGrid() {
-        clearScreen();
-
-        // Sets the grid lines to be drawn
-        myPaint.setColor(Color.argb(255, 0, 0, 0));
-        myPaint.setStrokeWidth(2);
+        // Wipe the screen with a white color
         myCanvas.drawColor(Color.argb(255, 255, 255, 255));
 
-        // This will loop through the entire cell list
-        for(Cell currCell : cellList) {
+        // Change the Line Width
+        paint.setStrokeWidth(5F);
 
-            //Draw Horizontal & Vertical lines based on cell location of current cell
-            myCanvas.drawLine(currCell.cellX, currCell.cellY,
-                    currCell.cellX + cellSize, currCell.cellY, myPaint);
-            myCanvas.drawLine(currCell.cellX, currCell.cellY,
-                    currCell.cellX, currCell.cellY + cellSize, myPaint);
+        // Draw entire grid cells, checking what components currently exit and drawing them in their
+        // respective cells. All other grid cells are filled with blanks.
+        for (int x = 0; x < getGridWidth(); x++) {
+            for (int y = 0; y < getGridHeight(); y++) {
 
-            // Draw whatever the current cell is (emptycell, gate, switch, lamp)
-            currCell.drawCell(myPaint, myCanvas, myContext);
+                // Change the paint color to white
+                paint.setColor(Color.argb(255, 255, 255, 255));
 
-
-            // If the current cell has any other Cells linked to it, draw a thick line
-            myPaint.setStrokeWidth(5);
-//            if(!(currCell instanceof EmptyCell)) {
-            if (currCell.getCellA() != null) {
-                int stopY;
-                if (currCell instanceof NOT || currCell instanceof LAMP)
-                    stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 2);
-                else
-                    stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 4);
-
-                myCanvas.drawLine(currCell.getCellA().cellWidth,
-                        (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
-                        currCell.cellX,
-                        stopY,
-                        myPaint);
-            }
-
-            if (currCell.getCellB() != null) {
-                myCanvas.drawLine(currCell.getCellB().cellWidth,
-                        (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
-                        currCell.cellX,
-                        currCell.cellY + 3 * ((currCell.cellHeight - currCell.cellY) / 4),
-                        myPaint);
-            }
-//            }
-            myPaint.setStrokeWidth(2);
-        }
-    }
-
-    // This will draw all of the UI buttons and the lines to seperate each button
-    void drawUI() {
-        drawOptionsGrid();
-        myPaint.setColor((Color.argb(255, 0, 0, 0)));
-        myPaint.setTextSize(40);
-
-        drawRunButton();
-        drawLinkButton();
-        drawMoveButton();
-        drawDeleteButton();
-        drawSAVEButton();
-        drawSAVEAButton();
-        drawSAVEBButton();
-        drawSAVECButton();
-        drawSWITCHButton();
-        drawANDButton();
-        drawORButton();
-        drawNOTButton();
-        drawLAMPButton();
-    }
-
-    void drawOptionsGrid() {
-        myPaint.setColor((Color.argb(255, 102, 102, 102)));
-        myCanvas.drawRect(0, (gridHeight-buttonLength)*cellSize,
-                gridWidth * cellSize, gridHeight * cellSize, myPaint);
-
-        myPaint.setColor(Color.argb(255, 0, 0, 0));
-
-        for(int verticalLine = 1; verticalLine < 10; verticalLine++) {
-            myCanvas.drawLine((verticalLine*buttonWidth) * cellSize, (gridHeight-gridWidth)* cellSize,
-                    (verticalLine*buttonWidth) * cellSize, (gridHeight)* cellSize,
-                    myPaint);
-        }
-    }
-
-    private void drawRunButton() {
-        myCanvas.drawText("Run", (buttonWidth*RUNBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawLinkButton() {
-        myCanvas.drawText("Link", (buttonWidth*LINKBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawMoveButton() {
-        myCanvas.drawText("Move", (buttonWidth*MOVEBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawDeleteButton() {
-        myCanvas.drawText("Delete", (buttonWidth*DELETEBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVEButton() {
-        myCanvas.drawText("SAVE", (buttonWidth*SAVEBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVEAButton() {
-        myCanvas.drawText("A", (buttonWidth*SAVEAOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVEBButton() {
-        myCanvas.drawText("B", (buttonWidth*SAVEBOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVECButton() {
-        myCanvas.drawText("C", (buttonWidth*SAVECOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSWITCHButton() {
-        myCanvas.drawText("SWITCH", (buttonWidth*SWITCHBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawANDButton() {
-        myCanvas.drawText("AND", (buttonWidth*ANDBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawORButton() {
-        myCanvas.drawText("OR", (buttonWidth*ORBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawNOTButton() {
-        myCanvas.drawText("NOT", (buttonWidth*NOTBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawLAMPButton() {
-        myCanvas.drawText("LAMP", (buttonWidth*LAMPBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    // This is the portion of the code that will determine what is to be done
-    // once the player has touched the screen
-    void determineTouch(Point touchPosition) {
-        int touchPositionN = getCellN(touchPosition);
-        // if the touch was inside the user interface figure out which button was touched
-        if(touchPosition.y >= gridHeight-buttonLength) {
-            for (int i = 0; i < buttonList.size(); i++) {
-                buttonList.get(i).wasITouched(touchPosition);
-            }
-
-            if(buttonList.get(RUNBUTTONOPTION).getSelected()) {
-                for(int i = 0; i < cellList.size(); i++)
-                    if(cellList.get(i) instanceof LAMP) {
-                        ((LAMP) cellList.get(i)).evalLamp(); }
-
-                buttonList.get(RUNBUTTONOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBUTTONOPTION).getSelected() && buttonList.get(SAVEAOPTION).getSelected()) {
-                savedList(cellList, cellListA);
-                buttonList.get(SAVEBUTTONOPTION).toggleButton();
-                buttonList.get(SAVEAOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBUTTONOPTION).getSelected() && buttonList.get(SAVEBOPTION).getSelected()) {
-                savedList(cellList, cellListB);
-                buttonList.get(SAVEBUTTONOPTION).toggleButton();
-                buttonList.get(SAVEBOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBUTTONOPTION).getSelected() && buttonList.get(SAVECOPTION).getSelected()) {
-                savedList(cellList, cellListC);
-                buttonList.get(SAVEBUTTONOPTION).toggleButton();
-                buttonList.get(SAVECOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEAOPTION).getSelected()) {
-                savedList(cellListA, cellList);
-                buttonList.get(SAVEAOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBOPTION).getSelected()) {
-                savedList(cellListB, cellList);
-                buttonList.get(SAVEBOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVECOPTION).getSelected()) {
-                savedList(cellListC, cellList);
-                buttonList.get(SAVECOPTION).toggleButton();
-            }
-        }
-        else {
-            // This loop find which button is currently toggled on
-            int currentOption = -1;
-            for(int i = 0; i < buttonList.size(); i++){
-                if(buttonList.get(i).getSelected()) {
-                    currentOption = buttonList.get(i).getButtonInList();
-                }
-            }
-
-            // Each button has a unique number assigned to it, and once this is found out
-            // the grid will respond accordingly
-            switch(currentOption) {
-                case LINKBUTTONOPTION:
-                    // if there has been a previously selected cell and it isnt an empty cell
-                    if(prevSelected && cellList.get(previousTouchN).getGateNum() != -1) {
-                        linkCells(touchPositionN);
-                        prevSelected = false;
-                        buttonList.get(currentOption).toggleButton();
-                    }
-                    // select the cell to be linked
-                    else {
-                        previousTouchN = touchPositionN;
-                        prevSelected = true;
-                    }
-                    break;
-
-                case MOVEBUTTONOPTION:
-                    // if there has been a previously selected cell
-                    if(prevSelected) {
-                        moveCells(touchPosition, touchPositionN);
-                        prevSelected = false;
-                        buttonList.get(currentOption).toggleButton();
-                    }
-                    // select the cell to be moved
-                    else {
-                        previousTouchN = touchPositionN;
-                        prevSelected = true;
-                    }
-                    break;
-
-                case DELETEBUTTONOPTION:
-                    // turn the cell selected back into an EmptyCell
-                    Cell deleteCell = cellList.get(touchPositionN);
-                    deleteCell.deleteConnections();
-                    cellList.set(touchPositionN,new EmptyCell(deleteCell));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                case SWITCHBUTTONOPTION:
-                    // creates a Switch after being given information of the cell
-                    cellList.set(touchPositionN,new SWITCH(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                case ANDBUTTONOPTION:
-                    // creates an AND gate after being given information of the cell
-                    cellList.set(touchPositionN,new AND(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                case ORBUTTONOPTION:
-                    // creates an OR gate after being given information of the cell
-                    cellList.set(touchPositionN,new OR(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                case NOTBUTTONOPTION:
-                    // creates a NOT gate after being given information of the cell
-                    cellList.set(touchPositionN,new NOT(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                case LAMPBUTTONOPTION:
-                    // creates a Lamp after being given information of the cell
-                    cellList.set(touchPositionN,new LAMP(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                default:
-                    // If the user tapped a Switch, toggle its state
-                    if(cellList.get(touchPositionN) instanceof SWITCH) { ((SWITCH) cellList.get(touchPositionN)).toggleSwitch();}
-            }
-        }
-    }
-
-    private void moveCells(Point newTouchPosition, int newTapN) {
-        // Create a hold variable of the previous Tap
-        Cell newCell = cellList.get(newTapN);
-        Cell hold = cellList.get(previousTouchN);
-
-        // Update the hold Cell's touch position and move it to the right position in the cellList
-        // Set the previous Touch to an empty cell
-        cellList.set(previousTouchN,new EmptyCell(cellList.get(previousTouchN)));
-        cellList.get(previousTouchN).a = null;
-        cellList.get(previousTouchN).b = null;
-        hold.setCellPositionCoor(newCell.cellX, newCell.cellY, newCell.cellWidth, newCell.cellHeight);
-        hold.updateCellPosition(new Point(newTouchPosition));
-        cellList.set(newTapN, hold);
-    }
-
-    private void linkCells(int newTapN) {
-        // gets the current Cell of the user's tap
-        Cell currCell = cellList.get(newTapN);
-
-        cellList.get(previousTouchN).addHead(cellList.get(newTapN));
-
-        // create a link between the current cell pointing to the previous cell if a spot is open.
-        if(currCell.getCellA() == null)
-            cellList.get(newTapN).setCellA(cellList.get(previousTouchN));
-        else if(currCell.getCellB() == null)
-            cellList.get(newTapN).setCellB(cellList.get(previousTouchN));
-    }
-
-    private void savedList(Vector<Cell> saveThis, Vector<Cell> saveHere) {
-        for(int i = 0; i < saveThis.size(); i++) {
-            Cell currCell = saveThis.get(i);
-            if(currCell instanceof EmptyCell)
-                saveHere.set(i, new EmptyCell(currCell));
-            else if(currCell instanceof SWITCH)
-                saveHere.set(i, new SWITCH(currCell));
-            else if(currCell instanceof AND)
-                saveHere.set(i, new AND(currCell));
-            else if(currCell instanceof OR)
-                saveHere.set(i, new OR(currCell));
-            else if(currCell instanceof NOT)
-                saveHere.set(i, new NOT(currCell));
-            else if(currCell instanceof LAMP)
-                saveHere.set(i, new LAMP(currCell));
-        }
-
-        for(int i = 0; i < saveThis.size(); i++) {
-            Cell currCell = saveThis.get(i);
-            if(!(currCell instanceof EmptyCell)) {
-                if(currCell.getCellA() != null) {
-                    int currCellTailAPos = getCellN(currCell.getCellA().cellPosition);
-                    saveHere.get(i).setCellA(saveHere.get(currCellTailAPos));
-                }
-                if(currCell.getCellB() != null) {
-                    int currCellTailBPos = getCellN(currCell.getCellB().cellPosition);
-                    saveHere.get(i).setCellB(saveHere.get(currCellTailBPos));
-                }
-                for(int k = 0; k < currCell.head.size(); k++) {
-                    int currCellHeadPos = getCellN(currCell.head.get(k).cellPosition);
-                    saveHere.get(i).head.set(k, saveHere.get(currCellHeadPos));
-                }
+                // Draw the cell
+                cells[x][y].drawCell(this, canvas, paint, context);
             }
         }
 
+        // Draw the wires connecting two components together on the grid.
+        wire.connectTwoComponents(this, canvas, paint);
     }
+
+
+    // Draw the taskbar buttons on the top row of the screen
+    public void drawTaskbarButtons() {
+        // Now draw only Taskbar button cells
+        for (int x = 0; x < getGridWidth(); x++) {
+
+            if (cells[x][BOTTOMROW].getSelected()) {
+                // Change the paint color to grey
+                myPaint.setColor(Color.argb(255, 64, 64, 64));
+            }
+            else {
+                // Change the paint color to black
+                myPaint.setColor(Color.argb(255, 0, 0, 0));
+            }
+
+            // Draw each individual button
+            cells[x][BOTTOMROW].drawButton(this, myCanvas, myPaint);
+        }
+    }
+
+
+    // Necessary getter and setter methods:
+    public int getGridHeight() { return gridHeight; }
+
+    public int getGridWidth() { return gridWidth; }
+
+    public int getBlockSize() { return blockSize; }
+
+    public int getNumberHorizontalPixels() { return numberHorizontalPixels; }
+
+    public int getNumberVerticalPixels() { return numberVerticalPixels; }
+
+    public AbstractGridCell[][] getCells() {
+        return cells;
+    }
+
+    public Clear getClear() {
+        return clear;
+    }
+
+    public Delete getDelete() {
+        return delete;
+    }
+
+    public Move getMove() {
+        return move;
+    }
+
+    public Wire getWire() {
+        return wire;
+    }
+
+    public void setCanvas(Canvas myCanvas) { this.myCanvas = myCanvas; }
 }
+
+
+
+

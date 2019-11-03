@@ -1,19 +1,15 @@
 /*
- Team API:
- Jaime Rivera
- RJ Cunanan
- Theodora Fernandez
- Yong Yang
-
- Group Project: LogiSim
- Class: CSC 131
- Date: 10-30-19
+    Name: RJ Cunanan 9811
+    Course: CSC 131
+    Assignment: LogiSim
+    Date: 10-12-19
  */
 
 
 package com.example.logisim;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -24,14 +20,12 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 
 
-
 public class LogiSim extends Activity {
 
-    Point gridSize;
-    Point touchPosition = new Point(-100,-100);
-
-    // The brains of the Logisim
-    Grid grid;
+    // All the necessary objects needed to create and run
+    // a Logic simulator:
+    private Grid grid;
+    private UserSelection selection;
 
     // Here are all the objects(instances)
     // of classes that we need to do some drawing
@@ -39,60 +33,99 @@ public class LogiSim extends Activity {
     Bitmap blankBitmap;
     Canvas canvas;
     Paint paint;
+    Context context;
 
 
-
+    // Get the screen resolution and based on its dimensions
+    // create a grid and cells object to hold the cells within
+    // that make the grid.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Get the current device's screen resolution
-        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        determineScreenResolution(size);
 
-        gridSize = new Point();
-        display.getSize(gridSize);
-
-        // Initialize all the objects ready for drawing
-        blankBitmap = Bitmap.createBitmap(gridSize.x,
-                gridSize.y,
+        // Create grid object and other objects used later
+        //  to draw the grid.
+        paint = new Paint();
+        grid = new Grid(size, canvas, paint);
+        blankBitmap = Bitmap.createBitmap(grid.getNumberHorizontalPixels(),
+                grid.getNumberVerticalPixels(),
                 Bitmap.Config.ARGB_8888);
-
         canvas = new Canvas(blankBitmap);
         gameView = new ImageView(this);
-        paint = new Paint();
 
-        // Tell Android to set our drawing
-        // as the view for this app
+        // Set the context
+        context = this;
+
+        // Create object to hold user's selection, create wires, and delete circuits.
+        selection = new UserSelection();
+
+        // Prepare to draw the UI.
+        grid.setCanvas(canvas);
         setContentView(gameView);
-
-        // Construct the grid and scoreboard class and give them access to drawing on the screen
-        grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
         draw();
     }
 
-    void draw() {
-        grid.drawGrid();
-        grid.drawUI();
+
+    // Determines the dimensions/resolution of the screen
+    void determineScreenResolution(Point size) {
+        // Get the current device's screen resolution
+        Display display = getWindowManager().getDefaultDisplay();
+        display.getSize(size);
     }
 
+
+    // Used to draw the UI and circuit
+    void draw() {
+        gameView.setImageBitmap(blankBitmap);
+
+        // Draw the grid with all its cells on the screen
+
+        grid.drawGrid(canvas, paint, context);
+
+        // Draw the Taskbar buttons on top row of grid
+        grid.drawTaskbarButtons();
+
+    }
+
+
+    // Process location where the user taps on the screen
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
+
         // Has the player removed their finger from the screen?
         if((motionEvent.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
 
-            // Calculate the player's touch in terms of the grid squares
-            setTouchPosition(motionEvent.getX(), motionEvent.getY());
-
-            // The grid will determine what to do with this player's touch
-            grid.determineTouch(touchPosition);
-            draw();
+            // Process the player's selection by passing the
+            // coordinates of the player's finger to makeSelection()
+            selection.setTouchX(motionEvent.getX());
+            selection.setTouchY(motionEvent.getY());
+            makeSelection();
         }
+
         return true;
     }
 
-    // Fills Point with grid position
-    void setTouchPosition(float touchX, float touchY) {
-        touchPosition.x = (int) touchX / grid.cellSize;
-        touchPosition.y = (int) touchY / grid.cellSize;
+
+    // Process user's selection of a taskbar button or placement
+    // of an item onto the grid
+    public void makeSelection() {
+
+        // Convert the float screen coordinates
+        // into int grid coordinates
+        selection.convertSelectionToGridCoordinates(grid);
+
+        // Determine which taskbar button the user has selected
+        selection.determineButtonSelection(grid.getCells(), grid, grid.getClear(), grid.getWire());
+
+        // Put selected circuit item onto the grid
+        selection.placeItem(grid.getCells(), grid, grid.getWire(), grid.getDelete(), grid.getMove());
+
+        // Redraw the grid with the new circuit items
+        draw();
     }
+
 }
