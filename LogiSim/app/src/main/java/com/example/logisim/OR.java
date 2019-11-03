@@ -1,8 +1,12 @@
 /*
-    Name: RJ Cunanan 9811
+    Team API:
+        Jaime Rivera
+        RJ Cunanan
+        Theodora Fernandez
+        Yong Yang
     Course: CSC 131
     Assignment: LogiSim
-    Date: 10-12-19
+    Date: 11-2-19
  */
 
 
