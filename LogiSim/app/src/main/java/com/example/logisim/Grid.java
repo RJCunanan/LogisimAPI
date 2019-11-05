@@ -54,7 +54,7 @@ public class Grid {
     // Variables to be seen throughout the Grid Class
     private Point numberOfPixels = new Point();
     int cellSize;
-    private final int gridWidth = 15;
+    private final int gridWidth = 20;
     private int gridHeight;
 
     private boolean prevSelected = false;
