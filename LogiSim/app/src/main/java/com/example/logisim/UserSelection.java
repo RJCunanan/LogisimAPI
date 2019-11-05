@@ -24,6 +24,24 @@ public class UserSelection {
     private int selectedButtonXCoordinate;
     private SavedCircuit circuit1, circuit2, circuit3;
 
+    // Constants representing location of taskbar buttons:
+    private static final int BOTTOM_ROW = 8;
+    private static final int SWITCH_BUTTON = 0;
+    private static final int AND_GATE_BUTTON = 1;
+    private static final int OR_GATE_BUTTON = 2;
+    private static final int NOT_GATE_BUTTON = 3;
+    private static final int LED_BUTTON = 4;
+    private static final int WIRE_BUTTON = 5;
+    private static final int MOVE_BUTTON = 6;
+    private static final int DELETE_BUTTON = 7;
+    private static final int CLEAR_BUTTON = 8;
+    private static final int TOGGLE_BUTTON = 9;
+    private static final int RUN_BUTTON = 10;
+    private static final int SAVE_BUTTON = 11;
+    private static final int SAVE_SLOT_A = 12;
+    private static final int SAVE_SLOT_B = 13;
+    private static final int SAVE_SLOT_C = 14;
+
 
 
     // Convert the float screen coordinates into int grid coordinates
@@ -44,7 +62,7 @@ public class UserSelection {
 
         // Checks if the selected cell is located in the first row where the
         // taskbar is
-        if (verticalTouched == 8 && horizontalTouched < 12) {
+        if (verticalTouched == BOTTOM_ROW && horizontalTouched < 12) {
             selectTappedButton(cells, grid, clear, wire);
         }
     }
@@ -56,20 +74,20 @@ public class UserSelection {
 
                 // Indicate that the button has been selected and get this
                 // buttons x-coordinate for future reference to this button
-                cells[x][8].setButtonSelection();
+                cells[x][BOTTOM_ROW].setButtonSelection();
                 this.selectedButtonXCoordinate = xCoordinate;
 
                 // When the selected button is the Clear button, clear the grid
-                if (horizontalTouched == 8) {
+                if (horizontalTouched == CLEAR_BUTTON) {
                     clear.clearCells(cells, grid, wire.getComponentCoordinates(), wire);
                 }  // Else, if selected button is the Run button, then evaluate the circuit
-                else if (horizontalTouched == 10) {
+                else if (horizontalTouched == RUN_BUTTON) {
                     runCircuit(cells, grid);
                 }
             }
             else {
                 // Clear all previous button selections
-                cells[x][8].clearButtonSelection();
+                cells[x][BOTTOM_ROW].clearButtonSelection();
             }
         }
     }
@@ -80,65 +98,65 @@ public class UserSelection {
 
         // First checks if a button had already been selected and that the placement of the
         // circuit item or action to take is not in the first row where the taskbar is.
-        if ((cells[selectedButtonXCoordinate][8].getSelected()) && (yCoordinate != 8)) {
+        if ((cells[selectedButtonXCoordinate][BOTTOM_ROW].getSelected()) && (yCoordinate != BOTTOM_ROW)) {
 
             // Use saved x-coordinate of already selected button to determine what circuit
             // item to place or what action to take.
             switch (selectedButtonXCoordinate) {
-                case 0:
+                case SWITCH_BUTTON:
                     placeSwitch(cells);
                     break;
 
-                case 1:
+                case AND_GATE_BUTTON:
                     placeANDGate(cells);
                     break;
 
-                case 2:
+                case OR_GATE_BUTTON:
                     placeORGate(cells);
                     break;
 
-                case 3:
+                case NOT_GATE_BUTTON:
                     placeNOTGate(cells);
                     break;
 
-                case 4:
+                case LED_BUTTON:
                     placeLED(cells);
                     break;
 
-                case 5:
+                case WIRE_BUTTON:
                     // Begins process of connecting components with wires
                     wire.checkForConnectedComponents(cells, this);
                     break;
 
-                case 6:
+                case MOVE_BUTTON:
                     move.moveComponent(cells, this, wire.getComponentCoordinates());
                     break;
 
-                case 7:
+                case DELETE_BUTTON:
                     delete.deleteComponent(cells, this, wire.getComponentCoordinates(), wire);
                     break;
 
-                case 9:
+                case TOGGLE_BUTTON:
                     toggleSwitches(cells);
                     break;
             }
         }
         // Checks if the Save button is selected and user is about to tap on either button A, B, or C
-        else if (cells[selectedButtonXCoordinate][8].getSelected() && selectedButtonXCoordinate == 11) {
+        else if (cells[selectedButtonXCoordinate][BOTTOM_ROW].getSelected() && selectedButtonXCoordinate == SAVE_BUTTON) {
             determineSaveSlotForCircuit(cells, grid, wire);
         }
         // When Save button is NOT selected and user is about to tap on button A
-        else if (xCoordinate == 12 && yCoordinate == 8 && circuit1 != null) {
+        else if (xCoordinate == SAVE_SLOT_A && yCoordinate == BOTTOM_ROW && circuit1 != null) {
             // Load the circuit saved in Button A onto the grid
             circuit1.loadCircuit(cells, grid, wire.getComponentCoordinates());
         }
         // When Save button is NOT selected and user is about to tap on button B
-        else if (xCoordinate == 13 && yCoordinate == 8 && circuit2 != null) {
+        else if (xCoordinate == 13 && yCoordinate == BOTTOM_ROW && circuit2 != null) {
             // Load the circuit saved in Button B onto the grid
             circuit2.loadCircuit(cells, grid, wire.getComponentCoordinates());
         }
         // When Save button is NOT selected and user is about to tap on button C
-        else if (xCoordinate == 14 && yCoordinate == 8 && circuit3 != null) {
+        else if (xCoordinate == 14 && yCoordinate == BOTTOM_ROW && circuit3 != null) {
             // Load the circuit saved in Button C onto the grid
             circuit3.loadCircuit(cells, grid, wire.getComponentCoordinates());
         }
@@ -146,15 +164,15 @@ public class UserSelection {
 
     private void determineSaveSlotForCircuit(AbstractGridCell[][] cells, Grid grid, Wire wire) {
         // Saves circuit into Button A
-        if ( xCoordinate == 12 && yCoordinate == 8) {
+        if ( xCoordinate == SAVE_SLOT_A && yCoordinate == BOTTOM_ROW) {
             circuit1 = new SavedCircuit(cells, grid, wire.getComponentCoordinates());
         }
         // Saves circuit into Button B
-        else if ( xCoordinate == 13 && yCoordinate == 8) {
+        else if ( xCoordinate == SAVE_SLOT_B && yCoordinate == BOTTOM_ROW) {
             circuit2 = new SavedCircuit(cells, grid, wire.getComponentCoordinates());
         }
         // Saves circuit into Button C
-        else if ( xCoordinate == 14 && yCoordinate == 8) {
+        else if ( xCoordinate == SAVE_SLOT_C && yCoordinate == BOTTOM_ROW) {
             circuit3 = new SavedCircuit(cells, grid, wire.getComponentCoordinates());
         }
     }
