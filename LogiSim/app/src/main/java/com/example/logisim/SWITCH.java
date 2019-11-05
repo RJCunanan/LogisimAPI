@@ -21,23 +21,26 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-public class AND extends Cell {
+public class SWITCH extends Cell {
 
-    // Unique value assigned to AND gates
-    private int gateNum = 2;
+    // Unique value assigned to Switches
+    int gateNum = 1;
 
     // Used for drawing
     private Bitmap bitmap;
     private RectF mRect;
 
 
-    // converts previous Cell to AND Cell
-    public AND(Cell myCell) { super(myCell); }
+    public SWITCH(Cell myCell) {super(myCell);}
 
 
-    // Sets the bitmap to the AND gate image and prints within the cell's space
+    // Sets the bitmap to the Switch image and prints within the cell's space
     void drawCell(Paint paint, Canvas canvas, Context context) {
-        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.and);
+        if(state)
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.switch1);
+        else
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.switch0);
+
         mRect = new RectF(cellX, cellY, cellWidth, cellHeight);
         canvas.drawBitmap(bitmap,null,mRect, paint);
     }
@@ -46,6 +49,9 @@ public class AND extends Cell {
     int getGateNum() {return gateNum;}
 
 
-    // If both of its Tail Cells are toggled on, pass on
-    boolean eval() { return a.eval() & b.eval(); }
+    void toggleSwitch() {this.state = !state;}
+
+
+    // Passes the state of the switch
+    boolean eval() {return state;}
 }
