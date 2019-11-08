@@ -27,15 +27,16 @@ public class NAND extends Cell {
 //        mRect = new RectF(cellX, cellY, cellWidth, cellHeight);
 //        canvas.drawBitmap(bitmap,null,mRect,paint);
     }
-
-
+    
     int getGateNum() {
         return gateNum;
     }
 
-
-    // Either A or B, but not both
+    // Will only be false if both a and b are true (inverse of and gate)
     boolean eval() {
-        return false;
+        if(!a.eval() && !b.eval())
+            return false;
+        else
+            return true;
     }
 }

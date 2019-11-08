@@ -28,15 +28,15 @@ public class NOR extends Cell {
 //        canvas.drawBitmap(bitmap,null,mRect,paint);
     }
 
-
     int getGateNum() {
         return gateNum;
     }
 
-
-    // Either A or B, but not both
+    // Will only be true if both a and b are false (inverse of or gate)
     boolean eval() {
-        return false;
+        if(!a.eval() && !b.eval())
+            return true;
+        else
+            return false;
     }
-
 }
