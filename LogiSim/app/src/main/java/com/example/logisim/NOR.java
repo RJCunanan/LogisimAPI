@@ -2,12 +2,11 @@ package com.example.logisim;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-public class XOR extends Cell {
+public class NOR extends Cell {
     // Unique value assigned to OR gates
     private int gateNum = -1;
 
@@ -17,7 +16,7 @@ public class XOR extends Cell {
 
 
     // converts previous Cell to OR Cell
-    public XOR(Cell myCell) {super(myCell);}
+    public NOR(Cell myCell) {super(myCell);}
 
 
     // Sets the bitmap to the OR gate image and prints within the cell's space
@@ -32,10 +31,4 @@ public class XOR extends Cell {
 
 
     // Either A or B, but not both
-    boolean eval() {
-        if ((a.eval() && !b.eval()) || (!a.eval() && b.eval()))
-            return true;
-        else
-            return false;
-    }
-}
+    boolean eval() { return false; }
