@@ -16,7 +16,9 @@ public class NOR extends Cell {
 
 
     // converts previous Cell to OR Cell
-    public NOR(Cell myCell) {super(myCell);}
+    public NOR(Cell myCell) {
+        super(myCell);
+    }
 
 
     // Sets the bitmap to the OR gate image and prints within the cell's space
@@ -27,8 +29,14 @@ public class NOR extends Cell {
     }
 
 
-    int getGateNum() {return gateNum;}
+    int getGateNum() {
+        return gateNum;
+    }
 
 
     // Either A or B, but not both
-    boolean eval() { return false; }
+    boolean eval() {
+        return false;
+    }
+
+}
