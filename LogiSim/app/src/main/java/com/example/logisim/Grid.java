@@ -43,10 +43,13 @@ public class Grid {
 
     private final int SWITCHBUTTONOPTION = 10;
     private final int ANDBUTTONOPTION = 11;
-    private final int ORBUTTONOPTION = 12;
-    private final int NOTBUTTONOPTION = 13;
-    private final int LAMPBUTTONOPTION = 14;
+    private final int NANDBUTTONOPTION = 12;
+    private final int ORBUTTONOPTION = 13;
+    private final int NORBUTTONOPTION = 14;
     private final int XORBUTTONOPTION = 15;
+    private final int NOTBUTTONOPTION = 16;
+    private final int LAMPBUTTONOPTION = 17;
+
 
     // Allows modification of the button's Width and Length;
     private final int buttonLength = 1;
@@ -222,10 +225,12 @@ public class Grid {
         drawSAVECButton();
         drawSWITCHButton();
         drawANDButton();
+        drawNANDButton();
         drawORButton();
+
+        drawXORButton();
         drawNOTButton();
         drawLAMPButton();
-        drawXORButton();
     }
 
 
@@ -295,7 +300,7 @@ public class Grid {
     }
 
     private void drawSWITCHButton() {
-        myCanvas.drawText("SWITCH", (buttonWidth*SWITCHBUTTONOPTION) * cellSize,
+        myCanvas.drawText("SWIT", (buttonWidth*SWITCHBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
@@ -306,8 +311,20 @@ public class Grid {
                 myPaint);
     }
 
+    private void drawNANDButton() {
+        myCanvas.drawText("NAND", (buttonWidth*NANDBUTTONOPTION) * cellSize,
+                (gridHeight - (float)buttonLength/2) * cellSize,
+                myPaint);
+    }
+
     private void drawORButton() {
         myCanvas.drawText("OR", (buttonWidth*ORBUTTONOPTION) * cellSize,
+                (gridHeight - (float)buttonLength/2) * cellSize,
+                myPaint);
+    }
+
+    private void drawXORButton() {
+        myCanvas.drawText("XOR", (buttonWidth*XORBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
@@ -320,12 +337,6 @@ public class Grid {
 
     private void drawLAMPButton() {
         myCanvas.drawText("LAMP", (buttonWidth*LAMPBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawXORButton() {
-        myCanvas.drawText("XOR", (buttonWidth*XORBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
@@ -437,9 +448,21 @@ public class Grid {
                     buttonList.get(currentOption).toggleButton();
                     break;
 
+                case NANDBUTTONOPTION:
+                    // creates an AND gate after being given information of the cell
+                    cellList.set(touchPositionN,new NAND(cellList.get(touchPositionN)));
+                    buttonList.get(currentOption).toggleButton();
+                    break;
+
                 case ORBUTTONOPTION:
                     // creates an OR gate after being given information of the cell
                     cellList.set(touchPositionN,new OR(cellList.get(touchPositionN)));
+                    buttonList.get(currentOption).toggleButton();
+                    break;
+
+                case XORBUTTONOPTION:
+                    // creates a XOR gate after being given information of the cell
+                    cellList.set(touchPositionN, new XOR(cellList.get(touchPositionN)));
                     buttonList.get(currentOption).toggleButton();
                     break;
 
@@ -452,12 +475,6 @@ public class Grid {
                 case LAMPBUTTONOPTION:
                     // creates a Lamp after being given information of the cell
                     cellList.set(touchPositionN,new LAMP(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
-                    break;
-
-                case XORBUTTONOPTION:
-                    // creates a XOR gate after being given information of the cell
-                    cellList.set(touchPositionN, new XOR(cellList.get(touchPositionN)));
                     buttonList.get(currentOption).toggleButton();
                     break;
 
@@ -511,8 +528,12 @@ public class Grid {
                 saveHere.set(i, new SWITCH(currCell));
             else if(currCell instanceof AND)
                 saveHere.set(i, new AND(currCell));
+            else if(currCell instanceof NAND)
+                saveHere.set(i, new NAND(currCell));
             else if(currCell instanceof OR)
                 saveHere.set(i, new OR(currCell));
+            else if(currCell instanceof XOR)
+                saveHere.set(i, new XOR(currCell));
             else if(currCell instanceof NOT)
                 saveHere.set(i, new NOT(currCell));
             else if(currCell instanceof LAMP)
