@@ -227,7 +227,7 @@ public class Grid {
         drawANDButton();
         drawNANDButton();
         drawORButton();
-
+        drawNORButton();
         drawXORButton();
         drawNOTButton();
         drawLAMPButton();
@@ -319,6 +319,12 @@ public class Grid {
 
     private void drawORButton() {
         myCanvas.drawText("OR", (buttonWidth*ORBUTTONOPTION) * cellSize,
+                (gridHeight - (float)buttonLength/2) * cellSize,
+                myPaint);
+    }
+
+    private void drawNORButton() {
+        myCanvas.drawText("NOR", (buttonWidth*NORBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
@@ -460,6 +466,12 @@ public class Grid {
                     buttonList.get(currentOption).toggleButton();
                     break;
 
+                case NORBUTTONOPTION:
+                    // creates an OR gate after being given information of the cell
+                    cellList.set(touchPositionN,new NOR(cellList.get(touchPositionN)));
+                    buttonList.get(currentOption).toggleButton();
+                    break;
+
                 case XORBUTTONOPTION:
                     // creates a XOR gate after being given information of the cell
                     cellList.set(touchPositionN, new XOR(cellList.get(touchPositionN)));
@@ -532,6 +544,8 @@ public class Grid {
                 saveHere.set(i, new NAND(currCell));
             else if(currCell instanceof OR)
                 saveHere.set(i, new OR(currCell));
+            else if(currCell instanceof NOR)
+                saveHere.set(i, new NOR(currCell));
             else if(currCell instanceof XOR)
                 saveHere.set(i, new XOR(currCell));
             else if(currCell instanceof NOT)
