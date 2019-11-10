@@ -46,6 +46,7 @@ public class Grid {
     private final int ORBUTTONOPTION = 12;
     private final int NOTBUTTONOPTION = 13;
     private final int LAMPBUTTONOPTION = 14;
+    private final int XORBUTTONOPTION = 15;
 
     // Allows modification of the button's Width and Length;
     private final int buttonLength = 1;
@@ -224,6 +225,7 @@ public class Grid {
         drawORButton();
         drawNOTButton();
         drawLAMPButton();
+        drawXORButton();
     }
 
 
@@ -235,7 +237,7 @@ public class Grid {
 
         myPaint.setColor(Color.argb(255, 0, 0, 0));
 
-        for(int verticalLine = 1; verticalLine < 10; verticalLine++) {
+        for(int verticalLine = 1; verticalLine < 20; verticalLine++) {
             myCanvas.drawLine((verticalLine*buttonWidth) * cellSize, (gridHeight-gridWidth)* cellSize,
                     (verticalLine*buttonWidth) * cellSize, (gridHeight)* cellSize,
                     myPaint);
@@ -318,6 +320,12 @@ public class Grid {
 
     private void drawLAMPButton() {
         myCanvas.drawText("LAMP", (buttonWidth*LAMPBUTTONOPTION) * cellSize,
+                (gridHeight - (float)buttonLength/2) * cellSize,
+                myPaint);
+    }
+
+    private void drawXORButton() {
+        myCanvas.drawText("XOR", (buttonWidth*XORBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
@@ -444,6 +452,12 @@ public class Grid {
                 case LAMPBUTTONOPTION:
                     // creates a Lamp after being given information of the cell
                     cellList.set(touchPositionN,new LAMP(cellList.get(touchPositionN)));
+                    buttonList.get(currentOption).toggleButton();
+                    break;
+
+                case XORBUTTONOPTION:
+                    // creates a XOR gate after being given information of the cell
+                    cellList.set(touchPositionN, new XOR(cellList.get(touchPositionN)));
                     buttonList.get(currentOption).toggleButton();
                     break;
 

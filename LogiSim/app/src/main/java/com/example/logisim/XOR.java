@@ -9,7 +9,7 @@ import android.graphics.RectF;
 
 public class XOR extends Cell {
     // Unique value assigned to OR gates
-    private int gateNum = -1;
+    private int gateNum = 15;
 
     // Used for drawing
     private Bitmap bitmap;
@@ -22,9 +22,9 @@ public class XOR extends Cell {
 
     // Sets the bitmap to the OR gate image and prints within the cell's space
     void drawCell(Paint paint, Canvas canvas, Context context) {
-//        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.or);
-//        mRect = new RectF(cellX, cellY, cellWidth, cellHeight);
-//        canvas.drawBitmap(bitmap,null,mRect,paint);
+        bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.xor);
+        mRect = new RectF(cellX, cellY, cellWidth, cellHeight);
+        canvas.drawBitmap(bitmap,null,mRect,paint);
     }
 
 
