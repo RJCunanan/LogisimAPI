@@ -66,6 +66,8 @@ public class Logisim extends Activity {
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
         draw();
 
+        //Media Player definition
+        final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
 
     }
 
