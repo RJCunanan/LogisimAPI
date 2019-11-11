@@ -69,7 +69,9 @@ public class Logisim extends Activity {
 
         //Media Player definition
         final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
+        elevatorOn.setVolume(1, 1);
         elevatorOn.start();
+        elevatorOn.setLooping(true);
 
     }
 
@@ -96,6 +98,7 @@ public class Logisim extends Activity {
 
             //Media Player definition
             final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
+            clickOn.setVolume(500, 500);
             clickOn.start();
         }
         return true;
