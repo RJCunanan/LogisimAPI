@@ -24,6 +24,7 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 
 public class Logisim extends Activity {
 
@@ -66,6 +67,9 @@ public class Logisim extends Activity {
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
         draw();
 
+        //Media Player definition
+        final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
+        elevatorOn.start();
 
     }
 
@@ -91,8 +95,8 @@ public class Logisim extends Activity {
             draw();
 
             //Media Player definition
-            final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
-            clickOn.start();
+            /*final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
+            clickOn.start();*/
         }
         return true;
     }
