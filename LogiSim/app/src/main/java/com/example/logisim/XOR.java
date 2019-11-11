@@ -19,13 +19,14 @@ public class XOR extends Cell {
     // converts previous Cell to OR Cell
     public XOR(Cell myCell) {super(myCell);}
 
-
+    /*
     // Sets the bitmap to the OR gate image and prints within the cell's space
     void drawCell(Paint paint, Canvas canvas, Context context) {
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.xor);
         mRect = new RectF(cellX, cellY, cellWidth, cellHeight);
         canvas.drawBitmap(bitmap,null,mRect,paint);
     }
+     */
 
 
     int getGateNum() {return gateNum;}

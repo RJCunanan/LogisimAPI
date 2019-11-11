@@ -209,11 +209,17 @@ public class Grid {
 
 
 
-    // This will draw all of the UI buttons and the lines to seperate each button
+    // This will draw all of the UI buttons and the lines to separate each button
     void drawUI() {
         drawOptionsGrid();
         myPaint.setColor((Color.argb(255, 0, 0, 0)));
         myPaint.setTextSize(40);
+
+        // Change the paint color to white
+        myPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // Formats the size of the text to be displayed on the button
+        myPaint.setTextSize(cellSize / (float)3.7);
 
         drawRunButton();
         drawLinkButton();
@@ -236,7 +242,8 @@ public class Grid {
 
 
     void drawOptionsGrid() {
-        myPaint.setColor((Color.argb(255, 102, 102, 102)));
+        // Set paint color to black
+        myPaint.setColor((Color.argb(255, 0, 0, 0)));
         myCanvas.drawRect(0, (gridHeight-buttonLength)*cellSize,
                 gridWidth * cellSize, gridHeight * cellSize, myPaint);
 
@@ -300,7 +307,7 @@ public class Grid {
     }
 
     private void drawSWITCHButton() {
-        myCanvas.drawText("SWIT", (buttonWidth*SWITCHBUTTONOPTION) * cellSize,
+        myCanvas.drawText("Switch", (buttonWidth*SWITCHBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
