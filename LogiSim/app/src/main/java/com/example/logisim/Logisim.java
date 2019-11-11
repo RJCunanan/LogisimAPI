@@ -69,6 +69,9 @@ public class Logisim extends Activity {
         //Media Player definition
         final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
 
+        clickOn.start();
+
+
     }
 
 
