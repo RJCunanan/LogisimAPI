@@ -161,16 +161,20 @@ public class Grid {
        clearScreen();
 
        // Sets the grid lines to be drawn
-       myPaint.setColor(Color.argb(255, 0, 0, 0));
-       myPaint.setStrokeWidth(2);
+       //myPaint.setColor(Color.argb(255, 0, 0, 0));
+       //myPaint.setStrokeWidth(2);
        myCanvas.drawColor(Color.argb(255, 255, 255, 255));
 
        // This will loop through the entire cell list
        for(Cell currCell : cellList) {
 
+           //myPaint.setStrokeWidth(2F);
+           myPaint.setColor(Color.argb(255, 0, 0, 0));
+
            // Draw Horizontal & Vertical lines based on cell location of current cell
            myCanvas.drawLine(currCell.cellX, currCell.cellY,
                        currCell.cellX + cellSize, currCell.cellY, myPaint);
+
            myCanvas.drawLine(currCell.cellX, currCell.cellY,
                              currCell.cellX, currCell.cellY + cellSize, myPaint);
 
@@ -179,31 +183,34 @@ public class Grid {
 
 
            // If the current cell has any other Cells linked to it, draw a thick line
-           myPaint.setStrokeWidth(5);
-//            if(!(currCell instanceof EmptyCell)) {
-                if (currCell.getCellA() != null) {
-                    int stopY;
-                    if (currCell instanceof NOT || currCell instanceof LAMP)
-                        stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 2);
-                    else
-                        stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 4);
+           myPaint.setStrokeWidth(20F);
 
-                    myCanvas.drawLine(currCell.getCellA().cellWidth,
-                            (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
-                            currCell.cellX,
-                            stopY,
-                            myPaint);
-                }
+           // Change the paint color to blue
+           myPaint.setColor(Color.argb(255, 0, 0, 255));
 
-                if (currCell.getCellB() != null) {
-                    myCanvas.drawLine(currCell.getCellB().cellWidth,
-                            (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
-                            currCell.cellX,
-                            currCell.cellY + 3 * ((currCell.cellHeight - currCell.cellY) / 4),
-                            myPaint);
-                }
-//            }
-           myPaint.setStrokeWidth(2);
+           if (currCell.getCellA() != null) {
+               int stopY;
+               if (currCell instanceof NOT || currCell instanceof LAMP)
+                   stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 2);
+               else
+                   stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 4);
+
+               myCanvas.drawLine(currCell.getCellA().cellWidth,
+                       (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
+                       currCell.cellX,
+                       stopY,
+                       myPaint);
+           }
+
+           if (currCell.getCellB() != null) {
+               myCanvas.drawLine(currCell.getCellB().cellWidth,
+                       (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
+                       currCell.cellX,
+                       currCell.cellY + 3 * ((currCell.cellHeight - currCell.cellY) / 4),
+                       myPaint);
+           }
+
+           myPaint.setStrokeWidth(2F);
        }
     }
 
