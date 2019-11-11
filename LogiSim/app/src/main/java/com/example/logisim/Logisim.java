@@ -95,8 +95,8 @@ public class Logisim extends Activity {
             draw();
 
             //Media Player definition
-            /*final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
-            clickOn.start();*/
+            final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
+            clickOn.start();
         }
         return true;
     }
