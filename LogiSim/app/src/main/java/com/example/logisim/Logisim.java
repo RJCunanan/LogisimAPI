@@ -23,7 +23,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.media.MediaPlayer; 
+import android.media.MediaPlayer;
 
 public class Logisim extends Activity {
 
@@ -65,6 +65,7 @@ public class Logisim extends Activity {
         // Construct the grid and scoreboard class and give them access to drawing on the screen
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
         draw();
+
 
     }
 
