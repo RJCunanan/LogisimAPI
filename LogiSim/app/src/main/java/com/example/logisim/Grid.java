@@ -127,6 +127,8 @@ public class Grid {
 
 
 
+    // Using an arrayList called buttonList, new UserInterfaceButton instances are created
+    // to represent the UI buttons that are used to accomplish tasks and build circuits
     void initializeButtons() {
         // A loop will create however many buttons possible within the area given to it
         // of the proper width. When creating these new buttons, a starting position is given
@@ -134,79 +136,80 @@ public class Grid {
         // The buttons will be placed on top of the grid, thus it will still read player taps as cells
         // Because of this the buttons must have a list of the different cells that combine to make
         // one large button
-        int currentButton = -1;
+        int currentButtonPosition = -1;
 
         for(int x = 0; x < gridWidth; x+= buttonWidth) {
-            currentButton++;
+            currentButtonPosition++;
 
-            switch (currentButton) {
-                case 0:
+            // Determine which button to create given the current position
+            switch (currentButtonPosition) {
+                case RUNBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "Run", RUNBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "Run", RUNBUTTONOPTION));
                     break;
-                case 1:
+                case LINKBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "Link", LINKBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "Link", LINKBUTTONOPTION));
                     break;
-                case 2:
+                case MOVEBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "Move", MOVEBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "Move", MOVEBUTTONOPTION));
                     break;
-                case 3:
+                case DELETEBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "Delete", DELETEBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETEBUTTONOPTION));
                     break;
-                case 5:
+                case SAVEBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "SAVE", SAVEBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVEBUTTONOPTION));
                     break;
-                case 6:
+                case SAVEAOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "A", SAVEAOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "A", SAVEAOPTION));
                     break;
-                case 7:
+                case SAVEBOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "B", SAVEBOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "B", SAVEBOPTION));
                     break;
-                case 8:
+                case SAVECOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "C", SAVECOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "C", SAVECOPTION));
                     break;
-                case 10:
+                case SWITCHBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "Switch", SWITCHBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCHBUTTONOPTION));
                     break;
-                case 11:
+                case ANDBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "AND", ANDBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "AND", ANDBUTTONOPTION));
                     break;
-                case 12:
+                case NANDBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "NAND", NANDBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "NAND", NANDBUTTONOPTION));
                     break;
-                case 13:
+                case ORBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "OR", ORBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "OR", ORBUTTONOPTION));
                     break;
-                case 14:
+                case NORBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "NOR", NORBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "NOR", NORBUTTONOPTION));
                     break;
-                case 15:
+                case XORBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "XOR", XORBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "XOR", XORBUTTONOPTION));
                     break;
-                case 16:
+                case NOTBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "NOT", NOTBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "NOT", NOTBUTTONOPTION));
                     break;
-                case 17:
+                case LAMPBUTTONOPTION:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "LAMP", LAMPBUTTONOPTION));
+                            buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMPBUTTONOPTION));
                     break;
                 default:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "", currentButton));
+                            buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
             }
         }
     }
@@ -282,18 +285,21 @@ public class Grid {
 
 
 
-    // This will draw all of the UI buttons and the lines to separate each button
+    // This method will draw all of the UI buttons and the lines to separate each button
     void drawUI() {
 
         // Set paint color to black
         myPaint.setColor((Color.argb(255, 0, 0, 0)));
 
+        // Draws the separating lines
         for(int verticalLine = 1; verticalLine < 20; verticalLine++) {
             myCanvas.drawLine((verticalLine*buttonWidth) * cellSize, (gridHeight-gridWidth)* cellSize,
                     (verticalLine*buttonWidth) * cellSize, (gridHeight)* cellSize,
                     myPaint);
         }
 
+        // Cycles through the buttonList and draws each individual button one at a time
+        // to create the menu bar at the bottom of the screen
         for (int i = 0; i < buttonList.size(); i++) {
             buttonList.get(i).drawButton(myCanvas, myPaint, this);
         }
