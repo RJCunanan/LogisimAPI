@@ -19,7 +19,7 @@ public class NAND extends Cell {
     // converts previous Cell to OR Cell
     public NAND(Cell myCell) {super(myCell);}
 
-    /*
+
     // Sets the bitmap to the OR gate image and prints within the cell's space
     void drawCell(Paint paint, Canvas canvas, Context context) {
         bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.nand);
@@ -27,7 +27,7 @@ public class NAND extends Cell {
         canvas.drawBitmap(bitmap,null,mRect,paint);
     }
 
-     */
+
     
     int getGateNum() {
         return gateNum;

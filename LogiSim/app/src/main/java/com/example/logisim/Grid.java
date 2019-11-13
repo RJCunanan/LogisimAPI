@@ -71,7 +71,7 @@ public class Grid {
     private Context myContext;
 
     private Vector<Cell> cellList;
-    private List<UserInterfaceButtons> buttonList = new ArrayList<>(13);
+    private List<UserInterfaceButtons> buttonList = new ArrayList<>(20);
 
     private Vector<Cell> cellListA;
     private Vector<Cell> cellListB;
@@ -138,8 +138,83 @@ public class Grid {
 
         for(int x = 0; x < gridWidth; x+= buttonWidth) {
             currentButton++;
+
+            switch (currentButton) {
+                case 0:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "Run", RUNBUTTONOPTION));
+                    break;
+                case 1:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "Link", LINKBUTTONOPTION));
+                    break;
+                case 2:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "Move", MOVEBUTTONOPTION));
+                    break;
+                case 3:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "Delete", DELETEBUTTONOPTION));
+                    break;
+                case 5:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "SAVE", SAVEBUTTONOPTION));
+                    break;
+                case 6:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "A", SAVEAOPTION));
+                    break;
+                case 7:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "B", SAVEBOPTION));
+                    break;
+                case 8:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "C", SAVECOPTION));
+                    break;
+                case 10:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "Switch", SWITCHBUTTONOPTION));
+                    break;
+                case 11:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "AND", ANDBUTTONOPTION));
+                    break;
+                case 12:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "NAND", NANDBUTTONOPTION));
+                    break;
+                case 13:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "OR", ORBUTTONOPTION));
+                    break;
+                case 14:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "NOR", NORBUTTONOPTION));
+                    break;
+                case 15:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "XOR", XORBUTTONOPTION));
+                    break;
+                case 16:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "NOT", NOTBUTTONOPTION));
+                    break;
+                case 17:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "LAMP", LAMPBUTTONOPTION));
+                    break;
+                default:
+                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                            buttonWidth, buttonLength, currentButton, "", -1));
+            }
+
+            /*
             buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
                     buttonWidth, buttonLength, currentButton));
+             */
+
+
         }
     }
 
@@ -160,9 +235,8 @@ public class Grid {
     void drawGrid() {
        clearScreen();
 
-       // Sets the grid lines to be drawn
-       //myPaint.setColor(Color.argb(255, 0, 0, 0));
-       //myPaint.setStrokeWidth(2);
+       // Sets the grid lines to be drawn:
+
        myCanvas.drawColor(Color.argb(255, 255, 255, 255));
 
        // This will loop through the entire cell list
@@ -228,6 +302,7 @@ public class Grid {
         // Formats the size of the text to be displayed on the button
         myPaint.setTextSize(cellSize / (float)3.7);
 
+        /*
         drawRunButton();
         drawLinkButton();
         drawMoveButton();
@@ -244,6 +319,12 @@ public class Grid {
         drawXORButton();
         drawNOTButton();
         drawLAMPButton();
+         */
+
+
+        for (int i = 0; i < buttonList.size(); i++) {
+            buttonList.get(i).drawButton(myCanvas, myPaint, this);
+        }
     }
 
 
@@ -265,6 +346,7 @@ public class Grid {
 
 
 
+    /*
     private void drawRunButton() {
         myCanvas.drawText("Run", (buttonWidth*RUNBUTTONOPTION) * cellSize,
                 (gridHeight - (float)buttonLength/2) * cellSize,
@@ -360,6 +442,7 @@ public class Grid {
                 (gridHeight - (float)buttonLength/2) * cellSize,
                 myPaint);
     }
+    */
 
 
 
@@ -421,7 +504,7 @@ public class Grid {
             // the grid will respond accordingly
             switch(currentOption) {
                 case LINKBUTTONOPTION:
-                    // if there has been a previously selected cell and it isnt an empty cell
+                    // if there has been a previously selected cell and it isn't an empty cell
                     if(prevSelected && cellList.get(previousTouchN).getGateNum() != -1) {
                         linkCells(touchPositionN);
                         prevSelected = false;
@@ -587,4 +670,22 @@ public class Grid {
         }
 
     }
+
+
+    public int getButtonWidth() {
+        return buttonWidth;
+    }
+
+    public int getCellSize() {
+        return cellSize;
+    }
+
+    public int getGridHeight() {
+        return gridHeight;
+    }
+
+    public int getButtonLength() {
+        return buttonLength;
+    }
+
 }

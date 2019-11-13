@@ -14,6 +14,8 @@
 
 package com.example.logisim;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.graphics.Point;
 
 import java.util.ArrayList;
@@ -21,12 +23,21 @@ import java.util.List;
 
 public class UserInterfaceButtons{
 
-    int buttonInList;
-    List<Point> occupiedCells;
-    boolean selected;
+    private int buttonInList;
+    private List<Point> occupiedCells;
+    private boolean selected;
+    private String text = "";
+    private int buttonXCoordinate;
 
 
-    public UserInterfaceButtons(int startX, int startY, int buttonWidth, int buttonLength, int currentButton) {
+    public UserInterfaceButtons(int startX,
+                                int startY,
+                                int buttonWidth,
+                                int buttonLength,
+                                int currentButton,
+                                String text,
+                                int buttonXCoordinate) {
+
         occupiedCells = new ArrayList<>(buttonLength*buttonWidth);
 
         // fill the arraylist with all grid cells that corresponds to tapping the button
@@ -42,6 +53,18 @@ public class UserInterfaceButtons{
         // each button is given their order in the list. The button in the list corresponds to
         // an int value found within the grid class
         buttonInList = currentButton;
+
+        this.text = text;
+        this.buttonXCoordinate = buttonXCoordinate;
+    }
+
+
+    public void drawButton(Canvas myCanvas, Paint myPaint, Grid grid) {
+        if (buttonXCoordinate >= 0) {
+            myCanvas.drawText(text, (grid.getButtonWidth() * buttonXCoordinate) * grid.getCellSize(),
+                    (grid.getGridHeight() - (float) grid.getButtonLength() / 2) * grid.getCellSize(),
+                    myPaint);
+        }
     }
 
 
