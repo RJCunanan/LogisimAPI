@@ -206,7 +206,7 @@ public class Grid {
                     break;
                 default:
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButton, "", -1));
+                            buttonWidth, buttonLength, currentButton, "", currentButton));
             }
 
             /*
@@ -293,16 +293,16 @@ public class Grid {
     // This will draw all of the UI buttons and the lines to separate each button
     void drawUI() {
         drawOptionsGrid();
-        myPaint.setColor((Color.argb(255, 0, 0, 0)));
-        myPaint.setTextSize(40);
+        //myPaint.setColor((Color.argb(255, 0, 0, 0)));
+        //myPaint.setTextSize(40);
 
+        /*
         // Change the paint color to white
         myPaint.setColor(Color.argb(255, 255, 255, 255));
 
         // Formats the size of the text to be displayed on the button
         myPaint.setTextSize(cellSize / (float)3.7);
 
-        /*
         drawRunButton();
         drawLinkButton();
         drawMoveButton();
@@ -321,6 +321,14 @@ public class Grid {
         drawLAMPButton();
          */
 
+        // Set paint color to black
+        myPaint.setColor((Color.argb(255, 0, 0, 0)));
+
+        for(int verticalLine = 1; verticalLine < 20; verticalLine++) {
+            myCanvas.drawLine((verticalLine*buttonWidth) * cellSize, (gridHeight-gridWidth)* cellSize,
+                    (verticalLine*buttonWidth) * cellSize, (gridHeight)* cellSize,
+                    myPaint);
+        }
 
         for (int i = 0; i < buttonList.size(); i++) {
             buttonList.get(i).drawButton(myCanvas, myPaint, this);
@@ -331,10 +339,17 @@ public class Grid {
 
     void drawOptionsGrid() {
         // Set paint color to black
-        myPaint.setColor((Color.argb(255, 0, 0, 0)));
+        //myPaint.setColor((Color.argb(255, 0, 0, 0)));
+
+
+        /*
         myCanvas.drawRect(0, (gridHeight-buttonLength)*cellSize,
                 gridWidth * cellSize, gridHeight * cellSize, myPaint);
+         */
 
+
+
+        /*
         myPaint.setColor(Color.argb(255, 0, 0, 0));
 
         for(int verticalLine = 1; verticalLine < 20; verticalLine++) {
@@ -342,6 +357,7 @@ public class Grid {
                     (verticalLine*buttonWidth) * cellSize, (gridHeight)* cellSize,
                     myPaint);
         }
+         */
     }
 
 

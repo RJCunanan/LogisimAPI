@@ -15,6 +15,7 @@
 package com.example.logisim;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 
@@ -60,11 +61,25 @@ public class UserInterfaceButtons{
 
 
     public void drawButton(Canvas myCanvas, Paint myPaint, Grid grid) {
-        if (buttonXCoordinate >= 0) {
-            myCanvas.drawText(text, (grid.getButtonWidth() * buttonXCoordinate) * grid.getCellSize(),
-                    (grid.getGridHeight() - (float) grid.getButtonLength() / 2) * grid.getCellSize(),
-                    myPaint);
-        }
+
+        // Set paint color to black
+        myPaint.setColor((Color.argb(255, 0, 0, 0)));
+
+        myCanvas.drawRect(buttonXCoordinate * grid.getCellSize(),
+                (grid.getGridHeight() - grid.getButtonLength()) * grid.getCellSize(),
+                (buttonXCoordinate * grid.getCellSize()) + grid.getCellSize(),
+                grid.getGridHeight() * grid.getCellSize(),
+                myPaint);
+
+        // Change the paint color to white
+        myPaint.setColor(Color.argb(255, 255, 255, 255));
+
+        // Formats the size of the text to be displayed on the button
+        myPaint.setTextSize(grid.getCellSize() / (float)3.7);
+
+        myCanvas.drawText(text, (grid.getButtonWidth() * buttonXCoordinate) * grid.getCellSize(),
+                (grid.getGridHeight() - (float) grid.getButtonLength() / 2) * grid.getCellSize(),
+                myPaint);
     }
 
 
