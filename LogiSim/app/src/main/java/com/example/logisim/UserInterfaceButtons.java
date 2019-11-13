@@ -62,8 +62,14 @@ public class UserInterfaceButtons{
 
     public void drawButton(Canvas myCanvas, Paint myPaint, Grid grid) {
 
-        // Set paint color to black
-        myPaint.setColor((Color.argb(255, 0, 0, 0)));
+        if (selected) {
+            // Change the paint color to grey ti indicate selected button
+            myPaint.setColor(Color.argb(255, 64, 64, 64));
+        }
+        else {
+            // Set paint color to black
+            myPaint.setColor((Color.argb(255, 0, 0, 0)));
+        }
 
         myCanvas.drawRect(buttonXCoordinate * grid.getCellSize(),
                 (grid.getGridHeight() - grid.getButtonLength()) * grid.getCellSize(),
