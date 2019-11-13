@@ -292,7 +292,7 @@ public class Grid {
 
     // This will draw all of the UI buttons and the lines to separate each button
     void drawUI() {
-        drawOptionsGrid();
+        //drawOptionsGrid();
         //myPaint.setColor((Color.argb(255, 0, 0, 0)));
         //myPaint.setTextSize(40);
 
@@ -333,31 +333,6 @@ public class Grid {
         for (int i = 0; i < buttonList.size(); i++) {
             buttonList.get(i).drawButton(myCanvas, myPaint, this);
         }
-    }
-
-
-
-    void drawOptionsGrid() {
-        // Set paint color to black
-        //myPaint.setColor((Color.argb(255, 0, 0, 0)));
-
-
-        /*
-        myCanvas.drawRect(0, (gridHeight-buttonLength)*cellSize,
-                gridWidth * cellSize, gridHeight * cellSize, myPaint);
-         */
-
-
-
-        /*
-        myPaint.setColor(Color.argb(255, 0, 0, 0));
-
-        for(int verticalLine = 1; verticalLine < 20; verticalLine++) {
-            myCanvas.drawLine((verticalLine*buttonWidth) * cellSize, (gridHeight-gridWidth)* cellSize,
-                    (verticalLine*buttonWidth) * cellSize, (gridHeight)* cellSize,
-                    myPaint);
-        }
-         */
     }
 
 
