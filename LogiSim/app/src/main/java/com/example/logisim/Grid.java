@@ -208,13 +208,6 @@ public class Grid {
                     buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
                             buttonWidth, buttonLength, currentButton, "", currentButton));
             }
-
-            /*
-            buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                    buttonWidth, buttonLength, currentButton));
-             */
-
-
         }
     }
 
@@ -236,7 +229,6 @@ public class Grid {
        clearScreen();
 
        // Sets the grid lines to be drawn:
-
        myCanvas.drawColor(Color.argb(255, 255, 255, 255));
 
        // This will loop through the entire cell list
@@ -292,34 +284,6 @@ public class Grid {
 
     // This will draw all of the UI buttons and the lines to separate each button
     void drawUI() {
-        //drawOptionsGrid();
-        //myPaint.setColor((Color.argb(255, 0, 0, 0)));
-        //myPaint.setTextSize(40);
-
-        /*
-        // Change the paint color to white
-        myPaint.setColor(Color.argb(255, 255, 255, 255));
-
-        // Formats the size of the text to be displayed on the button
-        myPaint.setTextSize(cellSize / (float)3.7);
-
-        drawRunButton();
-        drawLinkButton();
-        drawMoveButton();
-        drawDeleteButton();
-        drawSAVEButton();
-        drawSAVEAButton();
-        drawSAVEBButton();
-        drawSAVECButton();
-        drawSWITCHButton();
-        drawANDButton();
-        drawNANDButton();
-        drawORButton();
-        drawNORButton();
-        drawXORButton();
-        drawNOTButton();
-        drawLAMPButton();
-         */
 
         // Set paint color to black
         myPaint.setColor((Color.argb(255, 0, 0, 0)));
@@ -334,106 +298,6 @@ public class Grid {
             buttonList.get(i).drawButton(myCanvas, myPaint, this);
         }
     }
-
-
-
-    /*
-    private void drawRunButton() {
-        myCanvas.drawText("Run", (buttonWidth*RUNBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawLinkButton() {
-        myCanvas.drawText("Link", (buttonWidth*LINKBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawMoveButton() {
-        myCanvas.drawText("Move", (buttonWidth*MOVEBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawDeleteButton() {
-        myCanvas.drawText("Delete", (buttonWidth*DELETEBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVEButton() {
-        myCanvas.drawText("SAVE", (buttonWidth*SAVEBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVEAButton() {
-        myCanvas.drawText("A", (buttonWidth*SAVEAOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVEBButton() {
-        myCanvas.drawText("B", (buttonWidth*SAVEBOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSAVECButton() {
-        myCanvas.drawText("C", (buttonWidth*SAVECOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawSWITCHButton() {
-        myCanvas.drawText("Switch", (buttonWidth*SWITCHBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawANDButton() {
-        myCanvas.drawText("AND", (buttonWidth*ANDBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawNANDButton() {
-        myCanvas.drawText("NAND", (buttonWidth*NANDBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawORButton() {
-        myCanvas.drawText("OR", (buttonWidth*ORBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawNORButton() {
-        myCanvas.drawText("NOR", (buttonWidth*NORBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawXORButton() {
-        myCanvas.drawText("XOR", (buttonWidth*XORBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawNOTButton() {
-        myCanvas.drawText("NOT", (buttonWidth*NOTBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-
-    private void drawLAMPButton() {
-        myCanvas.drawText("LAMP", (buttonWidth*LAMPBUTTONOPTION) * cellSize,
-                (gridHeight - (float)buttonLength/2) * cellSize,
-                myPaint);
-    }
-    */
 
 
 
