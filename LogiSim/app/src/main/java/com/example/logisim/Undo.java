@@ -1,12 +1,9 @@
 package com.example.logisim;
 import java.util.*;
 
-public class Undo implements Queue<E>{
-    Grid save;
+public class Undo{
+    Stack<Cell> save;
     void Undo(){
-        save= new Grid();
-    }
-    void add(E){
-        
+        save= new Stack<>();
     }
 }
