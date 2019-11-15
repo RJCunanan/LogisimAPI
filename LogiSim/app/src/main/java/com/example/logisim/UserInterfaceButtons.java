@@ -119,10 +119,12 @@ public class UserInterfaceButtons{
     // returns if the button is selected or not
     boolean getSelected() {return selected;}
 
+    // Getter method that returns the button's x-coordinate on the grid
     int getButtonXCoordinate() {
         return buttonXCoordinate;
     }
 
+    // Marks this button as not selected by the user
     void clearButtonSelection() {
         selected = false;
     }

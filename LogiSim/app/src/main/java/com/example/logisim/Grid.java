@@ -311,22 +311,23 @@ public class Grid {
     // once the player has touched the screen
     void determineTouch(Point touchPosition) {
         int touchPositionN = getCellN(touchPosition);
+
         // if the touch was inside the user interface figure out which button was touched
         if(touchPosition.y >= gridHeight-buttonLength) {
 
+            // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < buttonList.size(); i++) {
                 if (touchPosition.x == buttonList.get(i).getButtonXCoordinate()) {
+                    // If the x-coordinate of the user's tap matches the x-coordinate of this
+                    // button, mark this button as selected/tapped by the user
                     buttonList.get(i).wasITouched(touchPosition);
                 }
-                else {
+                else if ((touchPosition.x < SAVEBUTTONOPTION) || (touchPosition.x > SAVECOPTION)){
+                    // If this button is not selected and is not one of the save buttons, mark this
+                    // button as not selected by the user
                     buttonList.get(i).clearButtonSelection();
                 }
-
-                //buttonList.get(i).wasITouched(touchPosition);
             }
-
-
-
 
             if(buttonList.get(RUNBUTTONOPTION).getSelected()) {
                 for(int i = 0; i < cellList.size(); i++)
