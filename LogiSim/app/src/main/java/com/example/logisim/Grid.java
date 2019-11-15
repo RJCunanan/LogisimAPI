@@ -313,9 +313,20 @@ public class Grid {
         int touchPositionN = getCellN(touchPosition);
         // if the touch was inside the user interface figure out which button was touched
         if(touchPosition.y >= gridHeight-buttonLength) {
+
             for (int i = 0; i < buttonList.size(); i++) {
-                buttonList.get(i).wasITouched(touchPosition);
+                if (touchPosition.x == buttonList.get(i).getButtonXCoordinate()) {
+                    buttonList.get(i).wasITouched(touchPosition);
+                }
+                else {
+                    buttonList.get(i).clearButtonSelection();
+                }
+
+                //buttonList.get(i).wasITouched(touchPosition);
             }
+
+
+
 
             if(buttonList.get(RUNBUTTONOPTION).getSelected()) {
                 for(int i = 0; i < cellList.size(); i++)
