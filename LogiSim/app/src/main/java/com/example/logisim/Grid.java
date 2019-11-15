@@ -384,7 +384,6 @@ public class Grid {
                     if(prevSelected && cellList.get(previousTouchN).getGateNum() != -1) {
                         linkCells(touchPositionN);
                         prevSelected = false;
-                        buttonList.get(currentOption).toggleButton();
                     }
                     // select the cell to be linked
                     else {
@@ -398,7 +397,6 @@ public class Grid {
                     if(prevSelected) {
                         moveCells(touchPosition, touchPositionN);
                         prevSelected = false;
-                        buttonList.get(currentOption).toggleButton();
                     }
                     // select the cell to be moved
                     else {
@@ -412,55 +410,46 @@ public class Grid {
                     Cell deleteCell = cellList.get(touchPositionN);
                     deleteCell.deleteConnections();
                     cellList.set(touchPositionN,new EmptyCell(deleteCell));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case SWITCHBUTTONOPTION:
                     // creates a Switch after being given information of the cell
                     cellList.set(touchPositionN,new SWITCH(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case ANDBUTTONOPTION:
                     // creates an AND gate after being given information of the cell
                     cellList.set(touchPositionN,new AND(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case NANDBUTTONOPTION:
                     // creates an AND gate after being given information of the cell
                     cellList.set(touchPositionN,new NAND(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case ORBUTTONOPTION:
                     // creates an OR gate after being given information of the cell
                     cellList.set(touchPositionN,new OR(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case NORBUTTONOPTION:
                     // creates an OR gate after being given information of the cell
                     cellList.set(touchPositionN,new NOR(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case XORBUTTONOPTION:
                     // creates a XOR gate after being given information of the cell
                     cellList.set(touchPositionN, new XOR(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case NOTBUTTONOPTION:
                     // creates a NOT gate after being given information of the cell
                     cellList.set(touchPositionN,new NOT(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 case LAMPBUTTONOPTION:
                     // creates a Lamp after being given information of the cell
                     cellList.set(touchPositionN,new LAMP(cellList.get(touchPositionN)));
-                    buttonList.get(currentOption).toggleButton();
                     break;
 
                 default:
