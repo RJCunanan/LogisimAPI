@@ -318,9 +318,12 @@ public class Grid {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < buttonList.size(); i++) {
                 if (touchPosition.x == buttonList.get(i).getButtonXCoordinate()) {
-                    // If the x-coordinate of the user's tap matches the x-coordinate of this
-                    // button, mark this button as selected/tapped by the user
-                    buttonList.get(i).wasITouched(touchPosition);
+                    if (touchPosition.x != 4 && touchPosition.x != 9 && touchPosition.x < 18) {
+                        // If the x-coordinate of the user's tap matches the x-coordinate of this
+                        // button, and the selected button is not a blank button, mark this button
+                        // as selected/tapped by the user
+                        buttonList.get(i).wasITouched(touchPosition);
+                    }
                 }
                 else if ((touchPosition.x < SAVEBUTTONOPTION) || (touchPosition.x > SAVECOPTION)){
                     // If this button is not selected and is not one of the save buttons, mark this
