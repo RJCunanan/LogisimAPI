@@ -322,7 +322,7 @@ public class Grid {
     }
 
 
-
+/*
     void linkCells(int newTapN) {
         // gets the current Cell of the user's tap
         Cell currCell = cellList.get(newTapN);
@@ -335,6 +335,7 @@ public class Grid {
         else if(currCell.getCellB() == null)
             cellList.get(newTapN).setCellB(cellList.get(previousTouchN));
     }
+ */
 
 
 /*

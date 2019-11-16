@@ -2,9 +2,7 @@
 
 
 package com.example.logisim;
-
 import java.util.Vector;
-
 
 
 public class Save {

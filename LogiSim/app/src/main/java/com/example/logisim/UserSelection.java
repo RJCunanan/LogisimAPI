@@ -30,8 +30,9 @@ public class UserSelection {
 
 
     private boolean previouslySelected = false;
-    
+
     private Save save = new Save();
+    private Wire wire = new Wire();
 
 
 
@@ -111,7 +112,7 @@ public class UserSelection {
                 case LINKBUTTONOPTION:
                     // if there has been a previously selected cell and it isn't an empty cell
                     if(previouslySelected && grid.getCellList().get(grid.getPreviousTouchN()).getGateNum() != -1) {
-                        grid.linkCells(touchPositionN);
+                        wire.linkCells(touchPositionN, grid);
                         previouslySelected = false;
                     }
                     // select the cell to be linked
