@@ -61,7 +61,7 @@ public class Grid {
     private final int gridWidth = 20;
     private int gridHeight;
 
-    private boolean prevSelected = false;
+    //private boolean previouslySelected = false;
     private int previousTouchN;
 
     private Canvas myCanvas;
@@ -69,6 +69,7 @@ public class Grid {
     private ImageView myGameView;
     private Bitmap myBitMap;
     private Context myContext;
+    //private UserSelection selection;
 
     private Vector<Cell> cellList;
     private List<UserInterfaceButtons> buttonList = new ArrayList<>(20);
@@ -92,6 +93,8 @@ public class Grid {
         myGameView = gameView;
         myBitMap = blankBitMap;
         myContext = context;
+
+        //selection = new UserSelection();
 
         // Once the Grid has all the necessary variables,
         // The Grid Vector and Buttons Arraylist will get initialized
@@ -307,9 +310,10 @@ public class Grid {
 
 
 
+    /*
     // This is the portion of the code that will determine what is to be done
     // once the player has touched the screen
-    void determineTouch(Point touchPosition) {
+    void determineUserSelection(Point touchPosition) {
         int touchPositionN = getCellN(touchPosition);
 
         // if the touch was inside the user interface figure out which button was touched
@@ -381,27 +385,27 @@ public class Grid {
             switch(currentOption) {
                 case LINKBUTTONOPTION:
                     // if there has been a previously selected cell and it isn't an empty cell
-                    if(prevSelected && cellList.get(previousTouchN).getGateNum() != -1) {
+                    if(previouslySelected && cellList.get(previousTouchN).getGateNum() != -1) {
                         linkCells(touchPositionN);
-                        prevSelected = false;
+                        previouslySelected = false;
                     }
                     // select the cell to be linked
                     else {
                         previousTouchN = touchPositionN;
-                        prevSelected = true;
+                        previouslySelected = true;
                     }
                     break;
 
                 case MOVEBUTTONOPTION:
                     // if there has been a previously selected cell
-                    if(prevSelected) {
+                    if(previouslySelected) {
                         moveCells(touchPosition, touchPositionN);
-                        prevSelected = false;
+                        previouslySelected = false;
                     }
                     // select the cell to be moved
                     else {
                         previousTouchN = touchPositionN;
-                        prevSelected = true;
+                        previouslySelected = true;
                     }
                     break;
 
@@ -458,10 +462,10 @@ public class Grid {
             }
         }
     }
+     */
 
 
-
-    private void moveCells(Point newTouchPosition, int newTapN) {
+    void moveCells(Point newTouchPosition, int newTapN) {
         // Create a hold variable of the previous Tap
         Cell newCell = cellList.get(newTapN);
         Cell hold = cellList.get(previousTouchN);
@@ -478,7 +482,7 @@ public class Grid {
 
 
 
-    private void linkCells(int newTapN) {
+    void linkCells(int newTapN) {
         // gets the current Cell of the user's tap
         Cell currCell = cellList.get(newTapN);
 
@@ -493,7 +497,7 @@ public class Grid {
 
 
 
-    private void savedList(Vector<Cell> saveThis, Vector<Cell> saveHere) {
+    void savedList(Vector<Cell> saveThis, Vector<Cell> saveHere) {
         for(int i = 0; i < saveThis.size(); i++) {
             Cell currCell = saveThis.get(i);
             if(currCell instanceof EmptyCell)
@@ -551,6 +555,34 @@ public class Grid {
 
     public int getButtonLength() {
         return buttonLength;
+    }
+
+    public List<UserInterfaceButtons> getButtonList() {
+        return buttonList;
+    }
+
+    public Vector<Cell> getCellList() {
+        return cellList;
+    }
+
+    public Vector<Cell> getCellListA() {
+        return cellListA;
+    }
+
+    public Vector<Cell> getCellListB() {
+        return cellListB;
+    }
+
+    public Vector<Cell> getCellListC() {
+        return cellListC;
+    }
+
+    public int getPreviousTouchN() {
+        return previousTouchN;
+    }
+
+    public void setPreviousTouchN(int touchPositionN) {
+        previousTouchN = touchPositionN;
     }
 
 }

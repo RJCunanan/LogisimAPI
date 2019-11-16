@@ -33,6 +33,7 @@ public class Logisim extends Activity {
 
     // The brains of the Logisim
     Grid grid;
+    UserSelection selection;
 
     // Here are all the objects(instances)
     // of classes that we need to do some drawing
@@ -65,6 +66,7 @@ public class Logisim extends Activity {
 
         // Construct the grid and scoreboard class and give them access to drawing on the screen
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
+        selection = new UserSelection();
         draw();
 
         //Media Player definition
@@ -93,7 +95,7 @@ public class Logisim extends Activity {
             setTouchPosition(motionEvent.getX(), motionEvent.getY());
 
             // The grid will determine what to do with this player's touch
-            grid.determineTouch(touchPosition);
+            selection.determineUserSelection(touchPosition, grid);
             draw();
 
             //Media Player definition
