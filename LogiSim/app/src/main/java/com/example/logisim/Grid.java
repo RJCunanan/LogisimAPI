@@ -337,8 +337,8 @@ public class Grid {
     }
 
 
-
-    void savedList(Vector<Cell> saveThis, Vector<Cell> saveHere) {
+/*
+    void saveList(Vector<Cell> saveThis, Vector<Cell> saveHere) {
         for(int i = 0; i < saveThis.size(); i++) {
             Cell currCell = saveThis.get(i);
             if(currCell instanceof EmptyCell)
@@ -380,6 +380,7 @@ public class Grid {
         }
 
     }
+ */
 
 
     public int getButtonWidth() {

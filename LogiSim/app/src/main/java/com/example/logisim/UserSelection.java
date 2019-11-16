@@ -30,6 +30,8 @@ public class UserSelection {
 
 
     private boolean previouslySelected = false;
+    
+    private Save save = new Save();
 
 
 
@@ -67,30 +69,30 @@ public class UserSelection {
                 grid.getButtonList().get(RUNBUTTONOPTION).toggleButton();
             }
             else if(grid.getButtonList().get(SAVEBUTTONOPTION).getSelected() && grid.getButtonList().get(SAVEAOPTION).getSelected()) {
-                grid.savedList(grid.getCellList(), grid.getCellListA());
+                save.saveList(grid.getCellList(), grid.getCellListA(), grid);
                 grid.getButtonList().get(SAVEBUTTONOPTION).toggleButton();
                 grid.getButtonList().get(SAVEAOPTION).toggleButton();
             }
             else if(grid.getButtonList().get(SAVEBUTTONOPTION).getSelected() && grid.getButtonList().get(SAVEBOPTION).getSelected()) {
-                grid.savedList(grid.getCellList(), grid.getCellListB());
+                save.saveList(grid.getCellList(), grid.getCellListB(), grid);
                 grid.getButtonList().get(SAVEBUTTONOPTION).toggleButton();
                 grid.getButtonList().get(SAVEBOPTION).toggleButton();
             }
             else if(grid.getButtonList().get(SAVEBUTTONOPTION).getSelected() && grid.getButtonList().get(SAVECOPTION).getSelected()) {
-                grid.savedList(grid.getCellList(), grid.getCellListC());
+                save.saveList(grid.getCellList(), grid.getCellListC(), grid);
                 grid.getButtonList().get(SAVEBUTTONOPTION).toggleButton();
                 grid.getButtonList().get(SAVECOPTION).toggleButton();
             }
             else if(grid.getButtonList().get(SAVEAOPTION).getSelected()) {
-                grid.savedList(grid.getCellListA(), grid.getCellList());
+                save.saveList(grid.getCellListA(), grid.getCellList(), grid);
                 grid.getButtonList().get(SAVEAOPTION).toggleButton();
             }
             else if(grid.getButtonList().get(SAVEBOPTION).getSelected()) {
-                grid.savedList(grid.getCellListB(), grid.getCellList());
+                save.saveList(grid.getCellListB(), grid.getCellList(), grid);
                 grid.getButtonList().get(SAVEBOPTION).toggleButton();
             }
             else if(grid.getButtonList().get(SAVECOPTION).getSelected()) {
-                grid.savedList(grid.getCellListC(), grid.getCellList());
+                save.saveList(grid.getCellListC(), grid.getCellList(), grid);
                 grid.getButtonList().get(SAVECOPTION).toggleButton();
             }
         }
