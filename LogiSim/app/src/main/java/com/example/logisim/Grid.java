@@ -322,67 +322,6 @@ public class Grid {
     }
 
 
-/*
-    void linkCells(int newTapN) {
-        // gets the current Cell of the user's tap
-        Cell currCell = cellList.get(newTapN);
-
-        cellList.get(previousTouchN).addHead(cellList.get(newTapN));
-
-        // create a link between the current cell pointing to the previous cell if a spot is open.
-        if(currCell.getCellA() == null)
-            cellList.get(newTapN).setCellA(cellList.get(previousTouchN));
-        else if(currCell.getCellB() == null)
-            cellList.get(newTapN).setCellB(cellList.get(previousTouchN));
-    }
- */
-
-
-/*
-    void saveList(Vector<Cell> saveThis, Vector<Cell> saveHere) {
-        for(int i = 0; i < saveThis.size(); i++) {
-            Cell currCell = saveThis.get(i);
-            if(currCell instanceof EmptyCell)
-                saveHere.set(i, new EmptyCell(currCell));
-            else if(currCell instanceof SWITCH)
-                saveHere.set(i, new SWITCH(currCell));
-            else if(currCell instanceof AND)
-                saveHere.set(i, new AND(currCell));
-            else if(currCell instanceof NAND)
-                saveHere.set(i, new NAND(currCell));
-            else if(currCell instanceof OR)
-                saveHere.set(i, new OR(currCell));
-            else if(currCell instanceof NOR)
-                saveHere.set(i, new NOR(currCell));
-            else if(currCell instanceof XOR)
-                saveHere.set(i, new XOR(currCell));
-            else if(currCell instanceof NOT)
-                saveHere.set(i, new NOT(currCell));
-            else if(currCell instanceof LAMP)
-                saveHere.set(i, new LAMP(currCell));
-        }
-
-        for(int i = 0; i < saveThis.size(); i++) {
-            Cell currCell = saveThis.get(i);
-            if(!(currCell instanceof EmptyCell)) {
-                if(currCell.getCellA() != null) {
-                    int currCellTailAPos = getCellN(currCell.getCellA().cellPosition);
-                    saveHere.get(i).setCellA(saveHere.get(currCellTailAPos));
-                }
-                if(currCell.getCellB() != null) {
-                    int currCellTailBPos = getCellN(currCell.getCellB().cellPosition);
-                    saveHere.get(i).setCellB(saveHere.get(currCellTailBPos));
-                }
-                for(int k = 0; k < currCell.head.size(); k++) {
-                    int currCellHeadPos = getCellN(currCell.head.get(k).cellPosition);
-                    saveHere.get(i).head.set(k, saveHere.get(currCellHeadPos));
-                }
-            }
-        }
-
-    }
- */
-
 
     public int getButtonWidth() {
         return buttonWidth;
