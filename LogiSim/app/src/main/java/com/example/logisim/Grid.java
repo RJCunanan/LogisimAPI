@@ -61,7 +61,6 @@ public class Grid {
     private final int gridWidth = 20;
     private int gridHeight;
 
-    //private boolean previouslySelected = false;
     private int previousTouchN;
 
     private Canvas myCanvas;
@@ -69,7 +68,6 @@ public class Grid {
     private ImageView myGameView;
     private Bitmap myBitMap;
     private Context myContext;
-    //private UserSelection selection;
 
     private Vector<Cell> cellList;
     private List<UserInterfaceButtons> buttonList = new ArrayList<>(20);
@@ -93,8 +91,6 @@ public class Grid {
         myGameView = gameView;
         myBitMap = blankBitMap;
         myContext = context;
-
-        //selection = new UserSelection();
 
         // Once the Grid has all the necessary variables,
         // The Grid Vector and Buttons Arraylist will get initialized
@@ -308,161 +304,6 @@ public class Grid {
         }
     }
 
-
-
-    /*
-    // This is the portion of the code that will determine what is to be done
-    // once the player has touched the screen
-    void determineUserSelection(Point touchPosition) {
-        int touchPositionN = getCellN(touchPosition);
-
-        // if the touch was inside the user interface figure out which button was touched
-        if(touchPosition.y >= gridHeight-buttonLength) {
-
-            // Cycle through each button to determine which was selected by the user
-            for (int i = 0; i < buttonList.size(); i++) {
-                if (touchPosition.x == buttonList.get(i).getButtonXCoordinate()) {
-                    if (touchPosition.x != 4 && touchPosition.x != 9 && touchPosition.x < 18) {
-                        // If the x-coordinate of the user's tap matches the x-coordinate of this
-                        // button, and the selected button is not a blank button, mark this button
-                        // as selected/tapped by the user
-                        buttonList.get(i).wasITouched(touchPosition);
-                    }
-                }
-                else if ((touchPosition.x < SAVEBUTTONOPTION) || (touchPosition.x > SAVECOPTION)){
-                    // If this button is not selected and is not one of the save buttons, mark this
-                    // button as not selected by the user
-                    buttonList.get(i).clearButtonSelection();
-                }
-            }
-
-            if(buttonList.get(RUNBUTTONOPTION).getSelected()) {
-                for(int i = 0; i < cellList.size(); i++)
-                    if(cellList.get(i) instanceof LAMP) {
-                        ((LAMP) cellList.get(i)).evalLamp(); }
-
-                buttonList.get(RUNBUTTONOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBUTTONOPTION).getSelected() && buttonList.get(SAVEAOPTION).getSelected()) {
-                savedList(cellList, cellListA);
-                buttonList.get(SAVEBUTTONOPTION).toggleButton();
-                buttonList.get(SAVEAOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBUTTONOPTION).getSelected() && buttonList.get(SAVEBOPTION).getSelected()) {
-                savedList(cellList, cellListB);
-                buttonList.get(SAVEBUTTONOPTION).toggleButton();
-                buttonList.get(SAVEBOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBUTTONOPTION).getSelected() && buttonList.get(SAVECOPTION).getSelected()) {
-                savedList(cellList, cellListC);
-                buttonList.get(SAVEBUTTONOPTION).toggleButton();
-                buttonList.get(SAVECOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEAOPTION).getSelected()) {
-                savedList(cellListA, cellList);
-                buttonList.get(SAVEAOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVEBOPTION).getSelected()) {
-                savedList(cellListB, cellList);
-                buttonList.get(SAVEBOPTION).toggleButton();
-            }
-            else if(buttonList.get(SAVECOPTION).getSelected()) {
-                savedList(cellListC, cellList);
-                buttonList.get(SAVECOPTION).toggleButton();
-            }
-        }
-        else {
-            // This loop find which button is currently toggled on
-            int currentOption = -1;
-            for(int i = 0; i < buttonList.size(); i++){
-                if(buttonList.get(i).getSelected()) {
-                    currentOption = buttonList.get(i).getButtonInList();
-                }
-            }
-
-            // Each button has a unique number assigned to it, and once this is found out
-            // the grid will respond accordingly
-            switch(currentOption) {
-                case LINKBUTTONOPTION:
-                    // if there has been a previously selected cell and it isn't an empty cell
-                    if(previouslySelected && cellList.get(previousTouchN).getGateNum() != -1) {
-                        linkCells(touchPositionN);
-                        previouslySelected = false;
-                    }
-                    // select the cell to be linked
-                    else {
-                        previousTouchN = touchPositionN;
-                        previouslySelected = true;
-                    }
-                    break;
-
-                case MOVEBUTTONOPTION:
-                    // if there has been a previously selected cell
-                    if(previouslySelected) {
-                        moveCells(touchPosition, touchPositionN);
-                        previouslySelected = false;
-                    }
-                    // select the cell to be moved
-                    else {
-                        previousTouchN = touchPositionN;
-                        previouslySelected = true;
-                    }
-                    break;
-
-                case DELETEBUTTONOPTION:
-                    // turn the cell selected back into an EmptyCell
-                    Cell deleteCell = cellList.get(touchPositionN);
-                    deleteCell.deleteConnections();
-                    cellList.set(touchPositionN,new EmptyCell(deleteCell));
-                    break;
-
-                case SWITCHBUTTONOPTION:
-                    // creates a Switch after being given information of the cell
-                    cellList.set(touchPositionN,new SWITCH(cellList.get(touchPositionN)));
-                    break;
-
-                case ANDBUTTONOPTION:
-                    // creates an AND gate after being given information of the cell
-                    cellList.set(touchPositionN,new AND(cellList.get(touchPositionN)));
-                    break;
-
-                case NANDBUTTONOPTION:
-                    // creates an AND gate after being given information of the cell
-                    cellList.set(touchPositionN,new NAND(cellList.get(touchPositionN)));
-                    break;
-
-                case ORBUTTONOPTION:
-                    // creates an OR gate after being given information of the cell
-                    cellList.set(touchPositionN,new OR(cellList.get(touchPositionN)));
-                    break;
-
-                case NORBUTTONOPTION:
-                    // creates an OR gate after being given information of the cell
-                    cellList.set(touchPositionN,new NOR(cellList.get(touchPositionN)));
-                    break;
-
-                case XORBUTTONOPTION:
-                    // creates a XOR gate after being given information of the cell
-                    cellList.set(touchPositionN, new XOR(cellList.get(touchPositionN)));
-                    break;
-
-                case NOTBUTTONOPTION:
-                    // creates a NOT gate after being given information of the cell
-                    cellList.set(touchPositionN,new NOT(cellList.get(touchPositionN)));
-                    break;
-
-                case LAMPBUTTONOPTION:
-                    // creates a Lamp after being given information of the cell
-                    cellList.set(touchPositionN,new LAMP(cellList.get(touchPositionN)));
-                    break;
-
-                default:
-                    // If the user tapped a Switch, toggle its state
-                    if(cellList.get(touchPositionN) instanceof SWITCH) { ((SWITCH) cellList.get(touchPositionN)).toggleSwitch();}
-            }
-        }
-    }
-     */
 
 
     void moveCells(Point newTouchPosition, int newTapN) {
