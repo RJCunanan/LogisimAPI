@@ -33,7 +33,7 @@ public class UserSelection {
 
     private Save save = new Save();
     private Wire wire = new Wire();
-
+    private ComponentMover componentMover = new ComponentMover();
 
 
 
@@ -125,7 +125,7 @@ public class UserSelection {
                 case MOVEBUTTONOPTION:
                     // if there has been a previously selected cell
                     if(previouslySelected) {
-                        grid.moveCells(touchPosition, touchPositionN);
+                        componentMover.moveCells(touchPosition, touchPositionN, grid);
                         previouslySelected = false;
                     }
                     // select the cell to be moved

@@ -305,7 +305,7 @@ public class Grid {
     }
 
 
-
+/*
     void moveCells(Point newTouchPosition, int newTapN) {
         // Create a hold variable of the previous Tap
         Cell newCell = cellList.get(newTapN);
@@ -320,6 +320,7 @@ public class Grid {
         hold.updateCellPosition(new Point(newTouchPosition));
         cellList.set(newTapN, hold);
     }
+ */
 
 
 
