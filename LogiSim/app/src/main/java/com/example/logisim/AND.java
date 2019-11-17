@@ -1,14 +1,19 @@
-/*
- Team API:
- Jaime Rivera
- RJ Cunanan
- Theodora Fernandez
- Yong Yang
-
- Group Project: LogiSim
- Class: CSC 131
- Date: 10-30-19
- */
+/**
+ * Team API:
+ *      Jaime Rivera
+ *      RJ Cunanan
+ *      Theodora Fernandez
+ *      Yong Yang
+ *
+ * Group Project:
+ *      LogiSim
+ *
+ * Class:
+ *      CSC 131
+ *
+ * Date Modified:
+ *      11-16-19
+ **/
 
 
 
