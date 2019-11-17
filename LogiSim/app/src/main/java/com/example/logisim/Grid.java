@@ -305,24 +305,6 @@ public class Grid {
     }
 
 
-/*
-    void moveCells(Point newTouchPosition, int newTapN) {
-        // Create a hold variable of the previous Tap
-        Cell newCell = cellList.get(newTapN);
-        Cell hold = cellList.get(previousTouchN);
-
-        // Update the hold Cell's touch position and move it to the right position in the cellList
-        // Set the previous Touch to an empty cell
-        cellList.set(previousTouchN,new EmptyCell(cellList.get(previousTouchN)));
-        cellList.get(previousTouchN).a = null;
-        cellList.get(previousTouchN).b = null;
-        hold.setCellPositionCoor(newCell.cellX, newCell.cellY, newCell.cellWidth, newCell.cellHeight);
-        hold.updateCellPosition(new Point(newTouchPosition));
-        cellList.set(newTapN, hold);
-    }
- */
-
-
 
     public int getButtonWidth() {
         return buttonWidth;
