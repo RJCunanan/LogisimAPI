@@ -79,17 +79,17 @@ The following is a step by step set of instructions for how the user can interac
 
 1. The user taps on the application’s icon. This opens the app and loads both the grid and the taskbar onto the screen for the user to interact with.
 
-2. Then, the user taps on the toggle switch button in the taskbar to select it. When releasing their finger after the tap, the toggle switch icon will be highlighted to visually confirm the selection. The user can then proceed to tap on an empty grid square to place a toggle switch on that square.
+2. Then, the user taps on the toggle switch button in the taskbar to select it. When releasing their finger after the tap, the toggle switch icon will be highlighted to visually confirm the selection. The user can then proceed to tap on an empty grid square to place a toggle switch onto that square.
 
-3. Next, the user taps on the LED button. Just like the toggle switch button, the LED button will be highlighted to display confirmation of the selection and the user can place lamps onto any empty grid square simply by tapping that square.
+3. Next, the user taps on the Lamp button. Just like the toggle switch button, the Lamp button will be highlighted to display confirmation of the selection and the user can place lamps onto any empty grid square simply by tapping that square.
 
-4. The user can now select from among the 3 different gates available (AND, OR, or NOT gate).  Once again, the user can place any gate on any open space on the grid.
+4. The user can now select from among the 6 different gates available (AND, NAND, OR, NOR, XOR, or NOT gates).  Once again, the user can place any gate on any open space on the grid.
 
-5. With the toggle switches, lamps, and desired gates placed on the grid, the user can now start placing wires by selecting the wire icon. After the selection, users can start connecting wires between circuit components to connect all the components into a complete and working circuit.
+5. With the toggle switches, lamps, and desired gates placed on the grid, the user can now start placing wires by selecting the Link button. After the selection, users can start connecting wires between circuit components to connect all the components into a complete and working circuit.
 
 Note: Throughout this circuit-building process, any of the function buttons could be used to edit the circuit as it is being built onto the grid.
 
-6. When the circuit is complete, the user can now tap the toggle and run buttons to begin testing to see if the circuit behaves as expected. With the toggle button selected and highlighted, each individual toggle switch on the grid can now be tapped to turn them on and to simulate sending power throughout the circuit. The user then proceeds to tap on the run button, and any LEDs that receive power during this phase will light up to display to the user that they have received input from the circuit.
+6. When the circuit is complete, the user can now tap on any switches to toggle them on or off as well as the run button to begin testing to see if the circuit behaves as expected. With no button on the taskbar currently selected and highlighted, each individual toggle switch on the grid can now be tapped to turn them on and to simulate sending power throughout the circuit. The user then proceeds to tap on the run button, and any lamps that receive power during this phase will light up to display to the user that they have received input from the circuit.
 
 
 ## Works Cited:
