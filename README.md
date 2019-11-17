@@ -16,6 +16,7 @@
 * Redo and Undo functionality to allow the user to go back and forth between current and previously created circuits
 * Ability for the user to pinch to zoom in and out of grid
 * Dynamic taskbar that allows for the addition of new buttons without running out of space
+* Sound feedback for user taps and background music during application startup
 
 
 # LogiSim Design Document
