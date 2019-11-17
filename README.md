@@ -1,19 +1,21 @@
 # Team API: LogiSim Group Project
 
-## Vision
-To create a simple and easy-to-use Logic Simulator application that doesn't
-compromise on usability nor on the number of features available to the user.
+## About Our Team and Our Vision:
 
-## Team Members
+### Team Members
 * Jaime Rivera
 * RJ Cunanan
 * Theodora Fernandez
-* Yong Yang 
+* Yong Yang
 
-## New Features
-* Additional Logic Gates
-* Redo and Undo Buttons
-* Pinch to zoom in and out of grid
+### Vision
+**To create a clean, simple, and easy-to-use Logic Simulator application that doesn't compromise on usability nor on the number of features available to the user.** What our teams desires is to create an application that has a clean and simple User Interface that includes a grid and a single taskbar with button icons that doesn't leave the user guessing as to what each button does. The main goal for us when it comes to the UI is simplicity. The user should be able to pick up his or her phone, open the LogiSim application, and just go on building and testing circuits. However, simplicity doesn't mean taking away from the User Experience. When users get to building circuits using our app, they should be given all the tools and functionality necessary to accomplish that goal. The application should also be as bug free as possible so that the user can create, test, and run circuits without fail. Thus, our end goals for this group project is to have a Logic Simulator app with a clean and simple design but with a dynamic taskbar, added functionality such as the ability to redo and undo past actions, and additional logic gates for more diversity in circuit building while also ensuring that the app works as the user expects it should.
+
+### New Features
+* Additional Logic Gates (NAND, NOR, XOR)
+* Redo and Undo functionality to allow the user to go back and forth between current and previously created circuits
+* Ability for the user to pinch to zoom in and out of grid
+* Dynamic taskbar that allows for the addition of new buttons without running out of space
 
 
 # LogiSim Design Document
@@ -87,4 +89,3 @@ Note: Throughout this circuit-building process, any of the function buttons coul
 Posnett, Daryl. “LogiSim Problem Statement.” 2019. PDF file.
 
 Posnett, Daryl. “SubHunterRefactoredCSC131FA19.” 2019. PDF file.
-
