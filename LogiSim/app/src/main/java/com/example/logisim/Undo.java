@@ -1,28 +1,12 @@
-/**
- * Team API:
- *      Jaime Rivera
- *      RJ Cunanan
- *      Theodora Fernandez
- *      Yong Yang
- *
- * Group Project:
- *      LogiSim
- *
- * Class:
- *      CSC 131
- *
- * Date Modified:
- *      11-16-19
- **/
-
-
-
 package com.example.logisim;
 import java.util.*;
 
 public class Undo{
     Stack<Cell> save;
-    void Undo(){
-        save= new Stack<>();
+    ArrayList<Cell> temp;
+    void Undo(Vector<Cell> saveThis){
+        temp = new ArrayList<>();
+        for(int i=0; i<saveThis.size(); i++)
+            temp.add(null);
     }
 }
