@@ -82,6 +82,18 @@ public class Grid {
     private Vector<Cell> cellListC;
 
 
+    //========================================================================================//
+    // Name: RJ Cunanan
+    // This is the section of variables I am testing in order to create an expandable taskbar:
+
+    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(5);
+    private List<UserInterfaceButtons> saveMenuList = new ArrayList<>(5);
+
+
+
+    //========================================================================================//
+
+
 
     public Grid(Context context, Point size, Canvas canvas, Paint paint, ImageView gameView, Bitmap blankBitMap) {
         // Gathers & computes information about the user's Screen
@@ -109,12 +121,16 @@ public class Grid {
         // The grid Vector will be created to have a size of the
         // area in which the player can place gates/switches/lamps inside
         cellList = new Vector<>((gridHeight-buttonLength)*gridWidth);
+
+        // These vectors are used to save the current configuration of the grid,
+        // along with all the built circuits on it, so that they could be loaded
+        // later on.
         cellListA = new Vector<>((gridHeight-buttonLength)*gridWidth);
         cellListB = new Vector<>((gridHeight-buttonLength)*gridWidth);
         cellListC = new Vector<>((gridHeight-buttonLength)*gridWidth);
 
         // A nested loop will fill the entirety of the vector with EmptyCells
-        // Note: the grid filled with columns first
+        // Note: the grid is filled column by column
         Point currentPos = new Point();
         for (int x = 0; x < gridWidth; x++) {
             for(int y = 0; y < (gridHeight-buttonLength); y++) {
@@ -122,6 +138,8 @@ public class Grid {
                 currentPos.y = y;
 
                 cellList.add(new EmptyCell(new Point(currentPos), cellSize));
+
+                // Also initialize the save slots with empty grid cells
                 cellListA.add(new EmptyCell(new Point(currentPos), cellSize));
                 cellListB.add(new EmptyCell(new Point(currentPos), cellSize));
                 cellListC.add(new EmptyCell(new Point(currentPos), cellSize));
@@ -354,5 +372,16 @@ public class Grid {
     public void setPreviousTouchN(int touchPositionN) {
         previousTouchN = touchPositionN;
     }
+
+
+
+    //========================================================================================//
+    // Name: RJ Cunanan
+    // This is the section of methods I am testing in order to create an expandable taskbar:
+
+
+
+
+    //========================================================================================//
 
 }
