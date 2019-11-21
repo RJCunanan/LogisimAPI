@@ -23,6 +23,11 @@ public class Undo{
             else if(temp instanceof OR)
                 undoSaved.set(i, new OR(temp));
             else if(temp instanceof NOR)
+                undoSaved.set(i, new NOR(temp));
+            else if(temp instanceof XOR)
+                undoSaved.set(i, new XOR(temp));
+            else if(temp instanceof NOT)
+                undoSaved.set(i, new NOT(temp));
         }
     }
 }
