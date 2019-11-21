@@ -20,6 +20,9 @@ public class Undo{
                 undoSaved.set(i, new AND(temp));
             else if(temp instanceof NAND)
                 undoSaved.set(i, new NAND(temp));
+            else if(temp instanceof OR)
+                undoSaved.set(i, new OR(temp));
+            else if(temp instanceof NOR)
         }
     }
 }
