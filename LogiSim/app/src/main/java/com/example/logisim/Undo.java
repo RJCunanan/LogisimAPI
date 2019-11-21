@@ -10,8 +10,9 @@ public class Undo{
             undoSaved.add(null);
     }
     void saveUndo(Vector<Cell> saveThis){
+        Cell temp;
         for(int i=0; i<=saveThis.size();i++){
-            Cell temp=saveThis.get(i);
+            temp=saveThis.get(i);
             if(temp instanceof EmptyCell)
                 undoSaved.set(i, new EmptyCell(temp));
             else if(temp instanceof SWITCH)
@@ -28,6 +29,11 @@ public class Undo{
                 undoSaved.set(i, new XOR(temp));
             else if(temp instanceof NOT)
                 undoSaved.set(i, new NOT(temp));
+            else if(temp instanceof LAMP)
+                undoSaved.set(i, new LAMP(temp));
+        }
+        for(int i=0; i<=saveThis.size();i++) {
+            temp=saveThis.get(i);
         }
     }
 }
