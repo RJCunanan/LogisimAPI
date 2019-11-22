@@ -59,6 +59,16 @@ public class UserSelection {
     private ComponentMover componentMover = new ComponentMover();
 
 
+    //========================================================================================//
+    // Name: RJ Cunanan
+    // This is the section of variables I am testing in order to create an expandable taskbar:
+
+
+
+
+    //========================================================================================//
+
+
 
     // This is the portion of the code that will determine what is to be done
     // once the player has touched the screen
@@ -211,5 +221,16 @@ public class UserSelection {
             }
         }
     }
+
+
+
+    //========================================================================================//
+    // Name: RJ Cunanan
+    // This is the section of methods I am testing in order to create an expandable taskbar:
+
+
+
+
+    //========================================================================================//
 
 }
