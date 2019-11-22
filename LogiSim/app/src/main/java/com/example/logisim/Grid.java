@@ -86,11 +86,17 @@ public class Grid {
     // Name: RJ Cunanan
     // This is the section of variables I am testing in order to create an expandable taskbar:
 
+
+    // New ArrayLists that will hold the different buttons that belong in different menus
+    // on the taskbar:
     private List<UserInterfaceButtons> mainMenuList = new ArrayList<>(8);
     private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(8);
     private List<UserInterfaceButtons> saveMenuList = new ArrayList<>(8);
 
-
+    private int menuToDisplay = 0;      // Used to decide what menu should be loaded onto the taskbar
+    private final int MAIN_MENU = 0;    // Used to load the main menu
+    private final int SAVE_MENU = 1;    // Used to load the save menu
+    private final int GATES_MENU = 2;   // Used to load the gates menu
 
     //========================================================================================//
 
@@ -380,6 +386,9 @@ public class Grid {
     // Name: RJ Cunanan
     // This is the section of methods I am testing in order to create an expandable taskbar:
 
+
+    // This method creates the main menu that is initially displayed to the user when he or she
+    // first opens the app by filling the menu with the main menu buttons.
     public void loadMainMenu(int currentButtonPosition, int x){
         switch (currentButtonPosition) {
             case 1:
@@ -421,6 +430,9 @@ public class Grid {
     }
 
 
+    // This method creates the save menu that is loaded onto the screen when the user taps on the
+    // "SAVE" button from the main menu by creating several buttons that act as save "slots", each
+    // of which will hold a saved circuit.
     public void loadSaveMenu(int currentButtonPosition, int x) {
         switch (currentButtonPosition) {
             case 1:
@@ -458,6 +470,9 @@ public class Grid {
     }
 
 
+    // This method creates the logic gates menu that is loaded onto the screen when the user taps on the
+    // "Gates" button in the main menu by creating several buttons that will allow the user to place
+    // logic gates onto the grid.
     public void loadGatesMenu(int currentButtonPosition, int x) {
         switch (currentButtonPosition) {
             case 1:
