@@ -86,8 +86,9 @@ public class Grid {
     // Name: RJ Cunanan
     // This is the section of variables I am testing in order to create an expandable taskbar:
 
-    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(5);
-    private List<UserInterfaceButtons> saveMenuList = new ArrayList<>(5);
+    private List<UserInterfaceButtons> mainMenuList = new ArrayList<>(8);
+    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(8);
+    private List<UserInterfaceButtons> saveMenuList = new ArrayList<>(8);
 
 
 
@@ -379,7 +380,57 @@ public class Grid {
     // Name: RJ Cunanan
     // This is the section of methods I am testing in order to create an expandable taskbar:
 
+    public void loadMainMenu(int currentButtonPosition, int x){
+        switch (currentButtonPosition) {
+            case 1:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Run", 1));
+                break;
+            case 2:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Link", 2));
+                break;
+            case 3:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Move", 3));
+                break;
+            case 4:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Delete", 4));
+                break;
+            case 5:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "SAVE", 5));
+                break;
+            case 6:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Switch", 6));
+                break;
+            case 7:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Gates", 7));
+                break;
+            case 8:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "LAMP", 8));
+                break;
+            default:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
+    }
 
+
+    public void loadSaveMenu(int currentButtonPosition, int x) {
+
+
+    }
+
+
+    public void loadGatesMenu(int currentButtonPosition, int x) {
+
+
+    }
 
 
     //========================================================================================//
