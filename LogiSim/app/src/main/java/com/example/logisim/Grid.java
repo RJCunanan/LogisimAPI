@@ -422,14 +422,76 @@ public class Grid {
 
 
     public void loadSaveMenu(int currentButtonPosition, int x) {
-
-
+        switch (currentButtonPosition) {
+            case 1:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", 1));
+                break;
+            case 3:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot A", 3));
+                break;
+            case 4:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot B", 4));
+                break;
+            case 5:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot C", 5));
+                break;
+            case 6:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot D", 6));
+                break;
+            case 7:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot E", 7));
+                break;
+            case 8:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot F", 8));
+                break;
+            default:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
     }
 
 
     public void loadGatesMenu(int currentButtonPosition, int x) {
-
-
+        switch (currentButtonPosition) {
+            case 1:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", 1));
+                break;
+            case 3:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "AND", 3));
+                break;
+            case 4:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "NAND", 4));
+                break;
+            case 5:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "OR", 5));
+                break;
+            case 6:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "NOR", 6));
+                break;
+            case 7:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "XOR", 7));
+                break;
+            case 8:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "NOT", 8));
+                break;
+            default:
+                buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
     }
 
 
