@@ -327,7 +327,8 @@ public class UserSelection {
         }
     }
 
-    private void determineSaveMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
+
+    private void determineSaveMenuSelection (Point touchPosition, Grid grid) {
 
         // if the touch was inside the user interface figure out which button was touched
         if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
@@ -348,16 +349,95 @@ public class UserSelection {
             if (grid.getButtonList().get(0).getSelected()) {
                 grid.loadMainMenu();
             }
-            // Save Slot 1
+            // Save Slot A
             else if (grid.getButtonList().get(2).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListA(), grid);
             }
-            // Save Slot 2
+            // Save Slot B
             else if (grid.getButtonList().get(3).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListB(), grid);
             }
+            // Save Slot C
             else if (grid.getButtonList().get(4).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListC(), grid);
+            }
+        }
+    }
+
+
+    private void determineGatesMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
+
+        // if the touch was inside the user interface figure out which button was touched
+        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+
+            // Cycle through each button to determine which was selected by the user
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
+                    if (touchPosition.x != 4 && touchPosition.x != 9 && touchPosition.x < 18) {
+                        // If the x-coordinate of the user's tap matches the x-coordinate of this
+                        // button, and the selected button is not a blank button, mark this button
+                        // as selected/tapped by the user
+                        grid.getButtonList().get(i).wasITouched(touchPosition);
+                    }
+                } else if ((touchPosition.x < SAVEBUTTONOPTION) || (touchPosition.x > SAVECOPTION)) {
+                    // If this button is not selected and is not one of the save buttons, mark this
+                    // button as not selected by the user
+                    grid.getButtonList().get(i).clearButtonSelection();
+                }
+            }
+
+            // BACK button
+            if (grid.getButtonList().get(0).getSelected()) {
+                grid.loadMainMenu();
+            }
+        }
+        else {
+            // This loop finds which button is currently toggled on
+            int currentOption = -1;
+            for(int i = 0; i < grid.getButtonList().size(); i++){
+                if(grid.getButtonList().get(i).getSelected()) {
+                    currentOption = grid.getButtonList().get(i).getButtonInList();
+                }
+            }
+
+            // Each button has a unique number assigned to it, and once this is found out
+            // the grid will respond accordingly
+            switch(currentOption) {
+                // AND button
+                case 2:
+                    // creates an AND gate after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new AND(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // NAND button
+                case 3:
+                    // creates an AND gate after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new NAND(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // OR button
+                case 4:
+                    // creates an OR gate after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new OR(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // NOR button
+                case 5:
+                    // creates an OR gate after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new NOR(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // XOR button
+                case 6:
+                    // creates a XOR gate after being given information of the cell
+                    grid.getCellList().set(touchPositionN, new XOR(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // NOT button
+                case 7:
+                    // creates a NOT gate after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new NOT(grid.getCellList().get(touchPositionN)));
+                    break;
             }
         }
     }
