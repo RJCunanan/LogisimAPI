@@ -243,7 +243,13 @@ public class UserSelection {
                         grid.getButtonList().get(i).wasITouched(touchPosition);
                     }
                 }
+                else {
+                    // If this button is not selected and is not one of the save buttons, mark this
+                    // button as not selected by the user
+                    grid.getButtonList().get(i).clearButtonSelection();
+                }
             }
+
 
             // RUN button
             if (grid.getButtonList().get(0).getSelected()) {
@@ -256,6 +262,10 @@ public class UserSelection {
             // SAVE button
             else if (grid.getButtonList().get(4).getSelected()) {
                 grid.loadSaveMenu();
+            }
+            // LOAD button
+            else if (grid.getButtonList().get(5).getSelected()) {
+                grid.loadLoadMenu();
             }
             // GATES button
             else if (grid.getButtonList().get(7).getSelected()) {
@@ -343,6 +353,11 @@ public class UserSelection {
                         grid.getButtonList().get(i).wasITouched(touchPosition);
                     }
                 }
+                else {
+                    // If this button is not selected and is not one of the save buttons, mark this
+                    // button as not selected by the user
+                    grid.getButtonList().get(i).clearButtonSelection();
+                }
             }
 
             // BACK button
@@ -365,6 +380,46 @@ public class UserSelection {
     }
 
 
+    private void determineLoadMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
+        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+
+            // Cycle through each button to determine which was selected by the user
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
+                    if (touchPosition.x < 8) {
+                        // If the x-coordinate of the user's tap matches the x-coordinate of this
+                        // button, and the selected button is not a blank button, mark this button
+                        // as selected/tapped by the user
+                        grid.getButtonList().get(i).wasITouched(touchPosition);
+                    }
+                }
+                else {
+                    // If this button is not selected and is not one of the save buttons, mark this
+                    // button as not selected by the user
+                    grid.getButtonList().get(i).clearButtonSelection();
+                }
+            }
+
+            // BACK button
+            if (grid.getButtonList().get(0).getSelected()) {
+                grid.loadMainMenu();
+            }
+            // Load Save Slot A
+            else if (grid.getButtonList().get(2).getSelected()) {
+                save.saveList(grid.getCellListA(), grid.getCellList(), grid);
+            }
+            // Load Save Slot B
+            else if (grid.getButtonList().get(3).getSelected()) {
+                save.saveList(grid.getCellListB(), grid.getCellList(), grid);
+            }
+            // Load Save Slot C
+            else if (grid.getButtonList().get(4).getSelected()) {
+                save.saveList(grid.getCellListC(), grid.getCellList(), grid);
+            }
+        }
+    }
+
+
     private void determineGatesMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
 
         // if the touch was inside the user interface figure out which button was touched
@@ -379,7 +434,8 @@ public class UserSelection {
                         // as selected/tapped by the user
                         grid.getButtonList().get(i).wasITouched(touchPosition);
                     }
-                } else if ((touchPosition.x < SAVEBUTTONOPTION) || (touchPosition.x > SAVECOPTION)) {
+                }
+                else {
                     // If this button is not selected and is not one of the save buttons, mark this
                     // button as not selected by the user
                     grid.getButtonList().get(i).clearButtonSelection();

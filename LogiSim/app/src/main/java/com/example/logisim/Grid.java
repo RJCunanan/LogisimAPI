@@ -521,6 +521,22 @@ public class Grid {
         return menuToDisplay;
     }
 
+    public int getMainMenu() {
+        return MAIN_MENU;
+    }
+
+    public int getSaveMenu() {
+        return SAVE_MENU;
+    }
+
+    public int getLoadMenu() {
+        return LOAD_MENU;
+    }
+
+    public int getGatesMenu() {
+        return GATES_MENU;
+    }
+
     public void loadMainMenu() {
         menuToDisplay = MAIN_MENU;
     }
@@ -531,6 +547,10 @@ public class Grid {
 
     public void loadGatesMenu() {
         menuToDisplay = GATES_MENU;
+    }
+
+    public void loadLoadMenu() {
+        menuToDisplay = LOAD_MENU;
     }
 
 
