@@ -12,7 +12,7 @@
  *      CSC 131
  *
  * Date Modified:
- *      11-16-19
+ *      11-23-19
  **/
 
 
@@ -174,95 +174,6 @@ public class Grid {
             createMainMenu(currentButtonPosition, x);
             createSaveAndLoadMenu(currentButtonPosition, x);
             createGatesMenu(currentButtonPosition, x);
-
-            /*
-            if (menuToDisplay == MAIN_MENU) {
-                buttonList.clear();
-                buttonList.addAll(mainMenuList);
-            }
-            else if (menuToDisplay == SAVE_MENU || menuToDisplay == LOAD_MENU) {
-                buttonList.clear();
-                buttonList.addAll(saveAndLoadMenuList);
-            }
-            else if (menuToDisplay == GATES_MENU) {
-                buttonList.clear();
-                buttonList.addAll(logicGatesMenuList);
-            }
-             */
-
-
-            /*
-            // Determine which button to create given the current position
-            switch (currentButtonPosition) {
-                case RUNBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "Run", RUNBUTTONOPTION));
-                    break;
-                case LINKBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "Link", LINKBUTTONOPTION));
-                    break;
-                case MOVEBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "Move", MOVEBUTTONOPTION));
-                    break;
-                case DELETEBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETEBUTTONOPTION));
-                    break;
-                case SAVEBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVEBUTTONOPTION));
-                    break;
-                case SAVEAOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "A", SAVEAOPTION));
-                    break;
-                case SAVEBOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "B", SAVEBOPTION));
-                    break;
-                case SAVECOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "C", SAVECOPTION));
-                    break;
-                case SWITCHBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCHBUTTONOPTION));
-                    break;
-                case ANDBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "AND", ANDBUTTONOPTION));
-                    break;
-                case NANDBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "NAND", NANDBUTTONOPTION));
-                    break;
-                case ORBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "OR", ORBUTTONOPTION));
-                    break;
-                case NORBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "NOR", NORBUTTONOPTION));
-                    break;
-                case XORBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "XOR", XORBUTTONOPTION));
-                    break;
-                case NOTBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "NOT", NOTBUTTONOPTION));
-                    break;
-                case LAMPBUTTONOPTION:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMPBUTTONOPTION));
-                    break;
-                default:
-                    buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                            buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
-            }
-             */
         }
     }
 
@@ -350,8 +261,6 @@ public class Grid {
                     myPaint);
         }
 
-
-
         if (menuToDisplay == MAIN_MENU) {
             buttonList.clear();
             buttonList.addAll(mainMenuList);
@@ -364,9 +273,7 @@ public class Grid {
             buttonList.clear();
             buttonList.addAll(logicGatesMenuList);
         }
-
-
-
+        
         // Cycles through the buttonList and draws each individual button one at a time
         // to create the menu bar at the bottom of the screen
         for (int i = 0; i < buttonList.size(); i++) {
