@@ -75,6 +75,21 @@ public class UserSelection {
     void determineUserSelection(Point touchPosition, Grid grid) {
         int touchPositionN = grid.getCellN(touchPosition);
 
+        if (grid.getMenuToDisplay() == grid.getMainMenu()) {
+            determineMainMenuSelection(touchPosition, grid, touchPositionN);
+        }
+        else if (grid.getMenuToDisplay() == grid.getSaveMenu()) {
+            determineSaveMenuSelection(touchPosition, grid);
+        }
+        else if (grid.getMenuToDisplay() == grid.getLoadMenu()) {
+            determineLoadMenuSelection(touchPosition, grid);
+        }
+        else if (grid.getMenuToDisplay() == grid.getGatesMenu()) {
+            determineGatesMenuSelection(touchPosition, grid, touchPositionN);
+        }
+
+
+        /*
         // if the touch was inside the user interface figure out which button was touched
         if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
 
@@ -220,6 +235,7 @@ public class UserSelection {
                     if(grid.getCellList().get(touchPositionN) instanceof SWITCH) { ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();}
             }
         }
+         */
     }
 
 
@@ -236,7 +252,7 @@ public class UserSelection {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
                 if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
-                    if (touchPosition.x < 8) {
+                    if (touchPosition.x < 9) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
@@ -253,23 +269,26 @@ public class UserSelection {
 
             // RUN button
             if (grid.getButtonList().get(0).getSelected()) {
-                for(int i = 0; i < grid.getCellList().size(); i++)
-                    if(grid.getCellList().get(i) instanceof LAMP) {
-                        ((LAMP) grid.getCellList().get(i)).evalLamp(); }
-
-                grid.getButtonList().get(0).toggleButton();
+                for(int i = 0; i < grid.getCellList().size(); i++) {
+                    if (grid.getCellList().get(i) instanceof LAMP) {
+                        ((LAMP) grid.getCellList().get(i)).evalLamp();
+                    }
+                }
             }
             // SAVE button
             else if (grid.getButtonList().get(4).getSelected()) {
                 grid.loadSaveMenu();
+                grid.getButtonList().get(4).toggleButton();
             }
             // LOAD button
             else if (grid.getButtonList().get(5).getSelected()) {
                 grid.loadLoadMenu();
+                grid.getButtonList().get(5).toggleButton();
             }
             // GATES button
             else if (grid.getButtonList().get(7).getSelected()) {
                 grid.loadGatesMenu();
+                grid.getButtonList().get(7).toggleButton();
             }
         }
         else {
@@ -363,24 +382,31 @@ public class UserSelection {
             // BACK button
             if (grid.getButtonList().get(0).getSelected()) {
                 grid.loadMainMenu();
+                grid.getButtonList().get(0).toggleButton();
             }
             // Save Slot A
             else if (grid.getButtonList().get(2).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListA(), grid);
+                grid.loadMainMenu();
+                grid.getButtonList().get(2).toggleButton();
             }
             // Save Slot B
             else if (grid.getButtonList().get(3).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListB(), grid);
+                grid.loadMainMenu();
+                grid.getButtonList().get(3).toggleButton();
             }
             // Save Slot C
             else if (grid.getButtonList().get(4).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListC(), grid);
+                grid.loadMainMenu();
+                grid.getButtonList().get(4).toggleButton();
             }
         }
     }
 
 
-    private void determineLoadMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
+    private void determineLoadMenuSelection (Point touchPosition, Grid grid) {
         if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
 
             // Cycle through each button to determine which was selected by the user
@@ -403,6 +429,7 @@ public class UserSelection {
             // BACK button
             if (grid.getButtonList().get(0).getSelected()) {
                 grid.loadMainMenu();
+                grid.getButtonList().get(0).toggleButton();
             }
             // Load Save Slot A
             else if (grid.getButtonList().get(2).getSelected()) {
@@ -428,7 +455,7 @@ public class UserSelection {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
                 if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
-                    if (touchPosition.x != 4 && touchPosition.x != 9 && touchPosition.x < 18) {
+                    if (touchPosition.x < 8) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
@@ -445,6 +472,7 @@ public class UserSelection {
             // BACK button
             if (grid.getButtonList().get(0).getSelected()) {
                 grid.loadMainMenu();
+                grid.getButtonList().get(0).toggleButton();
             }
         }
         else {
