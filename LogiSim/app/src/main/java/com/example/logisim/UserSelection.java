@@ -23,29 +23,6 @@ import android.graphics.Point;
 
 public class UserSelection {
 
-    // Several Constants used within the code for Switch Statements.
-    // Each constant represents one of the buttons on the taskbar and
-    // allows the code to be more readable.
-    private final int RUNBUTTONOPTION = 0;
-    private final int LINKBUTTONOPTION = 1;
-    private final int MOVEBUTTONOPTION = 2;
-    private final int DELETEBUTTONOPTION = 3;
-
-    private final int SAVEBUTTONOPTION = 5;
-    private final int SAVEAOPTION = 6;
-    private final int SAVEBOPTION = 7;
-    private final int SAVECOPTION = 8;
-
-    private final int SWITCHBUTTONOPTION = 10;
-    private final int ANDBUTTONOPTION = 11;
-    private final int NANDBUTTONOPTION = 12;
-    private final int ORBUTTONOPTION = 13;
-    private final int NORBUTTONOPTION = 14;
-    private final int XORBUTTONOPTION = 15;
-    private final int NOTBUTTONOPTION = 16;
-    private final int LAMPBUTTONOPTION = 17;
-
-
     private boolean previouslySelected = false;
 
     // Creates new save object that is used to save circuits into different slots.
@@ -64,6 +41,31 @@ public class UserSelection {
     // This is the section of variables I am testing in order to create an expandable taskbar:
 
 
+    // Several Constants used within the code for Switch Statements.
+    // Each constant represents one of the buttons on the taskbar and
+    // allows the code to be more readable.
+    private final int BACK_BUTTON_POSITION = 0;
+
+    private final int RUN_BUTTON_POSITION = 0;
+    private final int LINK_BUTTON_POSITION = 1;
+    private final int MOVE_BUTTON_POSITION = 2;
+    private final int DELETE_BUTTON_POSITION = 3;
+    private final int SAVE_BUTTON_POSITION = 4;
+    private final int LOAD_BUTTON_POSITION = 5;
+    private final int SWITCH_BUTTON_POSITION = 6;
+    private final int GATES_BUTTON_POSITION = 7;
+    private final int LAMP_BUTTON_POSITION = 8;
+
+    private final int SAVE_SLOT_A_POSITION = 2;
+    private final int SAVE_SLOT_B_POSITION = 3;
+    private final int SAVE_SLOT_C_POSITION = 4;
+
+    private final int AND_GATE_BUTTON_POSITION = 2;
+    private final int NAND_GATE_BUTTON_POSITION = 3;
+    private final int OR_GATE_BUTTON_POSITION = 4;
+    private final int NOR_GATE_BUTTON_POSITION = 5;
+    private final int XOR_GATE_BUTTON_POSITION = 6;
+    private final int NOT_GATE_BUTTON_POSITION = 7;
 
 
     //========================================================================================//
@@ -118,7 +120,7 @@ public class UserSelection {
             }
 
             // RUN button
-            if (grid.getButtonList().get(0).getSelected()) {
+            if (grid.getButtonList().get(RUN_BUTTON_POSITION).getSelected()) {
                 for(int i = 0; i < grid.getCellList().size(); i++) {
                     if (grid.getCellList().get(i) instanceof LAMP) {
                         ((LAMP) grid.getCellList().get(i)).evalLamp();
@@ -126,19 +128,19 @@ public class UserSelection {
                 }
             }
             // SAVE button
-            else if (grid.getButtonList().get(4).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
                 grid.loadSaveMenu();
-                grid.getButtonList().get(4).toggleButton();
+                grid.getButtonList().get(SAVE_BUTTON_POSITION).toggleButton();
             }
             // LOAD button
-            else if (grid.getButtonList().get(5).getSelected()) {
+            else if (grid.getButtonList().get(LOAD_BUTTON_POSITION).getSelected()) {
                 grid.loadLoadMenu();
-                grid.getButtonList().get(5).toggleButton();
+                grid.getButtonList().get(LOAD_BUTTON_POSITION).toggleButton();
             }
             // GATES button
-            else if (grid.getButtonList().get(7).getSelected()) {
+            else if (grid.getButtonList().get(GATES_BUTTON_POSITION).getSelected()) {
                 grid.loadGatesMenu();
-                grid.getButtonList().get(7).toggleButton();
+                grid.getButtonList().get(GATES_BUTTON_POSITION).toggleButton();
             }
         }
         else {
@@ -152,9 +154,9 @@ public class UserSelection {
 
             switch(currentOption) {
                 // LINK button
-                case 1:
+                case LINK_BUTTON_POSITION:
                     // if there has been a previously selected cell and it isn't an empty cell
-                    if(previouslySelected && grid.getCellList().get(grid.getPreviousTouchN()).getGateNum() != -1) {
+                    if (previouslySelected && grid.getCellList().get(grid.getPreviousTouchN()).getGateNum() != -1) {
                         wire.linkCells(touchPositionN, grid);
                         previouslySelected = false;
                     }
@@ -166,9 +168,9 @@ public class UserSelection {
                     break;
 
                 // MOVE button
-                case 2:
+                case MOVE_BUTTON_POSITION:
                     // if there has been a previously selected cell
-                    if(previouslySelected) {
+                    if (previouslySelected) {
                         componentMover.moveCells(touchPosition, touchPositionN, grid);
                         previouslySelected = false;
                     }
@@ -180,7 +182,7 @@ public class UserSelection {
                     break;
 
                 // DELETE button
-                case 3:
+                case DELETE_BUTTON_POSITION:
                     // turn the cell selected back into an EmptyCell
                     Cell deleteCell = grid.getCellList().get(touchPositionN);
                     deleteCell.deleteConnections();
@@ -188,13 +190,13 @@ public class UserSelection {
                     break;
 
                 // SWITCH button
-                case 6:
+                case SWITCH_BUTTON_POSITION:
                     // creates a Switch after being given information of the cell
                     grid.getCellList().set(touchPositionN,new SWITCH(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // LAMP button
-                case 8:
+                case LAMP_BUTTON_POSITION:
                     // creates a Lamp after being given information of the cell
                     grid.getCellList().set(touchPositionN,new LAMP(grid.getCellList().get(touchPositionN)));
                     break;
@@ -230,27 +232,27 @@ public class UserSelection {
             }
 
             // BACK button
-            if (grid.getButtonList().get(0).getSelected()) {
+            if (grid.getButtonList().get(BACK_BUTTON_POSITION).getSelected()) {
                 grid.loadMainMenu();
-                grid.getButtonList().get(0).toggleButton();
+                grid.getButtonList().get(BACK_BUTTON_POSITION).toggleButton();
             }
             // Save Slot A
-            else if (grid.getButtonList().get(2).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_SLOT_A_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListA(), grid);
                 grid.loadMainMenu();
-                grid.getButtonList().get(2).toggleButton();
+                grid.getButtonList().get(SAVE_SLOT_A_POSITION).toggleButton();
             }
             // Save Slot B
-            else if (grid.getButtonList().get(3).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_SLOT_B_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListB(), grid);
                 grid.loadMainMenu();
-                grid.getButtonList().get(3).toggleButton();
+                grid.getButtonList().get(SAVE_SLOT_B_POSITION).toggleButton();
             }
             // Save Slot C
-            else if (grid.getButtonList().get(4).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_SLOT_C_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListC(), grid);
                 grid.loadMainMenu();
-                grid.getButtonList().get(4).toggleButton();
+                grid.getButtonList().get(SAVE_SLOT_C_POSITION).toggleButton();
             }
         }
     }
@@ -277,20 +279,20 @@ public class UserSelection {
             }
 
             // BACK button
-            if (grid.getButtonList().get(0).getSelected()) {
+            if (grid.getButtonList().get(BACK_BUTTON_POSITION).getSelected()) {
                 grid.loadMainMenu();
-                grid.getButtonList().get(0).toggleButton();
+                grid.getButtonList().get(BACK_BUTTON_POSITION).toggleButton();
             }
             // Load Save Slot A
-            else if (grid.getButtonList().get(2).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_SLOT_A_POSITION).getSelected()) {
                 save.saveList(grid.getCellListA(), grid.getCellList(), grid);
             }
             // Load Save Slot B
-            else if (grid.getButtonList().get(3).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_SLOT_B_POSITION).getSelected()) {
                 save.saveList(grid.getCellListB(), grid.getCellList(), grid);
             }
             // Load Save Slot C
-            else if (grid.getButtonList().get(4).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_SLOT_C_POSITION).getSelected()) {
                 save.saveList(grid.getCellListC(), grid.getCellList(), grid);
             }
         }
@@ -320,9 +322,9 @@ public class UserSelection {
             }
 
             // BACK button
-            if (grid.getButtonList().get(0).getSelected()) {
+            if (grid.getButtonList().get(BACK_BUTTON_POSITION).getSelected()) {
                 grid.loadMainMenu();
-                grid.getButtonList().get(0).toggleButton();
+                grid.getButtonList().get(BACK_BUTTON_POSITION).toggleButton();
             }
         }
         else {
@@ -338,37 +340,37 @@ public class UserSelection {
             // the grid will respond accordingly
             switch(currentOption) {
                 // AND button
-                case 2:
+                case AND_GATE_BUTTON_POSITION:
                     // creates an AND gate after being given information of the cell
                     grid.getCellList().set(touchPositionN,new AND(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // NAND button
-                case 3:
+                case NAND_GATE_BUTTON_POSITION:
                     // creates an AND gate after being given information of the cell
                     grid.getCellList().set(touchPositionN,new NAND(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // OR button
-                case 4:
+                case OR_GATE_BUTTON_POSITION:
                     // creates an OR gate after being given information of the cell
                     grid.getCellList().set(touchPositionN,new OR(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // NOR button
-                case 5:
+                case NOR_GATE_BUTTON_POSITION:
                     // creates an OR gate after being given information of the cell
                     grid.getCellList().set(touchPositionN,new NOR(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // XOR button
-                case 6:
+                case XOR_GATE_BUTTON_POSITION:
                     // creates a XOR gate after being given information of the cell
                     grid.getCellList().set(touchPositionN, new XOR(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // NOT button
-                case 7:
+                case NOT_GATE_BUTTON_POSITION:
                     // creates a NOT gate after being given information of the cell
                     grid.getCellList().set(touchPositionN,new NOT(grid.getCellList().get(touchPositionN)));
                     break;

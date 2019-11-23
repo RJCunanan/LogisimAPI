@@ -34,28 +34,6 @@ import java.util.Vector;
 
 public class Grid {
 
-    // Several Constants used within the code for Switch Statements
-    // Allowing the code to be more readable
-    private final int RUNBUTTONOPTION = 0;
-    private final int LINKBUTTONOPTION = 1;
-    private final int MOVEBUTTONOPTION = 2;
-    private final int DELETEBUTTONOPTION = 3;
-
-    private final int SAVEBUTTONOPTION = 5;
-    private final int SAVEAOPTION = 6;
-    private final int SAVEBOPTION = 7;
-    private final int SAVECOPTION = 8;
-
-    private final int SWITCHBUTTONOPTION = 10;
-    private final int ANDBUTTONOPTION = 11;
-    private final int NANDBUTTONOPTION = 12;
-    private final int ORBUTTONOPTION = 13;
-    private final int NORBUTTONOPTION = 14;
-    private final int XORBUTTONOPTION = 15;
-    private final int NOTBUTTONOPTION = 16;
-    private final int LAMPBUTTONOPTION = 17;
-
-
     // Allows modification of the button's Width and Length;
     private final int buttonLength = 1;
     private final int buttonWidth = 1;
@@ -99,6 +77,8 @@ public class Grid {
     private final int LOAD_MENU = 2;    // Used to load the load menu
     private final int GATES_MENU = 3;   // Used to load the gates menu
 
+    // Several Constants used within the code for Switch Statements
+    // Allowing the code to be more readable
     private final int BACK_BUTTON_POSITION = 0;
 
     private final int RUN_BUTTON_POSITION = 0;
