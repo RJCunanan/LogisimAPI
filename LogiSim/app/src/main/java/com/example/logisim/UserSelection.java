@@ -23,24 +23,6 @@ import android.graphics.Point;
 
 public class UserSelection {
 
-    private boolean previouslySelected = false;
-
-    // Creates new save object that is used to save circuits into different slots.
-    private Save save = new Save();
-
-    // Creates new wire object that is used to connect two circuit components together.
-    private Wire wire = new Wire();
-
-    // Creates new ComponentMover object that is used to move circuit components from
-    // one cell to another.
-    private ComponentMover componentMover = new ComponentMover();
-
-
-    //========================================================================================//
-    // Name: RJ Cunanan
-    // This is the section of variables I am testing in order to create an expandable taskbar:
-
-
     // Several Constants used within the code for Switch Statements.
     // Each constant represents one of the buttons on the taskbar and
     // allows the code to be more readable.
@@ -67,8 +49,17 @@ public class UserSelection {
     private final int XOR_GATE_BUTTON_POSITION = 6;
     private final int NOT_GATE_BUTTON_POSITION = 7;
 
+    private boolean previouslySelected = false;
 
-    //========================================================================================//
+    // Creates new save object that is used to save circuits into different slots.
+    private Save save = new Save();
+
+    // Creates new wire object that is used to connect two circuit components together.
+    private Wire wire = new Wire();
+
+    // Creates new ComponentMover object that is used to move circuit components from
+    // one cell to another.
+    private ComponentMover componentMover = new ComponentMover();
 
 
 
@@ -91,11 +82,6 @@ public class UserSelection {
         }
     }
 
-
-
-    //========================================================================================//
-    // Name: RJ Cunanan
-    // This is the section of methods I am testing in order to create an expandable taskbar:
 
     private void determineMainMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
 
@@ -377,8 +363,4 @@ public class UserSelection {
             }
         }
     }
-
-
-    //========================================================================================//
-
 }

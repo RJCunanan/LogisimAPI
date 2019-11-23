@@ -34,49 +34,6 @@ import java.util.Vector;
 
 public class Grid {
 
-    // Allows modification of the button's Width and Length;
-    private final int buttonLength = 1;
-    private final int buttonWidth = 1;
-
-    // Variables to be seen throughout the Grid Class
-    private Point numberOfPixels = new Point();
-    int cellSize;
-    private final int gridWidth = 15;
-    private int gridHeight;
-
-    private int previousTouchN;
-
-    private Canvas myCanvas;
-    private Paint myPaint;
-    private ImageView myGameView;
-    private Bitmap myBitMap;
-    private Context myContext;
-
-    private Vector<Cell> cellList;
-    private List<UserInterfaceButtons> buttonList = new ArrayList<>(10);
-
-    private Vector<Cell> cellListA;
-    private Vector<Cell> cellListB;
-    private Vector<Cell> cellListC;
-
-
-    //========================================================================================//
-    // Name: RJ Cunanan
-    // This is the section of variables I am testing in order to create an expandable taskbar:
-
-
-    // New ArrayLists that will hold the different buttons that belong in different menus
-    // on the taskbar:
-    private List<UserInterfaceButtons> mainMenuList = new ArrayList<>(10);
-    private List<UserInterfaceButtons> saveAndLoadMenuList = new ArrayList<>(10);
-    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(10);
-
-    private int menuToDisplay = 0;      // Used to decide what menu should be loaded onto the taskbar
-    private final int MAIN_MENU = 0;    // Used to load the main menu
-    private final int SAVE_MENU = 1;    // Used to load the save menu
-    private final int LOAD_MENU = 2;    // Used to load the load menu
-    private final int GATES_MENU = 3;   // Used to load the gates menu
-
     // Several Constants used within the code for Switch Statements
     // Allowing the code to be more readable
     private final int BACK_BUTTON_POSITION = 0;
@@ -102,7 +59,42 @@ public class Grid {
     private final int XOR_GATE_BUTTON_POSITION = 6;
     private final int NOT_GATE_BUTTON_POSITION = 7;
 
-    //========================================================================================//
+    // Allows modification of the button's Width and Length;
+    private final int buttonLength = 1;
+    private final int buttonWidth = 1;
+
+    // Variables to be seen throughout the Grid Class
+    private Point numberOfPixels = new Point();
+    int cellSize;
+    private final int gridWidth = 15;
+    private int gridHeight;
+
+    private int previousTouchN;
+
+    private Canvas myCanvas;
+    private Paint myPaint;
+    private ImageView myGameView;
+    private Bitmap myBitMap;
+    private Context myContext;
+
+    private Vector<Cell> cellList;
+    private List<UserInterfaceButtons> buttonList = new ArrayList<>(10);
+
+    private Vector<Cell> cellListA;
+    private Vector<Cell> cellListB;
+    private Vector<Cell> cellListC;
+
+    // New ArrayLists that will hold the different buttons that belong in different menus
+    // on the taskbar:
+    private List<UserInterfaceButtons> mainMenuList = new ArrayList<>(10);
+    private List<UserInterfaceButtons> saveAndLoadMenuList = new ArrayList<>(10);
+    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(10);
+
+    private int menuToDisplay = 0;      // Used to decide what menu should be loaded onto the taskbar
+    private final int MAIN_MENU = 0;    // Used to load the main menu
+    private final int SAVE_MENU = 1;    // Used to load the save menu
+    private final int LOAD_MENU = 2;    // Used to load the load menu
+    private final int GATES_MENU = 3;   // Used to load the gates menu
 
 
 
@@ -177,6 +169,121 @@ public class Grid {
             createMainMenu(currentButtonPosition, x);
             createSaveAndLoadMenu(currentButtonPosition, x);
             createGatesMenu(currentButtonPosition, x);
+        }
+    }
+
+
+    // This method creates the main menu that is initially displayed to the user when he or she
+    // first opens the app by filling the menu with the main menu buttons.
+    public void createMainMenu(int currentButtonPosition, int x){
+        switch (currentButtonPosition) {
+            case RUN_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Run", RUN_BUTTON_POSITION));
+                break;
+            case LINK_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Link", LINK_BUTTON_POSITION));
+                break;
+            case MOVE_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Move", MOVE_BUTTON_POSITION));
+                break;
+            case DELETE_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETE_BUTTON_POSITION));
+                break;
+            case SAVE_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVE_BUTTON_POSITION));
+                break;
+            case LOAD_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "LOAD", LOAD_BUTTON_POSITION));
+                break;
+            case SWITCH_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCH_BUTTON_POSITION));
+                break;
+            case GATES_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Gates", GATES_BUTTON_POSITION));
+                break;
+            case LAMP_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMP_BUTTON_POSITION));
+                break;
+            default:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
+    }
+
+
+    // This method creates the save menu that is loaded onto the screen when the user taps on the
+    // "SAVE" button from the main menu by creating several buttons that act as save "slots", each
+    // of which will hold a saved circuit.
+    public void createSaveAndLoadMenu(int currentButtonPosition, int x) {
+        switch (currentButtonPosition) {
+            case BACK_BUTTON_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
+                break;
+            case SAVE_SLOT_A_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot A", SAVE_SLOT_A_POSITION));
+                break;
+            case SAVE_SLOT_B_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot B", SAVE_SLOT_B_POSITION));
+                break;
+            case SAVE_SLOT_C_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot C", SAVE_SLOT_C_POSITION));
+                break;
+            default:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
+    }
+
+
+    // This method creates the logic gates menu that is loaded onto the screen when the user taps on the
+    // "Gates" button in the main menu by creating several buttons that will allow the user to place
+    // logic gates onto the grid.
+    public void createGatesMenu(int currentButtonPosition, int x) {
+        switch (currentButtonPosition) {
+            case BACK_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
+                break;
+            case AND_GATE_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "AND", AND_GATE_BUTTON_POSITION));
+                break;
+            case NAND_GATE_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "NAND", NAND_GATE_BUTTON_POSITION));
+                break;
+            case OR_GATE_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "OR", OR_GATE_BUTTON_POSITION));
+                break;
+            case NOR_GATE_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "NOR", NOR_GATE_BUTTON_POSITION));
+                break;
+            case XOR_GATE_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "XOR", XOR_GATE_BUTTON_POSITION));
+                break;
+            case NOT_GATE_BUTTON_POSITION:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "NOT", NOT_GATE_BUTTON_POSITION));
+                break;
+            default:
+                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
         }
     }
 
@@ -330,128 +437,6 @@ public class Grid {
         previousTouchN = touchPositionN;
     }
 
-
-
-    //========================================================================================//
-    // Name: RJ Cunanan
-    // This is the section of methods I am testing in order to create an expandable taskbar:
-
-
-    // This method creates the main menu that is initially displayed to the user when he or she
-    // first opens the app by filling the menu with the main menu buttons.
-    public void createMainMenu(int currentButtonPosition, int x){
-        switch (currentButtonPosition) {
-            case RUN_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Run", RUN_BUTTON_POSITION));
-                break;
-            case LINK_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Link", LINK_BUTTON_POSITION));
-                break;
-            case MOVE_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Move", MOVE_BUTTON_POSITION));
-                break;
-            case DELETE_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETE_BUTTON_POSITION));
-                break;
-            case SAVE_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVE_BUTTON_POSITION));
-                break;
-            case LOAD_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "LOAD", LOAD_BUTTON_POSITION));
-                break;
-            case SWITCH_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCH_BUTTON_POSITION));
-                break;
-            case GATES_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Gates", GATES_BUTTON_POSITION));
-                break;
-            case LAMP_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMP_BUTTON_POSITION));
-                break;
-            default:
-                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
-        }
-    }
-
-
-    // This method creates the save menu that is loaded onto the screen when the user taps on the
-    // "SAVE" button from the main menu by creating several buttons that act as save "slots", each
-    // of which will hold a saved circuit.
-    public void createSaveAndLoadMenu(int currentButtonPosition, int x) {
-        switch (currentButtonPosition) {
-            case BACK_BUTTON_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
-                break;
-            case SAVE_SLOT_A_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot A", SAVE_SLOT_A_POSITION));
-                break;
-            case SAVE_SLOT_B_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot B", SAVE_SLOT_B_POSITION));
-                break;
-            case SAVE_SLOT_C_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot C", SAVE_SLOT_C_POSITION));
-                break;
-            default:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
-        }
-    }
-
-
-    // This method creates the logic gates menu that is loaded onto the screen when the user taps on the
-    // "Gates" button in the main menu by creating several buttons that will allow the user to place
-    // logic gates onto the grid.
-    public void createGatesMenu(int currentButtonPosition, int x) {
-        switch (currentButtonPosition) {
-            case BACK_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
-                break;
-            case AND_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "AND", AND_GATE_BUTTON_POSITION));
-                break;
-            case NAND_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "NAND", NAND_GATE_BUTTON_POSITION));
-                break;
-            case OR_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "OR", OR_GATE_BUTTON_POSITION));
-                break;
-            case NOR_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "NOR", NOR_GATE_BUTTON_POSITION));
-                break;
-            case XOR_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "XOR", XOR_GATE_BUTTON_POSITION));
-                break;
-            case NOT_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "NOT", NOT_GATE_BUTTON_POSITION));
-                break;
-            default:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
-        }
-    }
-
-
     public int getMenuToDisplay() {
         return menuToDisplay;
     }
@@ -487,8 +472,5 @@ public class Grid {
     public void loadLoadMenu() {
         menuToDisplay = LOAD_MENU;
     }
-
-
-    //========================================================================================//
-
+    
 }
