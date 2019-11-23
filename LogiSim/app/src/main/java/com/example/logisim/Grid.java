@@ -389,7 +389,7 @@ public class Grid {
 
     // This method creates the main menu that is initially displayed to the user when he or she
     // first opens the app by filling the menu with the main menu buttons.
-    public void loadMainMenu(int currentButtonPosition, int x){
+    public void createMainMenu(int currentButtonPosition, int x){
         switch (currentButtonPosition) {
             case 1:
                 buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
@@ -433,7 +433,7 @@ public class Grid {
     // This method creates the save menu that is loaded onto the screen when the user taps on the
     // "SAVE" button from the main menu by creating several buttons that act as save "slots", each
     // of which will hold a saved circuit.
-    public void loadSaveMenu(int currentButtonPosition, int x) {
+    public void createSaveMenu(int currentButtonPosition, int x) {
         switch (currentButtonPosition) {
             case 1:
                 buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
@@ -473,7 +473,7 @@ public class Grid {
     // This method creates the logic gates menu that is loaded onto the screen when the user taps on the
     // "Gates" button in the main menu by creating several buttons that will allow the user to place
     // logic gates onto the grid.
-    public void loadGatesMenu(int currentButtonPosition, int x) {
+    public void createGatesMenu(int currentButtonPosition, int x) {
         switch (currentButtonPosition) {
             case 1:
                 buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
@@ -507,6 +507,23 @@ public class Grid {
                 buttonList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
                         buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
         }
+    }
+
+
+    public int getMenuToDisplay() {
+        return menuToDisplay;
+    }
+
+    public void loadMainMenu() {
+        menuToDisplay = MAIN_MENU;
+    }
+
+    public void loadSaveMenu() {
+        menuToDisplay = SAVE_MENU;
+    }
+
+    public void loadGatesMenu() {
+        menuToDisplay = GATES_MENU;
     }
 
 

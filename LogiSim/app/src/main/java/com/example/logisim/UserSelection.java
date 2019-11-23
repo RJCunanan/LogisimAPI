@@ -131,7 +131,7 @@ public class UserSelection {
             }
         }
         else {
-            // This loop find which button is currently toggled on
+            // This loop finds which button is currently toggled on
             int currentOption = -1;
             for(int i = 0; i < grid.getButtonList().size(); i++){
                 if(grid.getButtonList().get(i).getSelected()) {
@@ -228,7 +228,106 @@ public class UserSelection {
     // Name: RJ Cunanan
     // This is the section of methods I am testing in order to create an expandable taskbar:
 
+    private void determineMainMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
 
+        // if the touch was inside the user interface figure out which button was touched
+        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+
+            // Cycle through each button to determine which was selected by the user
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
+                    if (touchPosition.x < 8) {
+                        // If the x-coordinate of the user's tap matches the x-coordinate of this
+                        // button, and the selected button is not a blank button, mark this button
+                        // as selected/tapped by the user
+                        grid.getButtonList().get(i).wasITouched(touchPosition);
+                    }
+                }
+            }
+
+            // RUN button
+            if (grid.getButtonList().get(0).getSelected()) {
+                for(int i = 0; i < grid.getCellList().size(); i++)
+                    if(grid.getCellList().get(i) instanceof LAMP) {
+                        ((LAMP) grid.getCellList().get(i)).evalLamp(); }
+
+                grid.getButtonList().get(0).toggleButton();
+            }
+            // SAVE button
+            else if (grid.getButtonList().get(4).getSelected()) {
+                grid.loadSaveMenu();
+            }
+            // GATES button
+            else if (grid.getButtonList().get(6).getSelected()) {
+                grid.loadGatesMenu();
+            }
+        }
+        else {
+            // This loop finds which button is currently toggled on
+            int currentOption = -1;
+            for(int i = 0; i < grid.getButtonList().size(); i++){
+                if(grid.getButtonList().get(i).getSelected()) {
+                    currentOption = grid.getButtonList().get(i).getButtonInList();
+                }
+            }
+
+            switch(currentOption) {
+                // LINK button
+                case 1:
+                    // if there has been a previously selected cell and it isn't an empty cell
+                    if(previouslySelected && grid.getCellList().get(grid.getPreviousTouchN()).getGateNum() != -1) {
+                        wire.linkCells(touchPositionN, grid);
+                        previouslySelected = false;
+                    }
+                    // select the cell to be linked
+                    else {
+                        grid.setPreviousTouchN(touchPositionN);
+                        previouslySelected = true;
+                    }
+                    break;
+
+                // MOVE button
+                case 2:
+                    // if there has been a previously selected cell
+                    if(previouslySelected) {
+                        componentMover.moveCells(touchPosition, touchPositionN, grid);
+                        previouslySelected = false;
+                    }
+                    // select the cell to be moved
+                    else {
+                        grid.setPreviousTouchN(touchPositionN);
+                        previouslySelected = true;
+                    }
+                    break;
+
+                // DELETE button
+                case 3:
+                    // turn the cell selected back into an EmptyCell
+                    Cell deleteCell = grid.getCellList().get(touchPositionN);
+                    deleteCell.deleteConnections();
+                    grid.getCellList().set(touchPositionN,new EmptyCell(deleteCell));
+                    break;
+
+                // SWITCH button
+                case 5:
+                    // creates a Switch after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new SWITCH(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // LAMP button
+                case 7:
+                    // creates a Lamp after being given information of the cell
+                    grid.getCellList().set(touchPositionN,new LAMP(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                default:
+                    // If the user tapped a Switch, toggle its state
+                    if(grid.getCellList().get(touchPositionN) instanceof SWITCH) { ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();}
+            }
+        }
+
+
+    }
 
 
     //========================================================================================//
