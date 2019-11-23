@@ -41,7 +41,7 @@ public class Grid {
     // Variables to be seen throughout the Grid Class
     private Point numberOfPixels = new Point();
     int cellSize;
-    private final int gridWidth = 20;
+    private final int gridWidth = 15;
     private int gridHeight;
 
     private int previousTouchN;
@@ -53,7 +53,7 @@ public class Grid {
     private Context myContext;
 
     private Vector<Cell> cellList;
-    private List<UserInterfaceButtons> buttonList = new ArrayList<>(20);
+    private List<UserInterfaceButtons> buttonList = new ArrayList<>(10);
 
     private Vector<Cell> cellListA;
     private Vector<Cell> cellListB;
@@ -67,9 +67,9 @@ public class Grid {
 
     // New ArrayLists that will hold the different buttons that belong in different menus
     // on the taskbar:
-    private List<UserInterfaceButtons> mainMenuList = new ArrayList<>(8);
-    private List<UserInterfaceButtons> saveAndLoadMenuList = new ArrayList<>(8);
-    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(8);
+    private List<UserInterfaceButtons> mainMenuList = new ArrayList<>(10);
+    private List<UserInterfaceButtons> saveAndLoadMenuList = new ArrayList<>(10);
+    private List<UserInterfaceButtons> logicGatesMenuList = new ArrayList<>(10);
 
     private int menuToDisplay = 0;      // Used to decide what menu should be loaded onto the taskbar
     private final int MAIN_MENU = 0;    // Used to load the main menu

@@ -93,7 +93,7 @@ public class UserInterfaceButtons{
         myPaint.setColor(Color.argb(255, 255, 255, 255));
 
         // Formats the size of the text to be displayed on the button
-        myPaint.setTextSize(grid.getCellSize() / (float)3.7);
+        myPaint.setTextSize(grid.getCellSize() / (float)3.4);
 
         // Draw the button's text
         myCanvas.drawText(text, (grid.getButtonWidth() * buttonXCoordinate) * grid.getCellSize(),
