@@ -258,7 +258,7 @@ public class UserSelection {
                 grid.loadSaveMenu();
             }
             // GATES button
-            else if (grid.getButtonList().get(6).getSelected()) {
+            else if (grid.getButtonList().get(7).getSelected()) {
                 grid.loadGatesMenu();
             }
         }
@@ -309,13 +309,13 @@ public class UserSelection {
                     break;
 
                 // SWITCH button
-                case 5:
+                case 6:
                     // creates a Switch after being given information of the cell
                     grid.getCellList().set(touchPositionN,new SWITCH(grid.getCellList().get(touchPositionN)));
                     break;
 
                 // LAMP button
-                case 7:
+                case 8:
                     // creates a Lamp after being given information of the cell
                     grid.getCellList().set(touchPositionN,new LAMP(grid.getCellList().get(touchPositionN)));
                     break;
