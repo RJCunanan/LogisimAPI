@@ -99,6 +99,29 @@ public class Grid {
     private final int LOAD_MENU = 2;    // Used to load the load menu
     private final int GATES_MENU = 3;   // Used to load the gates menu
 
+    private final int BACK_BUTTON_POSITION = 0;
+
+    private final int RUN_BUTTON_POSITION = 0;
+    private final int LINK_BUTTON_POSITION = 1;
+    private final int MOVE_BUTTON_POSITION = 2;
+    private final int DELETE_BUTTON_POSITION = 3;
+    private final int SAVE_BUTTON_POSITION = 4;
+    private final int LOAD_BUTTON_POSITION = 5;
+    private final int SWITCH_BUTTON_POSITION = 6;
+    private final int GATES_BUTTON_POSITION = 7;
+    private final int LAMP_BUTTON_POSITION = 8;
+
+    private final int SAVE_SLOT_A_POSITION = 2;
+    private final int SAVE_SLOT_B_POSITION = 3;
+    private final int SAVE_SLOT_C_POSITION = 4;
+
+    private final int AND_GATE_BUTTON_POSITION = 2;
+    private final int NAND_GATE_BUTTON_POSITION = 3;
+    private final int OR_GATE_BUTTON_POSITION = 4;
+    private final int NOR_GATE_BUTTON_POSITION = 5;
+    private final int XOR_GATE_BUTTON_POSITION = 6;
+    private final int NOT_GATE_BUTTON_POSITION = 7;
+
     //========================================================================================//
 
 
@@ -273,7 +296,7 @@ public class Grid {
             buttonList.clear();
             buttonList.addAll(logicGatesMenuList);
         }
-        
+
         // Cycles through the buttonList and draws each individual button one at a time
         // to create the menu bar at the bottom of the screen
         for (int i = 0; i < buttonList.size(); i++) {
@@ -338,41 +361,41 @@ public class Grid {
     // first opens the app by filling the menu with the main menu buttons.
     public void createMainMenu(int currentButtonPosition, int x){
         switch (currentButtonPosition) {
-            case 0:
+            case RUN_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Run", 0));
+                        buttonWidth, buttonLength, currentButtonPosition, "Run", RUN_BUTTON_POSITION));
                 break;
-            case 1:
+            case LINK_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Link", 1));
+                        buttonWidth, buttonLength, currentButtonPosition, "Link", LINK_BUTTON_POSITION));
                 break;
-            case 2:
+            case MOVE_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Move", 2));
+                        buttonWidth, buttonLength, currentButtonPosition, "Move", MOVE_BUTTON_POSITION));
                 break;
-            case 3:
+            case DELETE_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Delete", 3));
+                        buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETE_BUTTON_POSITION));
                 break;
-            case 4:
+            case SAVE_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "SAVE", 4));
+                        buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVE_BUTTON_POSITION));
                 break;
-            case 5:
+            case LOAD_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "LOAD", 5));
+                        buttonWidth, buttonLength, currentButtonPosition, "LOAD", LOAD_BUTTON_POSITION));
                 break;
-            case 6:
+            case SWITCH_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Switch", 6));
+                        buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCH_BUTTON_POSITION));
                 break;
-            case 7:
+            case GATES_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Gates", 7));
+                        buttonWidth, buttonLength, currentButtonPosition, "Gates", GATES_BUTTON_POSITION));
                 break;
-            case 8:
+            case LAMP_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "LAMP", 8));
+                        buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMP_BUTTON_POSITION));
                 break;
             default:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
@@ -386,36 +409,22 @@ public class Grid {
     // of which will hold a saved circuit.
     public void createSaveAndLoadMenu(int currentButtonPosition, int x) {
         switch (currentButtonPosition) {
-            case 0:
+            case BACK_BUTTON_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "BACK", 0));
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
                 break;
-            case 2:
+            case SAVE_SLOT_A_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot A", 2));
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot A", SAVE_SLOT_A_POSITION));
                 break;
-            case 3:
+            case SAVE_SLOT_B_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot B", 3));
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot B", SAVE_SLOT_B_POSITION));
                 break;
-            case 4:
+            case SAVE_SLOT_C_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot C", 4));
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot C", SAVE_SLOT_C_POSITION));
                 break;
-            /*
-            case 5:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot D", 5));
-                break;
-            case 6:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot E", 6));
-                break;
-            case 7:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "Slot F", 7));
-                break;
-             */
             default:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
                         buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
@@ -428,33 +437,33 @@ public class Grid {
     // logic gates onto the grid.
     public void createGatesMenu(int currentButtonPosition, int x) {
         switch (currentButtonPosition) {
-            case 0:
+            case BACK_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "BACK", 0));
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
                 break;
-            case 2:
+            case AND_GATE_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "AND", 2));
+                        buttonWidth, buttonLength, currentButtonPosition, "AND", AND_GATE_BUTTON_POSITION));
                 break;
-            case 3:
+            case NAND_GATE_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "NAND", 3));
+                        buttonWidth, buttonLength, currentButtonPosition, "NAND", NAND_GATE_BUTTON_POSITION));
                 break;
-            case 4:
+            case OR_GATE_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "OR", 4));
+                        buttonWidth, buttonLength, currentButtonPosition, "OR", OR_GATE_BUTTON_POSITION));
                 break;
-            case 5:
+            case NOR_GATE_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "NOR", 5));
+                        buttonWidth, buttonLength, currentButtonPosition, "NOR", NOR_GATE_BUTTON_POSITION));
                 break;
-            case 6:
+            case XOR_GATE_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "XOR", 6));
+                        buttonWidth, buttonLength, currentButtonPosition, "XOR", XOR_GATE_BUTTON_POSITION));
                 break;
-            case 7:
+            case NOT_GATE_BUTTON_POSITION:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "NOT", 7));
+                        buttonWidth, buttonLength, currentButtonPosition, "NOT", NOT_GATE_BUTTON_POSITION));
                 break;
             default:
                 logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
