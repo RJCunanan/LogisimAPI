@@ -325,8 +325,41 @@ public class UserSelection {
                     if(grid.getCellList().get(touchPositionN) instanceof SWITCH) { ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();}
             }
         }
+    }
 
+    private void determineSaveMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
 
+        // if the touch was inside the user interface figure out which button was touched
+        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+
+            // Cycle through each button to determine which was selected by the user
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
+                    if (touchPosition.x < 8) {
+                        // If the x-coordinate of the user's tap matches the x-coordinate of this
+                        // button, and the selected button is not a blank button, mark this button
+                        // as selected/tapped by the user
+                        grid.getButtonList().get(i).wasITouched(touchPosition);
+                    }
+                }
+            }
+
+            // BACK button
+            if (grid.getButtonList().get(0).getSelected()) {
+                grid.loadMainMenu();
+            }
+            // Save Slot 1
+            else if (grid.getButtonList().get(2).getSelected()) {
+                save.saveList(grid.getCellList(), grid.getCellListA(), grid);
+            }
+            // Save Slot 2
+            else if (grid.getButtonList().get(3).getSelected()) {
+                save.saveList(grid.getCellList(), grid.getCellListB(), grid);
+            }
+            else if (grid.getButtonList().get(4).getSelected()) {
+                save.saveList(grid.getCellList(), grid.getCellListC(), grid);
+            }
+        }
     }
 
 
