@@ -332,6 +332,10 @@ public class Grid {
 
            if (currCell.getCellA() != null) {
                int stopY;
+
+               if(currCell.getCellA().getState() == true)
+                   myPaint.setColor(Color.argb(255, 255, 255, 0));
+
                if (currCell instanceof NOT || currCell instanceof LAMP)
                    stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 2);
                else
@@ -344,7 +348,14 @@ public class Grid {
                        myPaint);
            }
 
+           // Change the paint color to blue
+           myPaint.setColor(Color.argb(255, 0, 0, 255));
+
            if (currCell.getCellB() != null) {
+
+               if(currCell.getCellA().state == true)
+                   myPaint.setColor(Color.argb(255, 255, 255, 0));
+
                myCanvas.drawLine(currCell.getCellB().cellWidth,
                        (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
                        currCell.cellX,

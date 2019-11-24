@@ -50,7 +50,11 @@ public class NOT extends Cell {
 
     int getGateNum() {return gateNum;}
 
+    boolean getState() {
+        this.state = !a.eval();
+        return this.state;
+    }
 
     // Passes the inverse of it's connected Cell
-    boolean eval() { return !a.eval(); }
+    boolean eval() { return getState(); }
 }

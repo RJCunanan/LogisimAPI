@@ -56,7 +56,8 @@ public class SWITCH extends Cell {
 
     void toggleSwitch() {this.state = !state;}
 
+    boolean getState() { return state;}
 
     // Passes the state of the switch
-    boolean eval() {return state;}
+    boolean eval() {return getState(); }
 }
