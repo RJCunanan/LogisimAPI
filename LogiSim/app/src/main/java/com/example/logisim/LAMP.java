@@ -60,5 +60,13 @@ public class LAMP extends Cell {
 
 
     // Passes its connected cell's state
-    boolean eval() {return a.eval();}
+    boolean eval() {
+        boolean value;
+
+        try {value = a.eval(); }
+
+        catch (Exception e) { value = a.eval(); }
+
+        return value;
+    }
 }
