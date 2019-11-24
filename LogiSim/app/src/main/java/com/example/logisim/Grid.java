@@ -331,8 +331,10 @@ public class Grid {
            myPaint.setColor(Color.argb(255, 0, 0, 255));
 
            if (currCell.getCellA() != null) {
+               int totalX = currCell.cellX - currCell.getCellA().cellWidth;
                int stopY;
 
+               // If the state of tail A is on, draw Yellow
                if(currCell.getCellA().getState() == true)
                    myPaint.setColor(Color.argb(255, 255, 255, 0));
 
@@ -343,6 +345,18 @@ public class Grid {
 
                myCanvas.drawLine(currCell.getCellA().cellWidth,
                        (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
+                       currCell.getCellA().cellWidth + (totalX / 2),
+                       (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
+                       myPaint);
+
+               myCanvas.drawLine(currCell.getCellA().cellWidth + (totalX / 2),
+                       (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
+                       currCell.getCellA().cellWidth + (totalX / 2),
+                       stopY,
+                       myPaint);
+
+               myCanvas.drawLine(currCell.getCellA().cellWidth + (totalX / 2),
+                       stopY,
                        currCell.cellX,
                        stopY,
                        myPaint);
@@ -353,6 +367,7 @@ public class Grid {
 
            if (currCell.getCellB() != null) {
 
+               // If the state of tail B is on, draw Yellow
                if(currCell.getCellB().getState() == true)
                    myPaint.setColor(Color.argb(255, 255, 255, 0));
 
