@@ -10,7 +10,7 @@ public class Undo{
         save= new Stack<>();
         undoSaved = new Vector<>();
         for(int i=0; i<size; i++)
-            undoSaved.add(null);
+            undoSaved.add(EmptyCell);
     }
     void saveUndo(Vector<Cell> saveThis){
         Cell temp;
@@ -53,5 +53,9 @@ public class Undo{
             }
         }
         save.push(undoSaved);
+    }
+    Vector<Cell> returnUndo() {
+        if (!(save.isEmpty()))
+            return save.pop();
     }
 }
