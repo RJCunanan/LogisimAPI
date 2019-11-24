@@ -2,11 +2,12 @@ package com.example.logisim;
 import java.util.*;
 
 public class Undo{
-    Stack<Cell> save;
-    Vector<Cell> undoSaved;
-    Grid grid;
-    void Undo(Vector<Cell> saveThis, Grid gridsave){
-        grid= gridsave;
+    private Stack<Cell> save;
+    private Vector<Cell> undoSaved;
+    private Grid grid;
+    void Undo(Vector<Cell> saveThis, Grid gridSave){
+        grid= gridSave;
+        save= new Stack<>();
         undoSaved = new Vector<>();
         for(int i=0; i<saveThis.size(); i++)
             undoSaved.add(null);
@@ -41,7 +42,16 @@ public class Undo{
                     int currCellTailAPos = grid.getCellN(temp.getCellA().cellPosition);
                     undoSaved.get(i).setCellA(undoSaved.get(currCellTailAPos));
                 }
+                if(temp.getCellB() != null) {
+                    int currCellTailBPos = grid.getCellN(temp.getCellB().cellPosition);
+                    undoSaved.get(i).setCellB(undoSaved.get(currCellTailBPos));
+                }
+                for(int k = 0; k < temp.head.size(); k++) {
+                    int currCellHeadPos = grid.getCellN(temp.head.get(k).cellPosition);
+                    undoSaved.get(i).head.set(k, undoSaved.get(currCellHeadPos));
+                }
             }
         }
+        save.push(undoSaved);
     }
 }
