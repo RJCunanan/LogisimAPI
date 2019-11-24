@@ -57,6 +57,5 @@ public class OR extends Cell {
     }
 
     // If either of its Tail Cells are toggled on, pass on
-    boolean eval() {
-        return getState();}
+    boolean eval() { return getState();}
 }

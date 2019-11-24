@@ -56,6 +56,5 @@ public class AND extends Cell {
     }
 
     // If both of its Tail Cells are toggled on, pass on
-    boolean eval() {
-        return this.getState(); }
+    boolean eval() { return this.getState(); }
 }
