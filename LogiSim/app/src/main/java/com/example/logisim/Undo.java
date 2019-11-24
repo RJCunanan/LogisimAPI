@@ -4,7 +4,9 @@ import java.util.*;
 public class Undo{
     Stack<Cell> save;
     Vector<Cell> undoSaved;
-    void Undo(Vector<Cell> saveThis){
+    Grid grid;
+    void Undo(Vector<Cell> saveThis, Grid gridsave){
+        grid= gridsave;
         undoSaved = new Vector<>();
         for(int i=0; i<saveThis.size(); i++)
             undoSaved.add(null);
@@ -34,6 +36,12 @@ public class Undo{
         }
         for(int i=0; i<=saveThis.size();i++) {
             temp=saveThis.get(i);
+            if(!(temp instanceof EmptyCell)) {
+                if(temp.getCellA() != null) {
+                    int currCellTailAPos = grid.getCellN(temp.getCellA().cellPosition);
+                    undoSaved.get(i).setCellA(undoSaved.get(currCellTailAPos));
+                }
+            }
         }
     }
 }
