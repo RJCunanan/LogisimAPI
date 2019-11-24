@@ -353,7 +353,7 @@ public class Grid {
 
            if (currCell.getCellB() != null) {
 
-               if(currCell.getCellA().state == true)
+               if(currCell.getCellB().getState() == true)
                    myPaint.setColor(Color.argb(255, 255, 255, 0));
 
                myCanvas.drawLine(currCell.getCellB().cellWidth,

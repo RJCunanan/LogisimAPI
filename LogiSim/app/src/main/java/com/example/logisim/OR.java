@@ -52,12 +52,11 @@ public class OR extends Cell {
     int getGateNum() {return gateNum;}
 
     boolean getState() {
-        this.state = a.eval() & b.eval();
+        this.state = a.eval() | b.eval();
         return this.state;
     }
 
     // If either of its Tail Cells are toggled on, pass on
     boolean eval() {
-        this.state = a.eval() | b.eval();
-        return this.state;}
+        return getState();}
 }
