@@ -46,16 +46,19 @@ public class NOR extends Cell {
         canvas.drawBitmap(bitmap,null,mRect,paint);
     }
 
-
     int getGateNum() {
         return gateNum;
     }
 
-    // Will only be true if both a and b are false (inverse of or gate)
-    boolean eval() {
+    boolean getState() {
         if(!a.eval() && !b.eval())
-            return true;
+            this.state = true;
         else
-            return false;
+            this.state = false;
+
+        return this.state;
     }
+
+    // Will only be true if both a and b are false (inverse of or gate)
+    boolean eval() { return getState(); }
 }
