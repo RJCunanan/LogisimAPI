@@ -343,6 +343,7 @@ public class Grid {
                else
                    stopY = currCell.cellY + ((currCell.cellHeight - currCell.cellY) / 4);
 
+               // Taxi-Cab Wire Routing
                myCanvas.drawLine(currCell.getCellA().cellWidth,
                        (currCell.getCellA().cellY + currCell.getCellA().cellHeight) / 2,
                        currCell.getCellA().cellWidth + (totalX / 2),
@@ -366,16 +367,31 @@ public class Grid {
            myPaint.setColor(Color.argb(255, 0, 0, 255));
 
            if (currCell.getCellB() != null) {
+               int totalX = currCell.cellX - currCell.getCellB().cellWidth;
 
                // If the state of tail B is on, draw Yellow
                if(currCell.getCellB().getState() == true)
                    myPaint.setColor(Color.argb(255, 255, 255, 0));
 
+               // Taxi-Cab Wire Routing
                myCanvas.drawLine(currCell.getCellB().cellWidth,
                        (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
+                       currCell.getCellB().cellWidth + (totalX / 2),
+                       (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
+                       myPaint);
+
+               myCanvas.drawLine(currCell.getCellB().cellWidth + (totalX / 2),
+                       (currCell.getCellB().cellY + currCell.getCellB().cellHeight) / 2,
+                       currCell.getCellB().cellWidth + (totalX / 2),
+                       currCell.cellY + 3 * ((currCell.cellHeight - currCell.cellY) / 4),
+                       myPaint);
+
+               myCanvas.drawLine(currCell.getCellB().cellWidth + (totalX / 2),
+                       currCell.cellY + 3 * ((currCell.cellHeight - currCell.cellY) / 4),
                        currCell.cellX,
                        currCell.cellY + 3 * ((currCell.cellHeight - currCell.cellY) / 4),
                        myPaint);
+
            }
 
            myPaint.setStrokeWidth(2F);
