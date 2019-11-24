@@ -2,14 +2,14 @@ package com.example.logisim;
 import java.util.*;
 
 public class Undo{
-    private Stack<Cell> save;
     private Vector<Cell> undoSaved;
+    private Stack<Vector<Cell>> save;
     private Grid grid;
-    void Undo(Vector<Cell> saveThis, Grid gridSave){
+    void Undo(int size, Grid gridSave){
         grid= gridSave;
         save= new Stack<>();
         undoSaved = new Vector<>();
-        for(int i=0; i<saveThis.size(); i++)
+        for(int i=0; i<size; i++)
             undoSaved.add(null);
     }
     void saveUndo(Vector<Cell> saveThis){
@@ -40,15 +40,15 @@ public class Undo{
             if(!(temp instanceof EmptyCell)) {
                 if(temp.getCellA() != null) {
                     int currCellTailAPos = grid.getCellN(temp.getCellA().cellPosition);
-                    undoSaved.get(i).setCellA(undoSaved.get(currCellTailAPos));
+                    undoSaved.get(i).setCellA(temp.get(currCellTailAPos));
                 }
                 if(temp.getCellB() != null) {
                     int currCellTailBPos = grid.getCellN(temp.getCellB().cellPosition);
-                    undoSaved.get(i).setCellB(undoSaved.get(currCellTailBPos));
+                    undoSaved.get(i).setCellB(temp.get(currCellTailBPos));
                 }
                 for(int k = 0; k < temp.head.size(); k++) {
                     int currCellHeadPos = grid.getCellN(temp.head.get(k).cellPosition);
-                    undoSaved.get(i).head.set(k, undoSaved.get(currCellHeadPos));
+                    undoSaved.get(i).head.set(k, temp.get(currCellHeadPos));
                 }
             }
         }
