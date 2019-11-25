@@ -61,7 +61,7 @@ public class LAMP extends Cell {
 
     boolean getState() {
         try {this.state = a.eval(); }
-        catch (NullPointerException e) { this.state = false; }
+        catch (Exception e) { this.state = false; }
         return this.state;
     }
 

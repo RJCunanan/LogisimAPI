@@ -327,7 +327,6 @@ public class Grid {
            // Draw whatever the current cell is (emptycell, gate, switch, lamp)
            currCell.drawCell(myPaint, myCanvas, myContext);
 
-
            // If the current cell has any other Cells linked to it, draw a thick line
            myPaint.setStrokeWidth(20F);
 
