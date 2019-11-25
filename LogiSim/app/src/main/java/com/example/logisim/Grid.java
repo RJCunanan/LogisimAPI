@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Vector;
 
 
+
 public class Grid {
 
     // Several Constants used within the code for Switch Statements
@@ -374,6 +375,7 @@ public class Grid {
         if (menuToDisplay == MAIN_MENU) {
             buttonList.clear();
             buttonList.addAll(mainMenuList);
+
         }
         else if (menuToDisplay == SAVE_MENU || menuToDisplay == LOAD_MENU) {
             buttonList.clear();
@@ -388,6 +390,7 @@ public class Grid {
         // to create the menu bar at the bottom of the screen
         for (int i = 0; i < buttonList.size(); i++) {
             buttonList.get(i).drawButton(myCanvas, myPaint, this);
+
         }
     }
 
