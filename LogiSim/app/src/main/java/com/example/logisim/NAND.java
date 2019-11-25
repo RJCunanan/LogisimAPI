@@ -46,17 +46,19 @@ public class NAND extends Cell {
         canvas.drawBitmap(bitmap,null,mRect,paint);
     }
 
+    boolean getState() {
+        if(a.eval() && b.eval())
+            this.state = false;
+        else
+            this.state = true;
 
+        return this.state;
+    }
     
     int getGateNum() {
         return gateNum;
     }
 
     // Will only be false if both a and b are true (inverse of and gate)
-    boolean eval() {
-        if(a.eval() && b.eval())
-            return false;
-        else
-            return true;
-    }
+    boolean eval() { return getState(); }
 }

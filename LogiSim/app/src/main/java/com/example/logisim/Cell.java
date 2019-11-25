@@ -35,7 +35,7 @@ public abstract class Cell {
     // In terms of both the grid plot and the pixels
     Point cellPosition;
     int cellX, cellY, cellWidth, cellHeight;
-    boolean state = false;
+    boolean state;
 
     // Used for drawing
     private Bitmap bitmap;
@@ -67,6 +67,7 @@ public abstract class Cell {
 
         bitmap = null;
         a = b = null;
+        state = false;
     }
 
 
@@ -115,6 +116,7 @@ public abstract class Cell {
 
     boolean eval() {return false;}
 
+    boolean getState(){return false;}
 
     // Setters and Getters for the Cells attached to current Cell
     Cell getCellA() {return a;}
