@@ -59,21 +59,15 @@ public class LAMP extends Cell {
         state = eval();
     }
 
+    boolean getState() {
+        try {this.state = a.eval(); }
+        catch (NullPointerException e) { this.state = false; }
+        return this.state;
+    }
 
     // Passes its connected cell's state
     boolean eval() {
-        boolean value;
-
-        try {value = a.eval(); }
-
-        catch (NullPointerException e) {
-            //Media Player definition
-            final MediaPlayer BEEP = MediaPlayer.create(getApplicationContext(), R.raw.beep);
-            BEEP.setVolume(500, 500);
-            BEEP.start();
-            value = false;
-        }
-
-        return value;
+        getState();
+        return this.state;
     }
 }
