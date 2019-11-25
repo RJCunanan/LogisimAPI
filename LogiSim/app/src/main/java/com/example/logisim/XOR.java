@@ -46,16 +46,17 @@ public class XOR extends Cell {
         canvas.drawBitmap(bitmap,null,mRect,paint);
     }
 
-
-
     int getGateNum() {return gateNum;}
 
+    boolean getState() {
+        if ((a.eval() && !b.eval()) || (!a.eval() && b.eval()))
+            this.state = true;
+        else
+            this.state = false;
+
+        return this.state;
+    }
 
     // Either A or B, but not both
-    boolean eval() {
-        if ((a.eval() && !b.eval()) || (!a.eval() && b.eval()))
-            return true;
-        else
-            return false;
-    }
+    boolean eval() { return getState(); }
 }

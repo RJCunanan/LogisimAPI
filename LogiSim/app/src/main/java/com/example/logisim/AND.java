@@ -50,7 +50,11 @@ public class AND extends Cell {
 
     int getGateNum() {return gateNum;}
 
+    boolean getState() {
+        this.state = a.eval() & b.eval();
+        return this.state;
+    }
 
     // If both of its Tail Cells are toggled on, pass on
-    boolean eval() { return a.eval() & b.eval(); }
+    boolean eval() { return this.getState(); }
 }
