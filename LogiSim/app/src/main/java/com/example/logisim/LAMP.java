@@ -25,6 +25,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 
 public class LAMP extends Cell {
 
@@ -65,7 +66,13 @@ public class LAMP extends Cell {
 
         try {value = a.eval(); }
 
-        catch (Exception e) { value = a.eval(); }
+        catch (NullPointerException e) {
+            //Media Player definition
+            final MediaPlayer BEEP = MediaPlayer.create(getApplicationContext(), R.raw.beep);
+            BEEP.setVolume(500, 500);
+            BEEP.start();
+            value = false;
+        }
 
         return value;
     }
