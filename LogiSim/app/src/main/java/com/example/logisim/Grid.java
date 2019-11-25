@@ -472,5 +472,5 @@ public class Grid {
     public void loadLoadMenu() {
         menuToDisplay = LOAD_MENU;
     }
-    
+
 }
