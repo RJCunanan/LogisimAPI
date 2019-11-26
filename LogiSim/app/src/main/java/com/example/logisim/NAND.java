@@ -47,11 +47,13 @@ public class NAND extends Cell {
     }
 
     boolean getState() {
-        if(a.eval() && b.eval())
-            this.state = false;
-        else
-            this.state = true;
-
+        try {
+            if (a.eval() && b.eval())
+                this.state = false;
+            else
+                this.state = true;
+        }
+        catch (Exception e){this.state = false;}
         return this.state;
     }
     
