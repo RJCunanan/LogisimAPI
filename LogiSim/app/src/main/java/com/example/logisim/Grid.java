@@ -101,7 +101,7 @@ public class Grid {
     // Testing:
 
     private int buttonCellHeight;
-    private int buttonsCellWidth;
+    private int buttonCellWidth;
     private int totalNumberOfButtons = 10;
 
 
@@ -123,7 +123,7 @@ public class Grid {
 
         // Testing:
         buttonCellHeight = cellSize;
-        buttonsCellWidth = numberOfPixels.y / totalNumberOfButtons;
+        buttonCellWidth = numberOfPixels.y / totalNumberOfButtons;
 
 
 
@@ -546,7 +546,13 @@ public class Grid {
     //===========================================================================================//
     // Testing:
 
+    public int getButtonCellHeight() {
+        return buttonCellHeight;
+    }
 
+    public int getButtonCellWidth() {
+        return buttonCellWidth;
+    }
 
 
 
