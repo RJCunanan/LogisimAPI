@@ -82,12 +82,31 @@ public class UserInterfaceButtons{
             myPaint.setColor((Color.argb(255, 0, 0, 0)));
         }
 
+
+
+
+        // Draw the button
+        myCanvas.drawRect(buttonXCoordinate * grid.getButtonCellWidth(),
+                grid.getNumberOfPixels().y - grid.getButtonCellHeight(),
+                (buttonXCoordinate * grid.getButtonCellWidth()) + grid.getButtonCellWidth(),
+                grid.getNumberOfPixels().y,
+                myPaint);
+
+        /*
         // Draw the button
         myCanvas.drawRect(buttonXCoordinate * grid.getCellSize(),
                 (grid.getGridHeight() - grid.getButtonLength()) * grid.getCellSize(),
                 (buttonXCoordinate * grid.getCellSize()) + grid.getCellSize(),
                 grid.getGridHeight() * grid.getCellSize(),
                 myPaint);
+         */
+
+
+
+
+
+
+
 
         // Change the paint color to white
         myPaint.setColor(Color.argb(255, 255, 255, 255));
@@ -95,10 +114,21 @@ public class UserInterfaceButtons{
         // Formats the size of the text to be displayed on the button
         myPaint.setTextSize(grid.getCellSize() / (float)3.4);
 
+
+
+
+
+
+        // Draw the button's text
+        myCanvas.drawText(text, (grid.getButtonCellWidth() * buttonXCoordinate) + (grid.getButtonCellWidth() / 2),
+                grid.getNumberOfPixels().y - (float)grid.getButtonCellHeight() / 2,
+                myPaint);
+        /*
         // Draw the button's text
         myCanvas.drawText(text, (grid.getButtonWidth() * buttonXCoordinate) * grid.getCellSize(),
                 (grid.getGridHeight() - (float) grid.getButtonLength() / 2) * grid.getCellSize(),
                 myPaint);
+         */
     }
 
 

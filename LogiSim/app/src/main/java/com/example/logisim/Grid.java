@@ -102,7 +102,7 @@ public class Grid {
 
     private int buttonCellHeight;
     private int buttonCellWidth;
-    private int totalNumberOfButtons = 10;
+    private int totalNumberOfButtons = 9;
 
 
 
@@ -552,6 +552,10 @@ public class Grid {
 
     public int getButtonCellWidth() {
         return buttonCellWidth;
+    }
+
+    public Point getNumberOfPixels() {
+        return numberOfPixels;
     }
 
 
