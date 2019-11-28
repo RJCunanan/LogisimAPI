@@ -97,6 +97,15 @@ public class Grid {
     private final int LOAD_MENU = 2;    // Used to load the load menu
     private final int GATES_MENU = 3;   // Used to load the gates menu
 
+    //===========================================================================================//
+    // Testing:
+
+
+
+
+
+    //===========================================================================================//
+
 
 
     public Grid(Context context, Point size, Canvas canvas, Paint paint, ImageView gameView, Bitmap blankBitMap) {
@@ -517,5 +526,15 @@ public class Grid {
     public void loadLoadMenu() {
         menuToDisplay = LOAD_MENU;
     }
+
+
+    //===========================================================================================//
+    // Testing:
+
+
+
+
+
+    //===========================================================================================//
 
 }
