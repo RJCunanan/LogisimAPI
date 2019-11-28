@@ -100,6 +100,9 @@ public class Grid {
     //===========================================================================================//
     // Testing:
 
+    private int buttonCellHeight;
+    private int buttonsCellWidth;
+    private int totalNumberOfButtons = 10;
 
 
 
@@ -114,6 +117,18 @@ public class Grid {
         numberOfPixels.y = size.y;
         cellSize = numberOfPixels.x / gridWidth;
         gridHeight = numberOfPixels.y / cellSize;
+
+
+
+
+        // Testing:
+        buttonCellHeight = cellSize;
+        buttonsCellWidth = numberOfPixels.y / totalNumberOfButtons;
+
+
+
+
+
 
         // Assigns information for drawing
         myCanvas = canvas;
