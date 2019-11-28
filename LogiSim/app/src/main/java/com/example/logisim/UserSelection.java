@@ -39,6 +39,8 @@ public class UserSelection {
     private final int SWITCH_BUTTON_POSITION = 6;
     private final int GATES_BUTTON_POSITION = 7;
     private final int LAMP_BUTTON_POSITION = 8;
+    private final int UNDO_BUTTON_POSITION = 9;
+    private final int REDO_BUTTON_POSITION = 10;
 
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
@@ -58,6 +60,8 @@ public class UserSelection {
 
     // Creates new wire object that is used to connect two circuit components together.
     private Wire wire = new Wire();
+
+    private Undo undo = new Undo();
 
     // Creates new ComponentMover object that is used to move circuit components from
     // one cell to another.
@@ -129,6 +133,14 @@ public class UserSelection {
             else if (grid.getButtonList().get(GATES_BUTTON_POSITION).getSelected()) {
                 grid.loadGatesMenu();
                 grid.getButtonList().get(GATES_BUTTON_POSITION).toggleButton();
+            }
+            // UNDO button
+            else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
+                undo.returnUndo();
+            }
+            // REDO button
+            else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
+
             }
         }
         else {

@@ -48,6 +48,8 @@ public class Grid {
     private final int SWITCH_BUTTON_POSITION = 6;
     private final int GATES_BUTTON_POSITION = 7;
     private final int LAMP_BUTTON_POSITION = 8;
+    private final int UNDO_BUTTON_POSITION = 9;
+    private final int REDO_BUTTON_POSITION = 10;
 
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
@@ -213,6 +215,14 @@ public class Grid {
             case LAMP_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
                         buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMP_BUTTON_POSITION));
+                break;
+            case UNDO_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Undo", UNDO_BUTTON_POSITION));
+                break;
+            case REDO_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Redo", REDO_BUTTON_POSITION));
                 break;
             default:
                 mainMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
