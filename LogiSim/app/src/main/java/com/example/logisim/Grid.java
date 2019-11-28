@@ -97,18 +97,6 @@ public class Grid {
     private final int LOAD_MENU = 2;    // Used to load the load menu
     private final int GATES_MENU = 3;   // Used to load the gates menu
 
-    //===========================================================================================//
-    // Testing:
-
-    private int buttonCellHeight;
-    private int buttonCellWidth;
-    private int totalNumberOfButtons = 9;
-
-
-
-
-    //===========================================================================================//
-
 
 
     public Grid(Context context, Point size, Canvas canvas, Paint paint, ImageView gameView, Bitmap blankBitMap) {
@@ -117,18 +105,6 @@ public class Grid {
         numberOfPixels.y = size.y;
         cellSize = numberOfPixels.x / gridWidth;
         gridHeight = numberOfPixels.y / cellSize;
-
-
-
-
-        // Testing:
-        buttonCellWidth = numberOfPixels.x / totalNumberOfButtons;
-        buttonCellHeight = cellSize;
-
-
-
-
-
 
         // Assigns information for drawing
         myCanvas = canvas;
@@ -541,25 +517,5 @@ public class Grid {
     public void loadLoadMenu() {
         menuToDisplay = LOAD_MENU;
     }
-
-
-    //===========================================================================================//
-    // Testing:
-
-    public int getButtonCellHeight() {
-        return buttonCellHeight;
-    }
-
-    public int getButtonCellWidth() {
-        return buttonCellWidth;
-    }
-
-    public Point getNumberOfPixels() {
-        return numberOfPixels;
-    }
-
-
-
-    //===========================================================================================//
 
 }
