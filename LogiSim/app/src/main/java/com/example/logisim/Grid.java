@@ -122,8 +122,8 @@ public class Grid {
 
 
         // Testing:
+        buttonCellWidth = numberOfPixels.x / totalNumberOfButtons;
         buttonCellHeight = cellSize;
-        buttonCellWidth = numberOfPixels.y / totalNumberOfButtons;
 
 
 
