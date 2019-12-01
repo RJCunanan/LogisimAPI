@@ -103,7 +103,7 @@ public class UserSelection {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
                 if (touchPosition.y == grid.getButtonList().get(i).getButtonYCoordinate()) {
-                    if (touchPosition.y <= REDO_BUTTON_POSITION) {
+                    if (touchPosition.y <= LOAD_BUTTON_POSITION) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
@@ -117,8 +117,13 @@ public class UserSelection {
                 }
             }
 
+            // BUILD button
+            if (grid.getButtonList().get(BUILD_BUTTON_POSITION).getSelected()) {
+                grid.loadBuildMenu();
+                grid.getButtonList().get(BUILD_BUTTON_POSITION).toggleButton();
+            }
             // SAVE button
-            if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
+            else if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
                 grid.loadSaveMenu();
                 grid.getButtonList().get(SAVE_BUTTON_POSITION).toggleButton();
             }
@@ -126,6 +131,35 @@ public class UserSelection {
             else if (grid.getButtonList().get(LOAD_BUTTON_POSITION).getSelected()) {
                 grid.loadLoadMenu();
                 grid.getButtonList().get(LOAD_BUTTON_POSITION).toggleButton();
+            }
+        }
+    }
+
+
+    private void determineBuildMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
+        // if the touch was inside the user interface figure out which button was touched
+        if(touchPosition.x < grid.getButtonLength()) {
+
+            // Cycle through each button to determine which was selected by the user
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (touchPosition.y == grid.getButtonList().get(i).getButtonYCoordinate()) {
+                    if (touchPosition.y <= REDO_BUTTON_POSITION && touchPosition.y != 1) {
+                        // If the x-coordinate of the user's tap matches the x-coordinate of this
+                        // button, and the selected button is not a blank button, mark this button
+                        // as selected/tapped by the user
+                        grid.getButtonList().get(i).wasITouched(touchPosition);
+                    }
+                } else {
+                    // If this button is not selected and is not one of the save buttons, mark this
+                    // button as not selected by the user
+                    grid.getButtonList().get(i).clearButtonSelection();
+                }
+            }
+
+            // BACK button
+            if (grid.getButtonList().get(BACK_BUTTON_POSITION).getSelected()) {
+                grid.loadMainMenu();
+                grid.getButtonList().get(BACK_BUTTON_POSITION).toggleButton();
             }
             // GATES button
             else if (grid.getButtonList().get(GATES_BUTTON_POSITION).getSelected()) {
@@ -140,17 +174,30 @@ public class UserSelection {
             else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
 
             }
+
         }
         else {
             // This loop finds which button is currently toggled on
             int currentOption = -1;
-            for(int i = 0; i < grid.getButtonList().size(); i++){
-                if(grid.getButtonList().get(i).getSelected()) {
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (grid.getButtonList().get(i).getSelected()) {
                     currentOption = grid.getButtonList().get(i).getButtonInList();
                 }
             }
 
-            switch(currentOption) {
+            switch (currentOption) {
+                // SWITCH button
+                case SWITCH_BUTTON_POSITION:
+                    // creates a Switch after being given information of the cell
+                    grid.getCellList().set(touchPositionN, new SWITCH(grid.getCellList().get(touchPositionN)));
+                    break;
+
+                // LAMP button
+                case LAMP_BUTTON_POSITION:
+                    // creates a Lamp after being given information of the cell
+                    grid.getCellList().set(touchPositionN, new LAMP(grid.getCellList().get(touchPositionN)));
+                    break;
+
                 // LINK button
                 case LINK_BUTTON_POSITION:
                     // if there has been a previously selected cell and it isn't an empty cell
@@ -187,28 +234,13 @@ public class UserSelection {
                     grid.getCellList().set(touchPositionN,new EmptyCell(deleteCell));
                     break;
 
-                // SWITCH button
-                case SWITCH_BUTTON_POSITION:
-                    // creates a Switch after being given information of the cell
-                    grid.getCellList().set(touchPositionN,new SWITCH(grid.getCellList().get(touchPositionN)));
-                    break;
-
-                // LAMP button
-                case LAMP_BUTTON_POSITION:
-                    // creates a Lamp after being given information of the cell
-                    grid.getCellList().set(touchPositionN,new LAMP(grid.getCellList().get(touchPositionN)));
-                    break;
-
                 default:
                     // If the user tapped a Switch, toggle its state
-                    if(grid.getCellList().get(touchPositionN) instanceof SWITCH) { ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();}
+                    if(grid.getCellList().get(touchPositionN) instanceof SWITCH) {
+                        ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();
+                    }
             }
         }
-    }
-
-
-    private void determineBuildMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
-
     }
 
 
