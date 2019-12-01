@@ -96,7 +96,7 @@ public class UserInterfaceButtons{
         myPaint.setTextSize(grid.getCellSize() / (float)3.4);
 
         // Draw the button's text
-        myCanvas.drawText(text, 0,
+        myCanvas.drawText(text, grid.getCellSize() / 10,
                 (buttonYCoordinate * grid.getCellSize()) + (grid.getCellSize() / 2),
                 myPaint);
     }
