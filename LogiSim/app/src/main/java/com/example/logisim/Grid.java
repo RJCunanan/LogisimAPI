@@ -44,14 +44,14 @@ public class Grid {
     private final int SAVE_BUTTON_POSITION = 1;
     private final int LOAD_BUTTON_POSITION = 2;
 
-    private final int SWITCH_BUTTON_POSITION = 2;
-    private final int LAMP_BUTTON_POSITION = 3;
-    private final int GATES_BUTTON_POSITION = 4;
-    private final int LINK_BUTTON_POSITION = 5;
-    private final int MOVE_BUTTON_POSITION = 6;
-    private final int DELETE_BUTTON_POSITION = 7;
-    private final int UNDO_BUTTON_POSITION = 8;
-    private final int REDO_BUTTON_POSITION = 9;
+    private final int SWITCH_BUTTON_POSITION = 1;
+    private final int LAMP_BUTTON_POSITION = 2;
+    private final int GATES_BUTTON_POSITION = 3;
+    private final int LINK_BUTTON_POSITION = 4;
+    private final int MOVE_BUTTON_POSITION = 5;
+    private final int DELETE_BUTTON_POSITION = 6;
+    private final int UNDO_BUTTON_POSITION = 7;
+    private final int REDO_BUTTON_POSITION = 8;
 
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
@@ -74,7 +74,7 @@ public class Grid {
     // Variables to be seen throughout the Grid Class
     private Point numberOfPixels = new Point();
     int cellSize;
-    private final int gridWidth = 18;
+    private final int gridWidth = 15;
     private int gridHeight;
 
     private int previousTouchN;

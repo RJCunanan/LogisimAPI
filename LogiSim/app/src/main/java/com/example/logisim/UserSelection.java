@@ -33,14 +33,14 @@ public class UserSelection {
     private final int SAVE_BUTTON_POSITION = 1;
     private final int LOAD_BUTTON_POSITION = 2;
 
-    private final int SWITCH_BUTTON_POSITION = 2;
-    private final int LAMP_BUTTON_POSITION = 3;
-    private final int GATES_BUTTON_POSITION = 4;
-    private final int LINK_BUTTON_POSITION = 5;
-    private final int MOVE_BUTTON_POSITION = 6;
-    private final int DELETE_BUTTON_POSITION = 7;
-    private final int UNDO_BUTTON_POSITION = 8;
-    private final int REDO_BUTTON_POSITION = 9;
+    private final int SWITCH_BUTTON_POSITION = 1;
+    private final int LAMP_BUTTON_POSITION = 2;
+    private final int GATES_BUTTON_POSITION = 3;
+    private final int LINK_BUTTON_POSITION = 4;
+    private final int MOVE_BUTTON_POSITION = 5;
+    private final int DELETE_BUTTON_POSITION = 6;
+    private final int UNDO_BUTTON_POSITION = 7;
+    private final int REDO_BUTTON_POSITION = 8;
 
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
@@ -143,7 +143,7 @@ public class UserSelection {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
                 if (touchPosition.y == grid.getButtonList().get(i).getButtonYCoordinate()) {
-                    if (touchPosition.y <= REDO_BUTTON_POSITION && touchPosition.y != 1) {
+                    if (touchPosition.y <= REDO_BUTTON_POSITION) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
