@@ -316,6 +316,18 @@ public class UserSelection {
             else if (grid.getButtonList().get(SAVE_SLOT_C_POSITION).getSelected()) {
                 save.saveList(grid.getCellListC(), grid.getCellList(), grid);
             }
+            // Load Save Slot D
+            else if (grid.getButtonList().get(SAVE_SLOT_D_POSITION).getSelected()) {
+                save.saveList(grid.getCellListD(), grid.getCellList(), grid);
+            }
+            // Load Save Slot E
+            else if (grid.getButtonList().get(SAVE_SLOT_E_POSITION).getSelected()) {
+                save.saveList(grid.getCellListE(), grid.getCellList(), grid);
+            }
+            // Load Save Slot F
+            else if (grid.getButtonList().get(SAVE_SLOT_F_POSITION).getSelected()) {
+                save.saveList(grid.getCellListF(), grid.getCellList(), grid);
+            }
         }
     }
 
