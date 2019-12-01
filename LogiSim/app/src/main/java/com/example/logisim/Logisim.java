@@ -100,7 +100,7 @@ public class Logisim extends Activity {
             draw();
 
             //Media Player definition
-            if (motionEvent.getX() >= 0 && motionEvent.getX() < 850 && motionEvent.getY() > 550 && motionEvent.getY() <= 650 /*&& motionEvent.getY() <= 25*/) {
+            if (touchPosition.x <= grid.getButtonLength() && touchPosition.y >= 0) {
                 final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
                 clickOn.start();
             }
