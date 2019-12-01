@@ -39,7 +39,6 @@ public class Grid {
     // Allowing the code to be more readable
     private final int BACK_BUTTON_POSITION = 0;
 
-    private final int RUN_BUTTON_POSITION = 0;
     private final int LINK_BUTTON_POSITION = 1;
     private final int MOVE_BUTTON_POSITION = 2;
     private final int DELETE_BUTTON_POSITION = 3;
@@ -101,9 +100,10 @@ public class Grid {
 
     private int menuToDisplay = 0;      // Used to decide what menu should be loaded onto the taskbar
     private final int MAIN_MENU = 0;    // Used to load the main menu
-    private final int SAVE_MENU = 1;    // Used to load the save menu
-    private final int LOAD_MENU = 2;    // Used to load the load menu
-    private final int GATES_MENU = 3;   // Used to load the gates menu
+    private final int BUILD_MENU = 1;    // Used to load the main menu
+    private final int SAVE_MENU = 2;    // Used to load the save menu
+    private final int LOAD_MENU = 3;    // Used to load the load menu
+    private final int GATES_MENU = 4;   // Used to load the gates menu
 
 
 
@@ -194,10 +194,6 @@ public class Grid {
     // first opens the app by filling the menu with the main menu buttons.
     public void createMainMenu(int currentButtonPosition, int y){
         switch (currentButtonPosition) {
-            case RUN_BUTTON_POSITION:
-                mainMenuList.add(new UserInterfaceButtons(0, y,
-                        buttonWidth, buttonLength, currentButtonPosition, "Run", RUN_BUTTON_POSITION));
-                break;
             case LINK_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Link", LINK_BUTTON_POSITION));
@@ -241,6 +237,14 @@ public class Grid {
             default:
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
+    }
+
+
+
+    public void createBuildMenu(int currentButtonPosition, int y){
+        switch (currentButtonPosition) {
+
         }
     }
 
