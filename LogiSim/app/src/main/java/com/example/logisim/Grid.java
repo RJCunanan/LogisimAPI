@@ -221,6 +221,10 @@ public class Grid {
 
     public void createBuildMenu(int currentButtonPosition, int y){
         switch (currentButtonPosition) {
+            case BACK_BUTTON_POSITION:
+                buildMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
+                break;
             case SWITCH_BUTTON_POSITION:
                 buildMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCH_BUTTON_POSITION));
@@ -266,9 +270,9 @@ public class Grid {
     // of which will hold a saved circuit.
     public void createSaveAndLoadMenu(int currentButtonPosition, int y) {
         switch (currentButtonPosition) {
-            case BACK_BUTTON_POSITION:
+            case DONE_BUTTON_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
-                        buttonWidth, buttonLength, currentButtonPosition, "DONE", BACK_BUTTON_POSITION));
+                        buttonWidth, buttonLength, currentButtonPosition, "DONE", DONE_BUTTON_POSITION));
                 break;
             case SAVE_SLOT_A_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
@@ -558,6 +562,10 @@ public class Grid {
         return MAIN_MENU;
     }
 
+    public int getBuildMenu() {
+        return BUILD_MENU;
+    }
+
     public int getSaveMenu() {
         return SAVE_MENU;
     }
@@ -572,6 +580,10 @@ public class Grid {
 
     public void loadMainMenu() {
         menuToDisplay = MAIN_MENU;
+    }
+
+    public void loadBuildMenu() {
+        menuToDisplay = BUILD_MENU;
     }
 
     public void loadSaveMenu() {

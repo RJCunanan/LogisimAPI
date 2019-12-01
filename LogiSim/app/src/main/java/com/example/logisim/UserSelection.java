@@ -27,18 +27,20 @@ public class UserSelection {
     // Each constant represents one of the buttons on the taskbar and
     // allows the code to be more readable.
     private final int BACK_BUTTON_POSITION = 0;
+    private final int DONE_BUTTON_POSITION = 0;
 
-    private final int RUN_BUTTON_POSITION = 0;
-    private final int LINK_BUTTON_POSITION = 1;
-    private final int MOVE_BUTTON_POSITION = 2;
-    private final int DELETE_BUTTON_POSITION = 3;
-    private final int SAVE_BUTTON_POSITION = 4;
-    private final int LOAD_BUTTON_POSITION = 5;
-    private final int SWITCH_BUTTON_POSITION = 6;
-    private final int GATES_BUTTON_POSITION = 7;
-    private final int LAMP_BUTTON_POSITION = 8;
-    private final int UNDO_BUTTON_POSITION = 9;
-    private final int REDO_BUTTON_POSITION = 10;
+    private final int BUILD_BUTTON_POSITION = 0;
+    private final int SAVE_BUTTON_POSITION = 1;
+    private final int LOAD_BUTTON_POSITION = 2;
+
+    private final int SWITCH_BUTTON_POSITION = 2;
+    private final int LAMP_BUTTON_POSITION = 3;
+    private final int GATES_BUTTON_POSITION = 4;
+    private final int LINK_BUTTON_POSITION = 5;
+    private final int MOVE_BUTTON_POSITION = 6;
+    private final int DELETE_BUTTON_POSITION = 7;
+    private final int UNDO_BUTTON_POSITION = 8;
+    private final int REDO_BUTTON_POSITION = 9;
 
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
@@ -78,6 +80,9 @@ public class UserSelection {
         if (grid.getMenuToDisplay() == grid.getMainMenu()) {
             determineMainMenuSelection(touchPosition, grid, touchPositionN);
         }
+        else if (grid.getMenuToDisplay() == grid.getBuildMenu()) {
+            determineBuildMenuSelection(touchPosition, grid, touchPositionN);
+        }
         else if (grid.getMenuToDisplay() == grid.getSaveMenu()) {
             determineSaveMenuSelection(touchPosition, grid);
         }
@@ -112,16 +117,8 @@ public class UserSelection {
                 }
             }
 
-            // RUN button
-            if (grid.getButtonList().get(RUN_BUTTON_POSITION).getSelected()) {
-                for(int i = 0; i < grid.getCellList().size(); i++) {
-                    if (grid.getCellList().get(i) instanceof LAMP) {
-                        ((LAMP) grid.getCellList().get(i)).evalLamp();
-                    }
-                }
-            }
             // SAVE button
-            else if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
+            if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
                 grid.loadSaveMenu();
                 grid.getButtonList().get(SAVE_BUTTON_POSITION).toggleButton();
             }
@@ -207,6 +204,11 @@ public class UserSelection {
                     if(grid.getCellList().get(touchPositionN) instanceof SWITCH) { ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();}
             }
         }
+    }
+
+
+    private void determineBuildMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
+
     }
 
 
