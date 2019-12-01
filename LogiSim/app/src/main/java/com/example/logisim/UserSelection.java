@@ -220,7 +220,7 @@ public class UserSelection {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
                 if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
-                    if (touchPosition.x <= SAVE_SLOT_C_POSITION && touchPosition.x != 1) {
+                    if (touchPosition.x <= SAVE_SLOT_F_POSITION && touchPosition.x != 1) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
@@ -285,7 +285,7 @@ public class UserSelection {
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
                 if (touchPosition.x == grid.getButtonList().get(i).getButtonXCoordinate()) {
-                    if (touchPosition.x <= SAVE_SLOT_C_POSITION && touchPosition.x != 1) {
+                    if (touchPosition.x <= SAVE_SLOT_F_POSITION && touchPosition.x != 1) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
