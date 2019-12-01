@@ -33,7 +33,7 @@ public class UserInterfaceButtons{
     private List<Point> occupiedCells;
     private boolean selected;
     private String text;    // holds the text for the button
-    private int buttonXCoordinate;  // holds the x-coordinate for the button at the
+    private int buttonYCoordinate;  // holds the x-coordinate for the button at the
                                     // bottom of the screen
 
 
@@ -44,7 +44,7 @@ public class UserInterfaceButtons{
                                 int buttonLength,
                                 int currentButton,
                                 String text,
-                                int buttonXCoordinate) {
+                                int buttonYCoordinate) {
 
         occupiedCells = new ArrayList<>(buttonLength*buttonWidth);
 
@@ -63,7 +63,7 @@ public class UserInterfaceButtons{
         buttonInList = currentButton;
 
         this.text = text;
-        this.buttonXCoordinate = buttonXCoordinate;
+        this.buttonYCoordinate = buttonYCoordinate;
     }
 
 
@@ -83,10 +83,10 @@ public class UserInterfaceButtons{
         }
 
         // Draw the button
-        myCanvas.drawRect(buttonXCoordinate * grid.getCellSize(),
-                (grid.getGridHeight() - grid.getButtonLength()) * grid.getCellSize(),
-                (buttonXCoordinate * grid.getCellSize()) + grid.getCellSize(),
-                grid.getGridHeight() * grid.getCellSize(),
+        myCanvas.drawRect(0,
+                buttonYCoordinate * grid.getCellSize(),
+                grid.getCellSize(),
+                buttonYCoordinate * grid.getCellSize() + grid.getCellSize(),
                 myPaint);
 
         // Change the paint color to white
@@ -96,7 +96,7 @@ public class UserInterfaceButtons{
         myPaint.setTextSize(grid.getCellSize() / (float)3.4);
 
         // Draw the button's text
-        myCanvas.drawText(text, (grid.getButtonWidth() * buttonXCoordinate) * grid.getCellSize(),
+        myCanvas.drawText(text, (grid.getButtonWidth() * buttonYCoordinate) * grid.getCellSize(),
                 (grid.getGridHeight() - (float) grid.getButtonLength() / 2) * grid.getCellSize(),
                 myPaint);
     }
@@ -125,8 +125,8 @@ public class UserInterfaceButtons{
     boolean getSelected() {return selected;}
 
     // Getter method that returns the button's x-coordinate on the grid
-    int getButtonXCoordinate() {
-        return buttonXCoordinate;
+    int getButtonYCoordinate() {
+        return buttonYCoordinate;
     }
 
     // Marks this button as not selected by the user
