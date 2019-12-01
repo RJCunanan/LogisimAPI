@@ -251,7 +251,7 @@ public class Grid {
         switch (currentButtonPosition) {
             case BACK_BUTTON_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
-                        buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
+                        buttonWidth, buttonLength, currentButtonPosition, "DONE", BACK_BUTTON_POSITION));
                 break;
             case SAVE_SLOT_A_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
