@@ -150,7 +150,7 @@ public class Grid {
         // A nested loop will fill the entirety of the vector with EmptyCells
         // Note: the grid is filled column by column
         Point currentPos = new Point();
-        for (int x = 1; x < gridWidth; x++) {
+        for (int x = 0; x < gridWidth; x++) {
             for(int y = 0; y < (gridHeight-buttonLength); y++) {
                 currentPos.x = x;
                 currentPos.y = y;
