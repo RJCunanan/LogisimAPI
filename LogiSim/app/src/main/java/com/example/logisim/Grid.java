@@ -219,6 +219,9 @@ public class Grid {
 
 
 
+    // This method creates the build menu that is loaded onto the screen when the user taps on the
+    // "BUILD" button from the main menu by creating several buttons that are used to create circuits
+    // on the grid.
     public void createBuildMenu(int currentButtonPosition, int y){
         switch (currentButtonPosition) {
             case BACK_BUTTON_POSITION:
