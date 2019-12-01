@@ -151,7 +151,7 @@ public class Grid {
         // Note: the grid is filled column by column
         Point currentPos = new Point();
         for (int x = 0; x < gridWidth; x++) {
-            for(int y = 0; y < gridHeight; y++) {
+            for(int y = 0; y <= gridHeight; y++) {
                 currentPos.x = x;
                 currentPos.y = y;
 
@@ -460,7 +460,7 @@ public class Grid {
 
 
     // This will return the spot in the cell vector list of whatever point is given to it
-    int getCellN(Point tap) {return (gridHeight*tap.x+tap.y);}
+    int getCellN(Point tap) {return ((gridHeight + 1)*tap.x+tap.y);}
 
 
 
