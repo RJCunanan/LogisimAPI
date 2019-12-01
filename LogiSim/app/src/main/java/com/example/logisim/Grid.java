@@ -130,6 +130,50 @@ public class Grid {
 
 
 
+
+
+    private void initializeGrid() {
+        // The grid Vector will be created to have a size of the
+        // area in which the player can place gates/switches/lamps inside
+        cellList = new Vector<>((gridHeight-buttonLength)*gridWidth);
+
+        // These vectors are used to save the current configuration of the grid,
+        // along with all the built circuits on it, so that they could be loaded
+        // later on.
+        cellListA = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListB = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListC = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListD = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListE = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListF = new Vector<>((gridHeight-buttonLength)*gridWidth);
+
+        // A nested loop will fill the entirety of the vector with EmptyCells
+        // Note: the grid is filled column by column
+        Point currentPos = new Point();
+        for (int x = 1; x < gridWidth; x++) {
+            for(int y = 0; y < (gridHeight-buttonLength); y++) {
+                currentPos.x = x;
+                currentPos.y = y;
+
+                cellList.add(new EmptyCell(new Point(currentPos), cellSize));
+
+                // Also initialize the save slots with empty grid cells
+                cellListA.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListB.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListC.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListD.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListE.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListF.add(new EmptyCell(new Point(currentPos), cellSize));
+            }
+        }
+    }
+
+
+
+
+
+
+    /*
     private void initializeGrid() {
         // The grid Vector will be created to have a size of the
         // area in which the player can place gates/switches/lamps inside
@@ -165,9 +209,37 @@ public class Grid {
             }
         }
     }
+     */
 
 
 
+
+
+    // Using an arrayList called buttonList, new UserInterfaceButton instances are created
+    // to represent the UI buttons that are used to accomplish tasks and build circuits
+    void initializeButtons() {
+        // A loop will create however many buttons possible within the area given to it
+        // of the proper width. When creating these new buttons, a starting position is given
+        // as well as the width and length of the buttons
+        // The buttons will be placed on top of the grid, thus it will still read player taps as cells
+        // Because of this the buttons must have a list of the different cells that combine to make
+        // one large button
+        int currentButtonPosition = -1;
+
+        for(int y = 0; y < gridWidth; y+= buttonWidth) {
+            currentButtonPosition++;
+
+            createMainMenu(currentButtonPosition, y);
+            createSaveAndLoadMenu(currentButtonPosition, y);
+            createGatesMenu(currentButtonPosition, y);
+        }
+    }
+
+
+
+
+
+    /*
     // Using an arrayList called buttonList, new UserInterfaceButton instances are created
     // to represent the UI buttons that are used to accomplish tasks and build circuits
     void initializeButtons() {
@@ -187,8 +259,70 @@ public class Grid {
             createGatesMenu(currentButtonPosition, x);
         }
     }
+     */
 
 
+
+
+    // This method creates the main menu that is initially displayed to the user when he or she
+    // first opens the app by filling the menu with the main menu buttons.
+    public void createMainMenu(int currentButtonPosition, int y){
+        switch (currentButtonPosition) {
+            case RUN_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Run", RUN_BUTTON_POSITION));
+                break;
+            case LINK_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Link", LINK_BUTTON_POSITION));
+                break;
+            case MOVE_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Move", MOVE_BUTTON_POSITION));
+                break;
+            case DELETE_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETE_BUTTON_POSITION));
+                break;
+            case SAVE_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVE_BUTTON_POSITION));
+                break;
+            case LOAD_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "LOAD", LOAD_BUTTON_POSITION));
+                break;
+            case SWITCH_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Switch", SWITCH_BUTTON_POSITION));
+                break;
+            case GATES_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Gates", GATES_BUTTON_POSITION));
+                break;
+            case LAMP_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "LAMP", LAMP_BUTTON_POSITION));
+                break;
+            case UNDO_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Undo", UNDO_BUTTON_POSITION));
+                break;
+            case REDO_BUTTON_POSITION:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Redo", REDO_BUTTON_POSITION));
+                break;
+            default:
+                mainMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
+        }
+    }
+
+
+
+
+
+    /*
     // This method creates the main menu that is initially displayed to the user when he or she
     // first opens the app by filling the menu with the main menu buttons.
     public void createMainMenu(int currentButtonPosition, int x){
@@ -242,7 +376,7 @@ public class Grid {
                         buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
         }
     }
-
+     */
 
     // This method creates the save menu that is loaded onto the screen when the user taps on the
     // "SAVE" button from the main menu by creating several buttons that act as save "slots", each
