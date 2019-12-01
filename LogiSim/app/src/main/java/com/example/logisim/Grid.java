@@ -86,6 +86,9 @@ public class Grid {
     private Vector<Cell> cellListA;
     private Vector<Cell> cellListB;
     private Vector<Cell> cellListC;
+    private Vector<Cell> cellListD;
+    private Vector<Cell> cellListE;
+    private Vector<Cell> cellListF;
 
     // New ArrayLists that will hold the different buttons that belong in different menus
     // on the taskbar:
@@ -99,15 +102,6 @@ public class Grid {
     private final int LOAD_MENU = 2;    // Used to load the load menu
     private final int GATES_MENU = 3;   // Used to load the gates menu
 
-    //====================================================================================================//
-    // Testing:
-
-    private Vector<Cell> cellListD;
-    private Vector<Cell> cellListE;
-    private Vector<Cell> cellListF;
-
-
-    //====================================================================================================//
 
 
 
@@ -497,6 +491,18 @@ public class Grid {
         return cellListC;
     }
 
+    public Vector<Cell> getCellListD() {
+        return cellListD;
+    }
+
+    public Vector<Cell> getCellListE() {
+        return cellListE;
+    }
+
+    public Vector<Cell> getCellListF() {
+        return cellListF;
+    }
+
     public int getPreviousTouchN() {
         return previousTouchN;
     }
@@ -540,17 +546,5 @@ public class Grid {
     public void loadLoadMenu() {
         menuToDisplay = LOAD_MENU;
     }
-
-
-
-    //====================================================================================================//
-    // Testing:
-
-
-
-
-    //====================================================================================================//
-
-
 
 }
