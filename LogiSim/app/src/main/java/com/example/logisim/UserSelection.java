@@ -242,38 +242,26 @@ public class UserSelection {
             // Save Slot A
             else if (grid.getButtonList().get(SAVE_SLOT_A_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListA(), grid);
-                grid.loadMainMenu();
-                grid.getButtonList().get(SAVE_SLOT_A_POSITION).toggleButton();
             }
             // Save Slot B
             else if (grid.getButtonList().get(SAVE_SLOT_B_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListB(), grid);
-                grid.loadMainMenu();
-                grid.getButtonList().get(SAVE_SLOT_B_POSITION).toggleButton();
             }
             // Save Slot C
             else if (grid.getButtonList().get(SAVE_SLOT_C_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListC(), grid);
-                grid.loadMainMenu();
-                grid.getButtonList().get(SAVE_SLOT_C_POSITION).toggleButton();
             }
             // Save Slot D
             else if (grid.getButtonList().get(SAVE_SLOT_D_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListD(), grid);
-                grid.loadMainMenu();
-                grid.getButtonList().get(SAVE_SLOT_D_POSITION).toggleButton();
             }
             // Save Slot E
             else if (grid.getButtonList().get(SAVE_SLOT_E_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListE(), grid);
-                grid.loadMainMenu();
-                grid.getButtonList().get(SAVE_SLOT_E_POSITION).toggleButton();
             }
             // Save Slot F
             else if (grid.getButtonList().get(SAVE_SLOT_F_POSITION).getSelected()) {
                 save.saveList(grid.getCellList(), grid.getCellListF(), grid);
-                grid.loadMainMenu();
-                grid.getButtonList().get(SAVE_SLOT_F_POSITION).toggleButton();
             }
         }
     }
