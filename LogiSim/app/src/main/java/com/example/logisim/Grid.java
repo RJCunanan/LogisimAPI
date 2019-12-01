@@ -135,23 +135,23 @@ public class Grid {
     private void initializeGrid() {
         // The grid Vector will be created to have a size of the
         // area in which the player can place gates/switches/lamps inside
-        cellList = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellList = new Vector<>(gridHeight*gridWidth);
 
         // These vectors are used to save the current configuration of the grid,
         // along with all the built circuits on it, so that they could be loaded
         // later on.
-        cellListA = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListB = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListC = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListD = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListE = new Vector<>((gridHeight-buttonLength)*gridWidth);
-        cellListF = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListA = new Vector<>(gridHeight*gridWidth);
+        cellListB = new Vector<>(gridHeight*gridWidth);
+        cellListC = new Vector<>(gridHeight*gridWidth);
+        cellListD = new Vector<>(gridHeight*gridWidth);
+        cellListE = new Vector<>(gridHeight*gridWidth);
+        cellListF = new Vector<>(gridHeight*gridWidth);
 
         // A nested loop will fill the entirety of the vector with EmptyCells
         // Note: the grid is filled column by column
         Point currentPos = new Point();
         for (int x = 0; x < gridWidth; x++) {
-            for(int y = 0; y < (gridHeight-buttonLength); y++) {
+            for(int y = 0; y < gridHeight; y++) {
                 currentPos.x = x;
                 currentPos.y = y;
 
@@ -460,7 +460,7 @@ public class Grid {
 
 
     // This will return the spot in the cell vector list of whatever point is given to it
-    int getCellN(Point tap) {return ((gridHeight-buttonLength)*tap.x+tap.y);}
+    int getCellN(Point tap) {return (gridHeight*tap.x+tap.y);}
 
 
 
