@@ -54,6 +54,9 @@ public class Grid {
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
     private final int SAVE_SLOT_C_POSITION = 4;
+    private final int SAVE_SLOT_D_POSITION = 5;
+    private final int SAVE_SLOT_E_POSITION = 6;
+    private final int SAVE_SLOT_F_POSITION = 7;
 
     private final int AND_GATE_BUTTON_POSITION = 2;
     private final int NAND_GATE_BUTTON_POSITION = 3;
@@ -258,6 +261,18 @@ public class Grid {
             case SAVE_SLOT_C_POSITION:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot C", SAVE_SLOT_C_POSITION));
+                break;
+            case SAVE_SLOT_D_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot D", SAVE_SLOT_D_POSITION));
+                break;
+            case SAVE_SLOT_E_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot E", SAVE_SLOT_E_POSITION));
+                break;
+            case SAVE_SLOT_F_POSITION:
+                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                        buttonWidth, buttonLength, currentButtonPosition, "Slot F", SAVE_SLOT_F_POSITION));
                 break;
             default:
                 saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
