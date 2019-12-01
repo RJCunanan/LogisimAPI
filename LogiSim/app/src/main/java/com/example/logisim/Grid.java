@@ -381,38 +381,38 @@ public class Grid {
     // This method creates the save menu that is loaded onto the screen when the user taps on the
     // "SAVE" button from the main menu by creating several buttons that act as save "slots", each
     // of which will hold a saved circuit.
-    public void createSaveAndLoadMenu(int currentButtonPosition, int x) {
+    public void createSaveAndLoadMenu(int currentButtonPosition, int y) {
         switch (currentButtonPosition) {
             case BACK_BUTTON_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "DONE", BACK_BUTTON_POSITION));
                 break;
             case SAVE_SLOT_A_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot A", SAVE_SLOT_A_POSITION));
                 break;
             case SAVE_SLOT_B_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot B", SAVE_SLOT_B_POSITION));
                 break;
             case SAVE_SLOT_C_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot C", SAVE_SLOT_C_POSITION));
                 break;
             case SAVE_SLOT_D_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot D", SAVE_SLOT_D_POSITION));
                 break;
             case SAVE_SLOT_E_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot E", SAVE_SLOT_E_POSITION));
                 break;
             case SAVE_SLOT_F_POSITION:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Slot F", SAVE_SLOT_F_POSITION));
                 break;
             default:
-                saveAndLoadMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                saveAndLoadMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
         }
     }
@@ -421,38 +421,38 @@ public class Grid {
     // This method creates the logic gates menu that is loaded onto the screen when the user taps on the
     // "Gates" button in the main menu by creating several buttons that will allow the user to place
     // logic gates onto the grid.
-    public void createGatesMenu(int currentButtonPosition, int x) {
+    public void createGatesMenu(int currentButtonPosition, int y) {
         switch (currentButtonPosition) {
             case BACK_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "BACK", BACK_BUTTON_POSITION));
                 break;
             case AND_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "AND", AND_GATE_BUTTON_POSITION));
                 break;
             case NAND_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "NAND", NAND_GATE_BUTTON_POSITION));
                 break;
             case OR_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "OR", OR_GATE_BUTTON_POSITION));
                 break;
             case NOR_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "NOR", NOR_GATE_BUTTON_POSITION));
                 break;
             case XOR_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "XOR", XOR_GATE_BUTTON_POSITION));
                 break;
             case NOT_GATE_BUTTON_POSITION:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "NOT", NOT_GATE_BUTTON_POSITION));
                 break;
             default:
-                logicGatesMenuList.add(new UserInterfaceButtons(x, gridHeight-buttonLength,
+                logicGatesMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "", currentButtonPosition));
         }
     }
