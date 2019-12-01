@@ -102,7 +102,9 @@ public class Grid {
     //====================================================================================================//
     // Testing:
 
-
+    private Vector<Cell> cellListD;
+    private Vector<Cell> cellListE;
+    private Vector<Cell> cellListF;
 
 
     //====================================================================================================//
@@ -157,6 +159,9 @@ public class Grid {
                 cellListA.add(new EmptyCell(new Point(currentPos), cellSize));
                 cellListB.add(new EmptyCell(new Point(currentPos), cellSize));
                 cellListC.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListD.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListE.add(new EmptyCell(new Point(currentPos), cellSize));
+                cellListF.add(new EmptyCell(new Point(currentPos), cellSize));
             }
         }
     }
