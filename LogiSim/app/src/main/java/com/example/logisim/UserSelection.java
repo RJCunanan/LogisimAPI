@@ -45,6 +45,9 @@ public class UserSelection {
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
     private final int SAVE_SLOT_C_POSITION = 4;
+    private final int SAVE_SLOT_D_POSITION = 5;
+    private final int SAVE_SLOT_E_POSITION = 6;
+    private final int SAVE_SLOT_F_POSITION = 7;
 
     private final int AND_GATE_BUTTON_POSITION = 2;
     private final int NAND_GATE_BUTTON_POSITION = 3;
