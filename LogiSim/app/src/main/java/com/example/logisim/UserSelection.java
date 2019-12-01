@@ -213,12 +213,12 @@ public class UserSelection {
     private void determineSaveMenuSelection (Point touchPosition, Grid grid) {
 
         // if the touch was inside the user interface figure out which button was touched
-        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+        if(touchPosition.x < grid.getButtonLength()) {
 
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
-                if (touchPosition.x == grid.getButtonList().get(i).getButtonYCoordinate()) {
-                    if (touchPosition.x <= SAVE_SLOT_F_POSITION && touchPosition.x != 1) {
+                if (touchPosition.y == grid.getButtonList().get(i).getButtonYCoordinate()) {
+                    if (touchPosition.y <= SAVE_SLOT_F_POSITION && touchPosition.y != 1) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
@@ -266,12 +266,12 @@ public class UserSelection {
 
 
     private void determineLoadMenuSelection (Point touchPosition, Grid grid) {
-        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+        if(touchPosition.x < grid.getButtonLength()) {
 
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
-                if (touchPosition.x == grid.getButtonList().get(i).getButtonYCoordinate()) {
-                    if (touchPosition.x <= SAVE_SLOT_F_POSITION && touchPosition.x != 1) {
+                if (touchPosition.y == grid.getButtonList().get(i).getButtonYCoordinate()) {
+                    if (touchPosition.y <= SAVE_SLOT_F_POSITION && touchPosition.y != 1) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
@@ -321,12 +321,12 @@ public class UserSelection {
     private void determineGatesMenuSelection (Point touchPosition, Grid grid, int touchPositionN) {
 
         // if the touch was inside the user interface figure out which button was touched
-        if(touchPosition.y >= grid.getGridHeight() - grid.getButtonLength()) {
+        if(touchPosition.x < grid.getButtonLength()) {
 
             // Cycle through each button to determine which was selected by the user
             for (int i = 0; i < grid.getButtonList().size(); i++) {
-                if (touchPosition.x == grid.getButtonList().get(i).getButtonYCoordinate()) {
-                    if (touchPosition.x <= NOT_GATE_BUTTON_POSITION && touchPosition.x != 1) {
+                if (touchPosition.y == grid.getButtonList().get(i).getButtonYCoordinate()) {
+                    if (touchPosition.y <= NOT_GATE_BUTTON_POSITION && touchPosition.y != 1) {
                         // If the x-coordinate of the user's tap matches the x-coordinate of this
                         // button, and the selected button is not a blank button, mark this button
                         // as selected/tapped by the user
