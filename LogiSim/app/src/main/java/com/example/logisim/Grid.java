@@ -141,6 +141,9 @@ public class Grid {
         cellListA = new Vector<>((gridHeight-buttonLength)*gridWidth);
         cellListB = new Vector<>((gridHeight-buttonLength)*gridWidth);
         cellListC = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListD = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListE = new Vector<>((gridHeight-buttonLength)*gridWidth);
+        cellListF = new Vector<>((gridHeight-buttonLength)*gridWidth);
 
         // A nested loop will fill the entirety of the vector with EmptyCells
         // Note: the grid is filled column by column
