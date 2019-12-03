@@ -41,7 +41,7 @@ public class UserSelection {
     private final int LAMP_BUTTON_POSITION = 2;
     private final int GATES_BUTTON_POSITION = 3;
     private final int LINK_BUTTON_POSITION = 4;
-    
+
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
     private final int SAVE_SLOT_C_POSITION = 4;
@@ -122,6 +122,14 @@ public class UserSelection {
                 grid.loadBuildMenu();
                 grid.getButtonList().get(BUILD_BUTTON_POSITION).toggleButton();
             }
+            // UNDO button
+            else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
+                undo.returnUndo();
+            }
+            // REDO button
+            else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
+
+            }
             // SAVE button
             else if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
                 grid.loadSaveMenu();
@@ -131,6 +139,39 @@ public class UserSelection {
             else if (grid.getButtonList().get(LOAD_BUTTON_POSITION).getSelected()) {
                 grid.loadLoadMenu();
                 grid.getButtonList().get(LOAD_BUTTON_POSITION).toggleButton();
+            }
+        }
+        else {
+            // This loop finds which button is currently toggled on
+            int currentOption = -1;
+            for (int i = 0; i < grid.getButtonList().size(); i++) {
+                if (grid.getButtonList().get(i).getSelected()) {
+                    currentOption = grid.getButtonList().get(i).getButtonInList();
+                }
+            }
+
+            switch (currentOption) {
+                // MOVE button
+                case MOVE_BUTTON_POSITION:
+                    // if there has been a previously selected cell
+                    if (previouslySelected) {
+                        componentMover.moveCells(touchPosition, touchPositionN, grid);
+                        previouslySelected = false;
+                    }
+                    // select the cell to be moved
+                    else {
+                        grid.setPreviousTouchN(touchPositionN);
+                        previouslySelected = true;
+                    }
+                    break;
+
+                // DELETE button
+                case DELETE_BUTTON_POSITION:
+                    // turn the cell selected back into an EmptyCell
+                    Cell deleteCell = grid.getCellList().get(touchPositionN);
+                    deleteCell.deleteConnections();
+                    grid.getCellList().set(touchPositionN,new EmptyCell(deleteCell));
+                    break;
             }
         }
     }
@@ -166,15 +207,6 @@ public class UserSelection {
                 grid.loadGatesMenu();
                 grid.getButtonList().get(GATES_BUTTON_POSITION).toggleButton();
             }
-            // UNDO button
-            else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
-                undo.returnUndo();
-            }
-            // REDO button
-            else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
-
-            }
-
         }
         else {
             // This loop finds which button is currently toggled on
@@ -210,28 +242,6 @@ public class UserSelection {
                         grid.setPreviousTouchN(touchPositionN);
                         previouslySelected = true;
                     }
-                    break;
-
-                // MOVE button
-                case MOVE_BUTTON_POSITION:
-                    // if there has been a previously selected cell
-                    if (previouslySelected) {
-                        componentMover.moveCells(touchPosition, touchPositionN, grid);
-                        previouslySelected = false;
-                    }
-                    // select the cell to be moved
-                    else {
-                        grid.setPreviousTouchN(touchPositionN);
-                        previouslySelected = true;
-                    }
-                    break;
-
-                // DELETE button
-                case DELETE_BUTTON_POSITION:
-                    // turn the cell selected back into an EmptyCell
-                    Cell deleteCell = grid.getCellList().get(touchPositionN);
-                    deleteCell.deleteConnections();
-                    grid.getCellList().set(touchPositionN,new EmptyCell(deleteCell));
                     break;
 
                 default:
