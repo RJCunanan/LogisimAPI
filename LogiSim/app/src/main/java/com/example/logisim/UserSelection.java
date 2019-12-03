@@ -172,6 +172,12 @@ public class UserSelection {
                     deleteCell.deleteConnections();
                     grid.getCellList().set(touchPositionN,new EmptyCell(deleteCell));
                     break;
+
+                default:
+                    // If the user tapped a Switch, toggle its state
+                    if(grid.getCellList().get(touchPositionN) instanceof SWITCH) {
+                        ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();
+                    }
             }
         }
     }
@@ -329,6 +335,12 @@ public class UserSelection {
                     // creates a NOT gate after being given information of the cell
                     grid.getCellList().set(touchPositionN,new NOT(grid.getCellList().get(touchPositionN)));
                     break;
+
+                default:
+                    // If the user tapped a Switch, toggle its state
+                    if(grid.getCellList().get(touchPositionN) instanceof SWITCH) {
+                        ((SWITCH) grid.getCellList().get(touchPositionN)).toggleSwitch();
+                    }
             }
         }
     }
