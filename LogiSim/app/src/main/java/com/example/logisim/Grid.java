@@ -53,7 +53,6 @@ public class Grid {
     private final int GATES_BUTTON_POSITION = 3;
     private final int LINK_BUTTON_POSITION = 4;
 
-
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
     private final int SAVE_SLOT_C_POSITION = 4;
