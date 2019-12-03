@@ -41,17 +41,18 @@ public class Grid {
     private final int DONE_BUTTON_POSITION = 0;
 
     private final int BUILD_BUTTON_POSITION = 0;
-    private final int SAVE_BUTTON_POSITION = 1;
-    private final int LOAD_BUTTON_POSITION = 2;
+    private final int MOVE_BUTTON_POSITION = 1;
+    private final int DELETE_BUTTON_POSITION = 2;
+    private final int UNDO_BUTTON_POSITION = 3;
+    private final int REDO_BUTTON_POSITION = 4;
+    private final int SAVE_BUTTON_POSITION = 6;
+    private final int LOAD_BUTTON_POSITION = 7;
 
     private final int SWITCH_BUTTON_POSITION = 1;
     private final int LAMP_BUTTON_POSITION = 2;
     private final int GATES_BUTTON_POSITION = 3;
     private final int LINK_BUTTON_POSITION = 4;
-    private final int MOVE_BUTTON_POSITION = 5;
-    private final int DELETE_BUTTON_POSITION = 6;
-    private final int UNDO_BUTTON_POSITION = 7;
-    private final int REDO_BUTTON_POSITION = 8;
+
 
     private final int SAVE_SLOT_A_POSITION = 2;
     private final int SAVE_SLOT_B_POSITION = 3;
@@ -203,6 +204,22 @@ public class Grid {
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "BUILD", BUILD_BUTTON_POSITION));
                 break;
+            case MOVE_BUTTON_POSITION:
+                buildMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Move", MOVE_BUTTON_POSITION));
+                break;
+            case DELETE_BUTTON_POSITION:
+                buildMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETE_BUTTON_POSITION));
+                break;
+            case UNDO_BUTTON_POSITION:
+                buildMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Undo", UNDO_BUTTON_POSITION));
+                break;
+            case REDO_BUTTON_POSITION:
+                buildMenuList.add(new UserInterfaceButtons(0, y,
+                        buttonWidth, buttonLength, currentButtonPosition, "Redo", REDO_BUTTON_POSITION));
+                break;
             case SAVE_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVE_BUTTON_POSITION));
@@ -243,22 +260,6 @@ public class Grid {
             case LINK_BUTTON_POSITION:
                 buildMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Link", LINK_BUTTON_POSITION));
-                break;
-            case MOVE_BUTTON_POSITION:
-                buildMenuList.add(new UserInterfaceButtons(0, y,
-                        buttonWidth, buttonLength, currentButtonPosition, "Move", MOVE_BUTTON_POSITION));
-                break;
-            case DELETE_BUTTON_POSITION:
-                buildMenuList.add(new UserInterfaceButtons(0, y,
-                        buttonWidth, buttonLength, currentButtonPosition, "Delete", DELETE_BUTTON_POSITION));
-                break;
-            case UNDO_BUTTON_POSITION:
-                buildMenuList.add(new UserInterfaceButtons(0, y,
-                        buttonWidth, buttonLength, currentButtonPosition, "Undo", UNDO_BUTTON_POSITION));
-                break;
-            case REDO_BUTTON_POSITION:
-                buildMenuList.add(new UserInterfaceButtons(0, y,
-                        buttonWidth, buttonLength, currentButtonPosition, "Redo", REDO_BUTTON_POSITION));
                 break;
             default:
                 buildMenuList.add(new UserInterfaceButtons(0, y,
