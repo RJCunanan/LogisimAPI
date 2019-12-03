@@ -368,10 +368,10 @@ public class UserSelection {
                 }
             }
 
-            // BACK button
-            if (grid.getButtonList().get(BACK_BUTTON_POSITION).getSelected()) {
+            // DONE button
+            if (grid.getButtonList().get(DONE_BUTTON_POSITION).getSelected()) {
                 grid.loadMainMenu();
-                grid.getButtonList().get(BACK_BUTTON_POSITION).toggleButton();
+                grid.getButtonList().get(DONE_BUTTON_POSITION).toggleButton();
             }
             // Save Slot A
             else if (grid.getButtonList().get(SAVE_SLOT_A_POSITION).getSelected()) {
@@ -421,10 +421,10 @@ public class UserSelection {
                 }
             }
 
-            // BACK button
-            if (grid.getButtonList().get(BACK_BUTTON_POSITION).getSelected()) {
+            // DONE button
+            if (grid.getButtonList().get(DONE_BUTTON_POSITION).getSelected()) {
                 grid.loadMainMenu();
-                grid.getButtonList().get(BACK_BUTTON_POSITION).toggleButton();
+                grid.getButtonList().get(DONE_BUTTON_POSITION).toggleButton();
             }
             // Load Save Slot A
             else if (grid.getButtonList().get(SAVE_SLOT_A_POSITION).getSelected()) {
