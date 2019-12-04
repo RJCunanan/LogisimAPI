@@ -92,6 +92,7 @@ public class Logisim extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         // Has the player removed their finger from the screen?
+        undoSave.saveUndo(grid.getGrid());
         if((motionEvent.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
 
             // Calculate the player's touch in terms of the grid squares
