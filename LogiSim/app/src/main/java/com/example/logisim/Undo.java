@@ -5,35 +5,33 @@ public class Undo{
     private Vector<Cell> undoSaved;
     private Stack<Vector<Cell>> save;
     private Grid grid;
-    void Undo(int size, Grid gridSave){
+    Undo(Grid gridSave){
         grid= gridSave;
         save= new Stack<>();
         undoSaved = new Vector<>();
-        for(int i=0; i<0; i++)
-            undoSaved.add(new EmptyCell(null));
     }
     void saveUndo(Vector<Cell> saveThis){
         Cell temp;
         for(int i=0; i<=saveThis.size();i++){
             temp=saveThis.get(i);
             if(temp instanceof EmptyCell)
-                undoSaved.set(i, new EmptyCell(temp));
+                undoSaved.add(new EmptyCell(temp));
             else if(temp instanceof SWITCH)
-                undoSaved.set(i, new SWITCH(temp));
+                undoSaved.add(new SWITCH(temp));
             else if(temp instanceof AND)
-                undoSaved.set(i, new AND(temp));
+                undoSaved.add(new AND(temp));
             else if(temp instanceof NAND)
-                undoSaved.set(i, new NAND(temp));
+                undoSaved.add(new NAND(temp));
             else if(temp instanceof OR)
-                undoSaved.set(i, new OR(temp));
+                undoSaved.add(new OR(temp));
             else if(temp instanceof NOR)
-                undoSaved.set(i, new NOR(temp));
+                undoSaved.add(new NOR(temp));
             else if(temp instanceof XOR)
-                undoSaved.set(i, new XOR(temp));
+                undoSaved.add(new XOR(temp));
             else if(temp instanceof NOT)
-                undoSaved.set(i, new NOT(temp));
+                undoSaved.add(new NOT(temp));
             else if(temp instanceof LAMP)
-                undoSaved.set(i, new LAMP(temp));
+                undoSaved.add(new LAMP(temp));
         }
         for(int i=0; i<=saveThis.size();i++) {
             temp=saveThis.get(i);
@@ -53,6 +51,7 @@ public class Undo{
             }
         }
         save.push(undoSaved);
+        undoSaved.clear();
     }
     Vector<Cell> returnUndo() {
         return save.pop();
