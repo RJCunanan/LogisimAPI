@@ -16,6 +16,8 @@
 * Redo and Undo functionality to allow the user to go back and forth between current and previously created circuits
 * Dynamic taskbar that switches between different menus and allows for the addition of new buttons without running out of space
 * Sound feedback for user taps and background music during application startup
+* Realtime evaluation of circuits
+* Color-coded feedback for user to visually see the inputs and outputs from one point of a circuit to another
 
 
 # LogiSim Design Document
