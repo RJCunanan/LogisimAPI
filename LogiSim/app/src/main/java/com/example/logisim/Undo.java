@@ -5,35 +5,40 @@ public class Undo{
     private Vector<Cell> undoSaved;
     private Stack<Vector<Cell>> save;
     private Grid grid;
-    Undo(Grid gridSave){
+    Undo(Grid gridSave, Vector<Cell> initialArray){
         grid= gridSave;
         save= new Stack<>();
         undoSaved = new Vector<>();
+        Cell temp;
+        for(int i=0; i<initialArray.size();i++) {
+            temp = initialArray.get(i);
+            undoSaved.add(new EmptyCell(temp));
+        }
     }
     void saveUndo(Vector<Cell> saveThis){
         Cell temp;
-        for(int i=0; i<=saveThis.size();i++){
+        for(int i=0; i<saveThis.size();i++){
             temp=saveThis.get(i);
             if(temp instanceof EmptyCell)
-                undoSaved.add(new EmptyCell(temp));
+                undoSaved.set(i, new EmptyCell(temp));
             else if(temp instanceof SWITCH)
-                undoSaved.add(new SWITCH(temp));
+                undoSaved.set(i, new SWITCH(temp));
             else if(temp instanceof AND)
-                undoSaved.add(new AND(temp));
+                undoSaved.set(i, new AND(temp));
             else if(temp instanceof NAND)
-                undoSaved.add(new NAND(temp));
+                undoSaved.set(i, new NAND(temp));
             else if(temp instanceof OR)
-                undoSaved.add(new OR(temp));
+                undoSaved.set(i, new OR(temp));
             else if(temp instanceof NOR)
-                undoSaved.add(new NOR(temp));
+                undoSaved.set(i, new NOR(temp));
             else if(temp instanceof XOR)
-                undoSaved.add(new XOR(temp));
+                undoSaved.set(i, new XOR(temp));
             else if(temp instanceof NOT)
-                undoSaved.add(new NOT(temp));
+                undoSaved.set(i, new NOT(temp));
             else if(temp instanceof LAMP)
-                undoSaved.add(new LAMP(temp));
+                undoSaved.set(i, new LAMP(temp));
         }
-        for(int i=0; i<=saveThis.size();i++) {
+        for(int i=0; i<saveThis.size();i++) {
             temp=saveThis.get(i);
             if(!(temp instanceof EmptyCell)) {
                 if(temp.getCellA() != null) {
@@ -51,7 +56,6 @@ public class Undo{
             }
         }
         save.push(undoSaved);
-        undoSaved.clear();
     }
     Vector<Cell> returnUndo() {
         return save.pop();
