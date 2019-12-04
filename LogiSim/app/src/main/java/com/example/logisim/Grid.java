@@ -132,8 +132,9 @@ public class Grid {
         initializeButtons();
     }
 
-
-
+    public Vector<Cell> getGrid(){
+        return cellList;
+    }
     private void initializeGrid() {
         // The grid Vector will be created to have a size of the
         // area in which the player can place gates/switches/lamps inside
