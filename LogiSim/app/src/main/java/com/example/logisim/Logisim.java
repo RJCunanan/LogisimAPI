@@ -71,7 +71,7 @@ public class Logisim extends Activity {
         // Construct the grid and scoreboard class and give them access to drawing on the screen
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
         undoSave= new Undo(grid);
-                selection = new UserSelection();
+        selection = new UserSelection();
         draw();
 
         //Media Player definition
