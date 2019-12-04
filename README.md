@@ -75,9 +75,7 @@ The delete button allows for the user to delete individual circuit components on
 Next is the Clear button which was an original feature of the application but, because of the recent changes and restructuring made to the programming, ended up being removed due to incompatibility and is currently under redevelopment. The clear button is similar to the delete button previously discussed above. When the user taps on this button to select it, the entire grid is then cleared of all circuit components and the user is presented with an empty grid. This is not to be confused with the delete button’s function which only deletes a single circuit component at a time. The way in which the clear button accomplishes its task of clearing the grid is that, starting from the top left corner of the grid and moving across and down, each cell in the grid is replaced with a clean empty cell that does not contain any sort of circuit component. By doing so, any already existing circuits on the grid are replaced and the user is left with a clean grid to create new circuits.
 
 ### Undo Button (Under Development):
-
-
-
+Currently, our team is working on creating an undo button that, when selected, reverses the previous action by the user. For example, if the user has just placed a lamp onto the grid that he or she did not intend to place, then by selecting the undo button, the app undoes the most recent action and removes the lamp from the grid. This function can be selected as many times as needed, and will allow the user to undo all actions if the user so chooses.
 
 ### Redo Button (Under Development):
 
