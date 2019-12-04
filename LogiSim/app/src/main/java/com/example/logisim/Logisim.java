@@ -100,7 +100,6 @@ public class Logisim extends Activity {
             // The grid will determine what to do with this player's touch
             selection.determineUserSelection(touchPosition, grid);
             draw();
-
             //Media Player definition
             if (touchPosition.x <= grid.getButtonLength() && touchPosition.y >= 0) {
                 final MediaPlayer clickOn = MediaPlayer.create(this, R.raw.click_on);
