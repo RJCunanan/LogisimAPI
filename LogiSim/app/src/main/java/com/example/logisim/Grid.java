@@ -85,7 +85,7 @@ public class Grid {
     private Bitmap myBitMap;
     private Context myContext;
 
-    private Vector<Cell> cellList;
+    public Vector<Cell> cellList;
     private List<UserInterfaceButtons> buttonList = new ArrayList<>(10);
 
     private Vector<Cell> cellListA;
