@@ -122,7 +122,7 @@ public class UserSelection {
             }
             // UNDO button
             else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
-                
+
             }
             // REDO button
             else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
