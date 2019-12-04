@@ -70,7 +70,7 @@ public class Logisim extends Activity {
 
         // Construct the grid and scoreboard class and give them access to drawing on the screen
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
-        undoSave= new Undo(grid);
+        undoSave= new Undo(grid, grid.cellList);
         selection = new UserSelection(undoSave);
         draw();
 
@@ -92,7 +92,6 @@ public class Logisim extends Activity {
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
         // Has the player removed their finger from the screen?
-        undoSave.saveUndo(grid.getGrid());
         if((motionEvent.getAction() & MotionEvent.ACTION_MASK) == MotionEvent.ACTION_UP) {
 
             // Calculate the player's touch in terms of the grid squares
@@ -100,6 +99,7 @@ public class Logisim extends Activity {
 
             // The grid will determine what to do with this player's touch
             selection.determineUserSelection(touchPosition, grid);
+            undoSave.saveUndo(grid.cellList);
             draw();
             //Media Player definition
             if (touchPosition.x <= grid.getButtonLength() && touchPosition.y >= 0) {
