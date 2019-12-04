@@ -20,9 +20,7 @@
 package com.example.logisim;
 import android.graphics.Point;
 
-
 public class UserSelection {
-
     // Several Constants used within the code for Switch Statements.
     // Each constant represents one of the buttons on the taskbar and
     // allows the code to be more readable.
@@ -56,6 +54,10 @@ public class UserSelection {
     private final int XOR_GATE_BUTTON_POSITION = 6;
     private final int NOT_GATE_BUTTON_POSITION = 7;
 
+    Undo undoSave;
+    UserSelection(Undo saveUndo) {
+        undoSave=saveUndo;
+    }
     private boolean previouslySelected = false;
 
     // Creates new save object that is used to save circuits into different slots.
