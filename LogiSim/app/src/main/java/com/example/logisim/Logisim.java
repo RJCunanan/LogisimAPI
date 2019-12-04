@@ -37,6 +37,7 @@ public class Logisim extends Activity {
     // The brains of the Logisim
     Grid grid;
     UserSelection selection;
+    Undo undoSave;
 
     // Here are all the objects(instances)
     // of classes that we need to do some drawing
@@ -69,7 +70,8 @@ public class Logisim extends Activity {
 
         // Construct the grid and scoreboard class and give them access to drawing on the screen
         grid = new Grid(this, gridSize, canvas, paint, gameView, blankBitmap);
-        selection = new UserSelection();
+        undoSave= new Undo(grid);
+                selection = new UserSelection();
         draw();
 
         //Media Player definition
