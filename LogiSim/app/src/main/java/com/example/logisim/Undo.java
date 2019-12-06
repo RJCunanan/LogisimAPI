@@ -1,10 +1,10 @@
 package com.example.logisim;
 import java.util.*;
 
-public class Undo{
+class Undo{
     private Vector<Cell> undoSaved;
     private Stack<Vector<Cell>> save;
-    Save savePlease;
+    private Save savePlease;
     private Grid grid;
     Undo(Grid gridSave, Vector<Cell> initialArray){
         grid= gridSave;
@@ -27,5 +27,4 @@ public class Undo{
     boolean isEmpty(){
         return save.isEmpty();
     }
-
 }
