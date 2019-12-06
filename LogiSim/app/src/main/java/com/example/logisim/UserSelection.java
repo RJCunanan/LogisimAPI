@@ -76,6 +76,8 @@ public class UserSelection {
     // once the player has touched the screen
     void determineUserSelection(Point touchPosition, Grid grid) {
         int touchPositionN = grid.getCellN(touchPosition);
+        if(touchPosition.x>grid.getButtonLength())
+            undo.saveUndo(grid.getCellList());
 
         if (grid.getMenuToDisplay() == grid.getMainMenu()) {
             determineMainMenuSelection(touchPosition, grid, touchPositionN);
@@ -124,7 +126,8 @@ public class UserSelection {
             }
             // UNDO button
             else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
-                save.saveList(undo.returnUndo(), grid.getCellList(), grid);
+                if(!undo.isEmpty())
+                    save.saveList(undo.returnUndo(), grid.getCellList(), grid);
             }
             // REDO button
             else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
