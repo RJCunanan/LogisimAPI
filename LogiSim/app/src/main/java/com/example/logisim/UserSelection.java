@@ -20,6 +20,8 @@
 package com.example.logisim;
 import android.graphics.Point;
 
+import java.util.Vector;
+
 public class UserSelection {
     // Several Constants used within the code for Switch Statements.
     // Each constant represents one of the buttons on the taskbar and
@@ -126,12 +128,12 @@ public class UserSelection {
             }
             // UNDO button
             else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
-                if(!undo.isEmpty())
+                if(!undo.isEmpty()) {
                     save.saveList(undo.returnUndo(), grid.getCellList(), grid);
+                }
             }
             // REDO button
             else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
-
             }
             // SAVE button
             else if (grid.getButtonList().get(SAVE_BUTTON_POSITION).getSelected()) {
