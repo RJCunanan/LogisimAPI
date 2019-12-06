@@ -54,9 +54,9 @@ public class UserSelection {
     private final int XOR_GATE_BUTTON_POSITION = 6;
     private final int NOT_GATE_BUTTON_POSITION = 7;
 
-    Undo undoSave;
+    Undo undo;
     UserSelection(Undo saveUndo) {
-        undoSave=saveUndo;
+        undo=saveUndo;
     }
     private boolean previouslySelected = false;
 
@@ -124,7 +124,7 @@ public class UserSelection {
             }
             // UNDO button
             else if (grid.getButtonList().get(UNDO_BUTTON_POSITION).getSelected()) {
-                save.saveList(undoSave.returnUndo(), grid.getCellList(), grid);
+                save.saveList(undo.returnUndo(), grid.getCellList(), grid);
             }
             // REDO button
             else if (grid.getButtonList().get(REDO_BUTTON_POSITION).getSelected()) {
