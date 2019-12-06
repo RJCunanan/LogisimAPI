@@ -99,7 +99,6 @@ public class Logisim extends Activity {
 
             // The grid will determine what to do with this player's touch
             selection.determineUserSelection(touchPosition, grid);
-            undoSave.saveUndo(grid.getCellList());
             draw();
             //Media Player definition
             if (touchPosition.x <= grid.getButtonLength() && touchPosition.y >= 0) {
