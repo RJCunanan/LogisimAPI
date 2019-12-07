@@ -381,6 +381,10 @@ public class Grid {
            myCanvas.drawLine(currCell.cellX, currCell.cellY,
                              currCell.cellX, currCell.cellY + cellSize, myPaint);
 
+           // update Cell's state if its a LAMP
+           if(currCell instanceof LAMP)
+               currCell.getState();
+
            // Draw whatever the current cell is (emptycell, gate, switch, lamp)
            currCell.drawCell(myPaint, myCanvas, myContext);
 
