@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public abstract class Cell {
+public abstract class Cell extends Logisim {
     // Keeps information about the cell's position
     // In terms of both the grid plot and the pixels
     Point cellPosition;

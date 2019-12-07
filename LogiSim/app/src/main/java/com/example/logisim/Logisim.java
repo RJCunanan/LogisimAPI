@@ -47,7 +47,6 @@ public class Logisim extends Activity {
     Paint paint;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
