@@ -76,7 +76,7 @@ public class Logisim extends Activity {
         //Media Player definition
         final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
         elevatorOn.start();
-        elevatorOn.setLooping(true);
+        //elevatorOn.setLooping(true);
 
     }
 
