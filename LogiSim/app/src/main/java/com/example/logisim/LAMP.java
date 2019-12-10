@@ -25,6 +25,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaPlayer;
 
 public class LAMP extends Cell {
 
@@ -58,7 +59,15 @@ public class LAMP extends Cell {
         state = eval();
     }
 
+    boolean getState() {
+        try {this.state = a.eval(); }
+        catch (Exception e) { this.state = false; }
+        return this.state;
+    }
 
     // Passes its connected cell's state
-    boolean eval() {return a.eval();}
+    boolean eval() {
+        getState();
+        return this.state;
+    }
 }

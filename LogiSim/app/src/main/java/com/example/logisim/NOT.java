@@ -51,7 +51,8 @@ public class NOT extends Cell {
     int getGateNum() {return gateNum;}
 
     boolean getState() {
-        this.state = !a.eval();
+        try{this.state = !a.eval();}
+        catch(Exception e) {this.state = false;}
         return this.state;
     }
 

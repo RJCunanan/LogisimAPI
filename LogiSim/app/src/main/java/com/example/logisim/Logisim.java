@@ -29,6 +29,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.media.MediaPlayer;
 
+
 public class Logisim extends Activity {
 
     Point gridSize;
@@ -73,11 +74,7 @@ public class Logisim extends Activity {
         undoSave= new Undo(grid, grid.cellList);
         selection = new UserSelection(undoSave);
         draw();
-
-        //Media Player definition
-        final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
-        elevatorOn.start();
-        elevatorOn.setLooping(true);
+        backgroundMus();
 
     }
 
@@ -116,5 +113,15 @@ public class Logisim extends Activity {
     void setTouchPosition(float touchX, float touchY) {
         touchPosition.x = (int) touchX / grid.cellSize;
         touchPosition.y = (int) touchY / grid.cellSize;
+    }
+
+    void backgroundMus(){
+        final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
+        try {
+            elevatorOn.setLooping(true);
+        }catch(IllegalStateException e){
+            e.printStackTrace();
+        }
+        elevatorOn.start();
     }
 }

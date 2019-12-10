@@ -51,7 +51,8 @@ public class AND extends Cell {
     int getGateNum() {return gateNum;}
 
     boolean getState() {
-        this.state = a.eval() & b.eval();
+        try {this.state = a.eval() & b.eval();}
+        catch (Exception e) {this.state = false;}
         return this.state;
     }
 

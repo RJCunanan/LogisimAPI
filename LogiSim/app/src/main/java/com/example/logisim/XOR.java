@@ -49,11 +49,13 @@ public class XOR extends Cell {
     int getGateNum() {return gateNum;}
 
     boolean getState() {
-        if ((a.eval() && !b.eval()) || (!a.eval() && b.eval()))
-            this.state = true;
-        else
-            this.state = false;
-
+        try {
+            if ((a.eval() && !b.eval()) || (!a.eval() && b.eval()))
+                this.state = true;
+            else
+                this.state = false;
+        }
+        catch(Exception e){this.state = false;}
         return this.state;
     }
 
