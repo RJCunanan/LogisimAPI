@@ -29,6 +29,7 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.media.MediaPlayer;
 
+
 public class Logisim extends Activity {
 
     Point gridSize;
@@ -45,6 +46,7 @@ public class Logisim extends Activity {
     Bitmap blankBitmap;
     Canvas canvas;
     Paint paint;
+
 
 
     @Override
@@ -74,8 +76,16 @@ public class Logisim extends Activity {
         draw();
 
         //Media Player definition
-        final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
+        /*final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
         elevatorOn.setLooping(true);
+        elevatorOn.start();*/
+
+       final MediaPlayer elevatorOn = MediaPlayer.create(this, R.raw.elevator_music);
+            try {
+                elevatorOn.setLooping(true);
+            }catch(IllegalStateException e){
+                e.printStackTrace();
+            }
         elevatorOn.start();
 
     }
