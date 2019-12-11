@@ -13,7 +13,7 @@
 
 ### New Features
 * Additional Logic Gates (NAND, NOR, XOR)
-* Redo and Undo functionality to allow the user to go back and forth between current and previously created circuits
+* Undo functionality to allow the user to undo recent action
 * Dynamic taskbar that switches between different menus and allows for the addition of new buttons without running out of space
 * Sound feedback for user taps and background music during application startup
 * Realtime evaluation of circuits
@@ -71,14 +71,8 @@ The move button is a feature that allows the user to move any single circuit com
 ### Delete Button:
 The delete button allows for the user to delete individual circuit components on the grid. With this button selected, users tap on an already existing circuit component on the grid and that component will be removed from the circuit. Note that if the component to be deleted is connected to other components via wires, then all the wires on the circuit will also be deleted to prevent unconnected wires from remaining after the deletion is completed.
 
-### Clear Button (under redevelopment):
-Next is the Clear button which was an original feature of the application but, because of the recent changes and restructuring made to the programming, ended up being removed due to incompatibility and is currently under redevelopment. The clear button is similar to the delete button previously discussed above. When the user taps on this button to select it, the entire grid is then cleared of all circuit components and the user is presented with an empty grid. This is not to be confused with the delete button’s function which only deletes a single circuit component at a time. The way in which the clear button accomplishes its task of clearing the grid is that, starting from the top left corner of the grid and moving across and down, each cell in the grid is replaced with a clean empty cell that does not contain any sort of circuit component. By doing so, any already existing circuits on the grid are replaced and the user is left with a clean grid to create new circuits.
-
-### Undo Button (Under Development):
+### Undo Button:
 Currently, our team is working on creating an undo button that, when selected, reverses the previous action by the user. For example, if the user has just placed a lamp onto the grid that he or she did not intend to place, then by selecting the undo button, the app undoes the most recent action and removes the lamp from the grid. This function can be selected as many times as needed, and will allow the user to undo all actions if the user so chooses.
-
-### Redo Button (Under Development):
-In relation to the undo button, our team is also working on creating a redo button that, in essence, reverses an action done by the undo button. For instance, the user has used the undo button to get rid of a lamp that was accidentally placed onto the grid. If he or she decides that the lamp that was removed is actually needed, then the user can just tap the redo button to bring back the lamp and reverse any actions made by undo. Like the undo button, the redo button can be selected as many times as needed.
 
 ### Save Button:
 A recent update to this application is the implementation of a Save menu rather that a single save button with three save spots next to it. When the user presses the save button in the main menu, the taskbar switches over to the save menu which contains several save slot buttons labeled from slots A to F. What these buttons do is allow the user to save the current circuit on the grid into either of the slot buttons so that at any time the user can load that circuit back onto the grid. In order to save a circuit, the user simply needs to just tap on one of the slot buttons to select it, and that button will be highlighted not only to indicate it has been selected, but also to show that the circuit has been saved into that slot. The user may also overwrite any saved circuit by taping the same button again.
