@@ -12,10 +12,8 @@ class Undo{
     }
     void saveUndo(Vector<Cell> saveThis){
         Vector<Cell> undoSaved = new Vector<>();
-        for(int i=0; i<saveThis.size(); i++) {
-            Cell temp = saveThis.get(i);
+        for(Cell temp: saveThis)
             undoSaved.add(new EmptyCell(temp));
-        }
         savePlease.saveList(saveThis, undoSaved, grid);
         save.push(undoSaved);
     }
