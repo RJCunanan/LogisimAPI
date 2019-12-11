@@ -213,10 +213,12 @@ public class Grid {
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Undo", UNDO_BUTTON_POSITION));
                 break;
+            /*
             case REDO_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "Redo", REDO_BUTTON_POSITION));
                 break;
+             */
             case SAVE_BUTTON_POSITION:
                 mainMenuList.add(new UserInterfaceButtons(0, y,
                         buttonWidth, buttonLength, currentButtonPosition, "SAVE", SAVE_BUTTON_POSITION));
